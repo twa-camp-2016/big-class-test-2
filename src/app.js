@@ -1,12 +1,17 @@
 "use strict"
 
+let fn = require('../spec/fixture')
+
 function printReceipt(tags) {
-    let allItems = loadAllItems();
-    let promotions = loadAllItems();
+    let allItems = fn.loadAllItems();
+    let promotions = fn.loadAllItems();
 
     let barcodes = formateBarcode(tags);
     let mergedBarcodes = mergeBarcode(barcodes);
     let itemsInfo = getItemsInfo(allItems, mergedBarcodes);
+    let total = calculateSubotal(itemsInfo);
+    let promotionedId = getPromotionsIds(promotions)
+
 }
 
 function formateBarcode(tags) {
@@ -47,9 +52,38 @@ function getItemsInfo(allItems, mergedBarcodes) {
     return itemsInfo;
 }
 
+function calculateSubotal(itemsInfo) {
+   return itemsInfo.map(function (item) {
+       let temp = item.price * item.count;
+        return item = Object.assign({}, item, {subotal: temp})
+    });
+}
+
+function calculateTotal(subtotaledItem) {
+    let total = 0;
+   for(let item of subtotaledItem) {
+       total += item.subtotal;
+   }
+    return total;
+}
+
+function getPromotionsIds(promotions) {
+    let prototionedId = [];
+    promotions.forEach(function (p) {
+        if(p.type === 'BUY_TWO_GET_ONE_FREE') {
+            prototionedId =  p.barcodes;
+        }
+    });
+    return prototionedId;
+}
+
+let promotions =
 
 module.exports = {
     formateBarcode: formateBarcode,
     mergedBarcode: mergeBarcode,
     getItemsInfo: getItemsInfo,
+    calculateSubotal: calculateSubotal,
+    calculateTotal: calculateTotal,
+    getPromotionsIds: getPromotionsIds,
 };
