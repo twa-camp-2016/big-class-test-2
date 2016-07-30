@@ -81,4 +81,9 @@ function calculateTotal(subTotals){
     });
 }
 
-function calculatePromotedTotalMoney(subTotals){}
+function calculatePromotedTotalMoney(subTotals,total){
+    let resullt = subTotals.reduce(function(cur,item){
+        return cur+item.subTotal;
+    });
+    return resullt - total;
+}
