@@ -35,7 +35,16 @@ function mergeBarcode(barcodes) {
 }
 
 function getItemsInfo(allItems, mergedBarcodes) {
-
+    let itemsInfo = [];
+    mergedBarcodes.map(function (merge) {
+        let exit = allItems.find(function (item) {
+            return item.barcode === merge.barcode;
+        });
+        if(exit) {
+            itemsInfo.push(Object.assign({}, exit, {count: merge.count}))
+        }
+    });
+    return itemsInfo;
 }
 
 

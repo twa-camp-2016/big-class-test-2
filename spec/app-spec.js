@@ -24,34 +24,59 @@ describe('formateBarcode', function () {
 });
 
 describe('mergeBarcode', function () {
-   it('should return mergedBarcodes', function () {
-      let barcodes = [
-          {
-              barcode: 'ITEM000001',
-              count: 1
-          }, {
-              barcode: 'ITEM000001',
-              count: 2
-          }
-      ];
-       let expected = [
-           {
-               barcode: 'ITEM000001',
-               count: 3
-           }
-       ];
-       let result = fn.mergedBarcode(barcodes);
+    it('should return mergedBarcodes', function () {
+        let barcodes = [
+            {
+                barcode: 'ITEM000001',
+                count: 1
+            }, {
+                barcode: 'ITEM000001',
+                count: 2
+            }
+        ];
+        let expected = [
+            {
+                barcode: 'ITEM000001',
+                count: 3
+            }
+        ];
+        let result = fn.mergedBarcode(barcodes);
 
-       expect(result).toEqual(expected);
-   });
+        expect(result).toEqual(expected);
+    });
 });
 
 
 describe('getItemsInfo', function () {
     it('should return itemsInfo', function () {
-       let allItems = [];
+        let allItems = [{
+            barcode: 'ITEM000000',
+            name: '可口可乐',
+            unit: '瓶',
+            price: 3.00
+        }];
+        let mergedBarcode = [
+            {
+                barcode: 'ITEM000000',
+                count: 1
+            }
+            ];
+        let expected = [
+            {
+                barcode: 'ITEM000000',
+                name: '可口可乐',
+                unit: '瓶',
+                price: 3.00,
+                count: 1
+            }
+        ];
+        let result = fn.getItemsInfo(allItems, mergedBarcode);
+
+        expect(result).toEqual(expected);
     });
 });
+
+
 
 
 
