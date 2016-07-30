@@ -50,8 +50,37 @@ function getType(countedItems) {
     return hasTypeItems;
 }
 
+function getCartItems(hasTypeItems) {
+    let cartItems=[];
+    let allItems=load.loadAllItems();
+    for(let i of cartItems){
+        for(let j of allItems){
+            if(i.barcode===j.barcode){
+                cartItems.push(Object.assign({},j,{count:i.count,type:i.type}));
+            }
+        }
+    }
+    return cartItems;
+}
+
+function getDiscount(cartItems) {
+    let hasSubtotalItems=[];
+    for(let i of cartItems){
+        if(i.type==='BUY_TWO_GET_ONE_FREE'){
+            let subtotal=i.price*(i.count*2/3);
+            hasSubtotalItems=cartItems.push({subtotal:subtotal});
+        }
+        else {
+            let subtotal=i.price*i.count;
+            hasSubtotalItems=cartItems.push({subtotal:subtotal});
+        }
+    }
+    return hasSubtotalItems;
+}
+
 module.exports={
  splitTags:splitTags,
     getCount:getCount,
-    getType:getType
+    getType:getType,
+    getCartItems:getCartItems
 };

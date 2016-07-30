@@ -93,3 +93,39 @@ describe('getType',function () {
         ]);
     });
 });
+
+describe('getCartItems',function () {
+    it("should get cartItems information ",function () {
+        let hasTypeItems=[
+            {
+                barcode:'ITEM000001',
+                count:2,
+                type: 'BUY_TWO_GET_ONE_FREE'
+
+            },{
+                barcode:'ITEM000003',
+                count:2,
+                type:'other'
+            }
+        ];
+        let result=app.getCartItems(hasTypeItems);
+        expect(result).toEqual([
+            {
+                barcode:'ITEM000001',
+                name: '可口可乐',
+                unit: '瓶',
+                price: 3.00,
+                count:2,
+                type: 'BUY_TWO_GET_ONE_FREE'
+
+            },{
+                barcode:'ITEM000003',
+                name: '荔枝',
+                unit: '斤',
+                price: 15.00,
+                count:2,
+                type:'other'
+            }
+        ])
+    })
+});
