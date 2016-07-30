@@ -49,8 +49,8 @@ describe("getCartItems", function () {
   });
 });
 
-describe("getPromotions", function(){
-  it("to get promotion type", function(){
+describe("getPromotions", function () {
+  it("to get promotion type", function () {
     let inputs = [{
       barcode: 'ITEM000000',
       name: '可口可乐',
@@ -67,12 +67,35 @@ describe("getPromotions", function(){
       count: 2,
       type: 'BUY_TWO_GET_ONE_FREE'
     }]
-    
+
     let promotions = load.loadPromotions();
-    
+
     expect(callFunction.getPromotions(inputs, promotions)).toEqual(expected);
+  });
+});
 
+describe("getSubtotal", function () {
+  it("to get subtotal", function () {
+    let inputs = [{
+      barcode: 'ITEM000000',
+      name: '可口可乐',
+      unit: '瓶',
+      price: 3.00,
+      count: 2,
+      type: 'BUY_TWO_GET_ONE_FREE'
+    }]
 
-  })
-})
+    let expected = [{
+      barcode: 'ITEM000000',
+      name: '可口可乐',
+      unit: '瓶',
+      price: 3.00,
+      count: 2,
+      type: 'BUY_TWO_GET_ONE_FREE',
+      subtotal: 6
+    }]
+
+    expect(callFunction.getSubtotal(inputs)).toEqual(expected);
+  });
+});
 

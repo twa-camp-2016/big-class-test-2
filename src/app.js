@@ -37,8 +37,16 @@ function getPromotions(cartItems, promotions) {
     }
   });
 }
+
+function getSubtotal(promotionTypedCartItems) {
+  return promotionTypedCartItems.map(function (item) {
+    return Object.assign({}, item, {subtotal: item.price * item.count});
+  });
+}
+
 module.exports = {
   getBarcodes: getBarcodes,
   getCartItems: getCartItems,
-  getPromotions:getPromotions,
+  getPromotions: getPromotions,
+  getSubtotal: getSubtotal
 }
