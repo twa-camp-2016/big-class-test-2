@@ -40,9 +40,19 @@ function getCartItems(itemsAmount) {
     return cartItems;
 }
 
+function calculateOriginalSubtotal(cartItems) {
+  let originalSubtotal=[];
+  cartItems.map(item=>{
+      originalSubtotal.push(Object.assign({},item,{originalSubtotal:item.amount*item.price}));
+  });
+  return originalSubtotal;
+}
+
 module.exports = {
     getItems: getItems,
     getItemsAmount: getItemsAmount,
-    getCartItems: getCartItems
+    getCartItems: getCartItems,
+    calculateOriginalSubtotal:calculateOriginalSubtotal
+
 }
 
