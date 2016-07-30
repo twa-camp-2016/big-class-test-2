@@ -12,6 +12,22 @@ function getBarcodes(tags) {
   });
 }
 
+function mergeBarcodes(barcodes) {
+  return barcodes.reduce(function (cur, newVal) {
+    let exist = cur.find(function (item) {
+      return item.barcode === newVal.barcode;
+    });
+    if (exist) {
+      exist.count++;
+    }
+    else {
+      cur.push(Object.assign({}, newVal));
+    }
+
+    return cur;
+  }, []);
+}
+
 function getCartItems(mergedBarcodes, allItems) {
   return mergedBarcodes.map(function (item) {
     let exist = allItems.find(function (info) {
@@ -63,6 +79,7 @@ function getTotal(afterSavedItems) {
 
 module.exports = {
   getBarcodes: getBarcodes,
+  mergeBarcodes: mergeBarcodes,
   getCartItems: getCartItems,
   getPromotionType: getPromotionType,
   getSubtotal: getSubtotal,
