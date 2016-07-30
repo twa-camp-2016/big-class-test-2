@@ -56,13 +56,28 @@ describe("getPromotions",function () {
     it("get promote information",function () {
         let allItems=[
             {barcode:'ITEM000001',amount:3,name:"雪碧",unit: '瓶', price: 3.00},
-           // {barcode:'ITEM000003',amount:2,name: '荔枝', unit: '斤', price: 15.00}
+            {barcode:'ITEM000005',amount:2,name:"方便面", unit: "袋", price: 4.50}
         ];
         let expected=[
             {barcode:'ITEM000001',amount:3,name:"雪碧",unit: '瓶', price: 3.00,type: 'BUY_TWO_GET_ONE_FREE'},
-           // {barcode:'ITEM000003',amount:2,name: '荔枝', unit: '斤', price: 15.00,}
+            {barcode:'ITEM000005',amount:2,name:"方便面", unit: "袋", price: 4.50,type: 'BUY_TWO_GET_ONE_FREE'}
         ];
         let result=obj1.getPromotions(allItems);
         expect(result).toEqual(expected);
     });
 });
+
+describe("getUnPromoteSubtotal",function () {
+    fit("get UnPromoteSubtotal",function () {
+        let allPromoteItems=[
+            {barcode:'ITEM000001',amount:3,name:"雪碧",unit: '瓶', price: 3.00,type: 'BUY_TWO_GET_ONE_FREE'},
+            {barcode:'ITEM000005',amount:2,name:"方便面", unit: "袋", price: 4.50,type: 'BUY_TWO_GET_ONE_FREE'}
+        ];
+        let expected=[
+            {barcode:'ITEM000001',amount:3,name:"雪碧",unit: '瓶', price: 3.00,type: 'BUY_TWO_GET_ONE_FREE',unPromoteSubtotal:9},
+            {barcode:'ITEM000005',amount:2,name:"方便面", unit: "袋", price: 4.50,type: 'BUY_TWO_GET_ONE_FREE',unPromoteSubtotal:9}
+        ];
+        let result=obj1.getUnPromoteSubtotal(allPromoteItems);
+        expect(result).toEqual(expected);
+    })
+})

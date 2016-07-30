@@ -58,21 +58,36 @@ function getCartItems(finalBarcodes) {
     return array;
 }
 
-function getPromotions(allItems){
-    let array=[];
-    let promotions=obj2.loadPromotions();
-    allItems.map(function(element1){
-        promotion.filter(function(element2){
-             element2.map(function (code) {
-                 if(element1.barcode===code)
-             })
-        })
-    })
+function getPromotions(allItems) {
+    let array = [];
+    let promotions = obj2.loadPromotions();
+    allItems.map(function (element1) {
+        promotions.filter(function (element2) {
+            element2.barcode.map(function (code) {
+                if (element1.barcode === code) {
+                    array.push({
+                        barcode: element1.barcode, amount: element1.amount,
+                        name: element1.name, unit: element1.unit, price: element1.price, type: element2.type
+                    })
+                }
+            });
+        });
+    });
+    return array;
+}
+
+function getUnPromoteSubtotal(allPromoteItems) {
+      let array=[];
+      allPromoteItems.map(function (element) {
+          array.push(Object.assign({},element,{unPromoteSubtotal:element.price*element.amount}));
+      })
+    return array;
 }
 
 module.exports = {
     formatBarcodes: formatBarcodes,
     getBarcodeAmount: getBarcodeAmount,
     getCartItems: getCartItems,
-    getPromotions:getPromotions
+    getPromotions: getPromotions,
+    getUnPromoteSubtotal:getUnPromoteSubtotal
 }
