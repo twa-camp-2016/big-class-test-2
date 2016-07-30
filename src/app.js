@@ -66,16 +66,16 @@ function getTotalAndSaveMoney(detailedCartItems) {
         total += detailedCartItems[i].subTotal;
         saveMoney += detailedCartItems[i].subSaveMoney;
     }
-    total=total-saveMoney;
+    total = total - saveMoney;
     return Object.assign({}, {total: total, saveMoney: saveMoney});
 }
 
-function print(detailedCartItems,totalAndSaveMoney){
-    let receiptString='***<没钱赚商店>***收据';
-    for(let item of detailedCartItems){
-        receiptString+='\n'+'名称:'+item.name+','+'数量:'+item.amount+item.unit+','+'单价:'+item.price+'元,'+'小计:'+(item.subTotal-item.subSaveMoney);
+function print(detailedCartItems, totalAndSaveMoney) {
+    let receiptString = '***<没钱赚商店>***收据';
+    for (let item of detailedCartItems) {
+        receiptString += '\n' + '名称:' + item.name + ',' + '数量:' + item.amount + item.unit + ',' + '单价:' + item.price + '元,' + '小计:' + (item.subTotal - item.subSaveMoney);
     }
-    receiptString+=+'\n'+'--------------'+'总计:'+totalAndSaveMoney.total+'(元)'+'\n'+'节省:'+totalAndSaveMoney.saveMoney+'(元)';
+    receiptString += '\n' + '--------------' + '\n' + '总计:' + totalAndSaveMoney.total + '(元)' + '\n' + '节省:' + totalAndSaveMoney.saveMoney + '(元)';
     return receiptString;
 }
 module.exports = {
@@ -84,6 +84,6 @@ module.exports = {
     getCartItems: getCartItems,
     getSubSaveMoney: getSubSaveMoney,
     getSubTotal: getSubTotal,
-    getTotalAndSaveMoney:getTotalAndSaveMoney,
-    print:print
+    getTotalAndSaveMoney: getTotalAndSaveMoney,
+    print: print
 }

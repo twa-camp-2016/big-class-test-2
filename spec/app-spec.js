@@ -157,9 +157,9 @@ describe('getsubtotal', function () {
     });
 });
 
-describe('getTotalAndSaveMoney',function(){
-    it('should return total and saveMoney',function(){
-        let test=[{
+describe('getTotalAndSaveMoney', function () {
+    it('should return total and saveMoney', function () {
+        let test = [{
 
             barcode: 'ITEM000000',
             name: '可口可乐',
@@ -178,15 +178,15 @@ describe('getTotalAndSaveMoney',function(){
             subSaveMoney: 0,
             subTotal: 6
         }];
-        let expected={total:12,saveMoney:3};
-        let result=app.getTotalAndSaveMoney(test);
+        let expected = {total: 12, saveMoney: 3};
+        let result = app.getTotalAndSaveMoney(test);
         expect(result).toEqual(expected);
     });
 });
 
-describe('print',function(){
-    it('should return string',function(){
-        let detailedCartItems=[{
+describe('print', function () {
+    it('should return string', function () {
+        let detailedCartItems = [{
 
             barcode: 'ITEM000000',
             name: '可口可乐',
@@ -205,8 +205,10 @@ describe('print',function(){
             subSaveMoney: 0,
             subTotal: 6
         }];
-        let totalAndSaveMoney={total:12,saveMoney:3};
-        let result=app.print(detailedCartItems,totalAndSaveMoney);
-        let expected='***<没钱赚商店>***收据'+'\n';
+        let totalAndSaveMoney = {total: 12, saveMoney: 3};
+        let result = app.print(detailedCartItems, totalAndSaveMoney);
+        let expected = '***<没钱赚商店>***收据' + '\n' + '名称:' + '可口可乐,数量:3瓶,单价:3元,小计:6' + '\n' + '名称:雪碧,数量:2瓶,单价:3元,小计:6' +
+            '\n' + '--------------' + '\n' + '总计:12(元)' + '\n' + '节省:3(元)';
+        expect(result).toEqual(expected);
     })
 })
