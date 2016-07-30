@@ -5,23 +5,24 @@ function formatBarcode(tags) {
         tag = item.split('-');
         return {
             barcode: tag[0],
-            amount: parseInt(tag[1]) || 0
+            amount: parseInt(tag[1]) || 1
         }
     });
 }
 
 function mergerBarcode(barcode) {
-    let result=[];
-    barcode.reduce((pre,cur)=>{
-        let exist=pre.find((item)=>item.barcode===cur.barcode);
-        if(exist){
-            exist.amount++;
+    return barcode.reduce(function (cur, newObj) {
+        let existItem = cur.find(function (item) {
+            return item.barcode === newObj.barcode;
+        });
+        if (existItem) {
+            existItem.amount += newObj.amount;
         }
         else {
-            result.push(Object.assign({},{barcode:cur.barcode},{amount:1}));
+            cur.push(Object.assign({}, newObj));
         }
-    },[]);
-    return result;
+        return cur;
+    }, []);
 }
 
 function getCartItems(barcodeItems,allItems) {

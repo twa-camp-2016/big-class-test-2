@@ -16,31 +16,31 @@ describe('format barcode', function () {
         ];
         let expected = [{
             barcode: 'ITEM000000',
-            amount: 0
+            amount: 1
         }, {
             barcode: 'ITEM000000',
-            amount: 0
+            amount: 1
         },{
             barcode: 'ITEM000000',
-            amount: 0
+            amount: 1
         },{
             barcode: 'ITEM000000',
-            amount: 0
+            amount: 1
         },{
             barcode: 'ITEM000000',
-            amount: 0
+            amount: 1
         },{
             barcode: 'ITEM000002',
             amount: 2
         }, {
             barcode: 'ITEM000006',
-            amount: 0
+            amount: 1
         },{
             barcode: 'ITEM000006',
-            amount: 0
+            amount: 1
         },{
             barcode: 'ITEM000006',
-            amount: 0
+            amount: 1
         }
         ];
         expect(app.formatBarcode(tags)).toEqual(expected);
