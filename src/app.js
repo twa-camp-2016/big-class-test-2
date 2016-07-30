@@ -46,8 +46,28 @@ function calAmountItems(items) {
 let loadPromotions=fix.loadPromotions();
 let loadAllItems=fix.loadAllItems();
 
+function matchPromotionType(amountBarList,loadPromotions) {
+    let promotionItems=[];
+    for (let i=0;i<amountBarList.length;i++){
+        promotionItems.push(amountBarList[i]);
+        promotionItems[i].type='';
+    }
+    for (let j=0;j<loadPromotions[0].barcodes.length;j++){
+        let exist=promotionItems.find(function (it) {
+           
+            return it.barcode===loadPromotions[0].barcodes[j];
+        })
+        if (exist){ console.log("aaa");
+            exist.type=loadPromotions[0].type;
+        }
+    }
+    return promotionItems;
+
+}
+
 
 
 module.exports={
-    getCartItems:getCartItems,calAmountItems:calAmountItems
+    getCartItems:getCartItems,calAmountItems:calAmountItems,
+    matchPromotionType:matchPromotionType
 }
