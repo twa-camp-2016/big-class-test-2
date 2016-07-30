@@ -30,13 +30,37 @@ function getCartItems(mergedBarcodes, allItems) {
 }
 
 function getBuyTwoFreeOneItems(cartItems, allPromotions) {
-  let buyTwoFreeOneItems = allPromotions.find(p => p.hasOwnProperty('type') );
+  let buyTwoFreeOneItems = allPromotions.find(p => p.hasOwnProperty('type'));
   let allBuyTwoFreeOneBarcodes = buyTwoFreeOneItems.barcodes;
   return cartItems.filter(item => allBuyTwoFreeOneBarcodes.find(entry => entry === item.barcode) === undefined ? false : true);
 }
 
 function calculateOriginSubtotal(cartItems) {
-  return cartItems.map(item=> Object.assign({}, item, {subTotal: item.amount * item.price}));
+  return cartItems.map(item=> Object.assign({}, item, {originSubTotal: item.amount * item.price}));
+}
+
+function calculateDiscount(buyTwoFreeOneItems, cartItems) {
+  return cartItems.map(item=> {
+    let found = buyTwoFreeOneItems.find(entry => entry === item.barcode);
+    if (found) {
+      let number = item.amount - Math.floor(item.amount / 3);
+      if (number > 0)
+        return Object.assign({}, item, {discount: item.price * (number)});
+      else
+        return Object.assign({}, item, {discount: 0});
+
+    } else {
+      return Object.assign({}, item, {discount: 0});
+    }
+  })
+
+}
+
+function getTotalPrice(subTotalCartItems) {
+  return subTotalCartItems.reduce( (acc, cur) => {
+    return acc += (cur.originSubTotal - cur.discount);
+  }, 0)
+
 }
 
 module.exports = {
@@ -45,7 +69,8 @@ module.exports = {
   getCartItems,
   getBuyTwoFreeOneItems,
   calculateOriginSubtotal,
-
+  calculateDiscount,
+  getTotalPrice
 
 
 };

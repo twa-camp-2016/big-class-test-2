@@ -112,27 +112,14 @@ describe('getBuyTwoFreeOneItems', () => {
 
     ];
 
-    let buyTwoFreeOneItems = [
-      {
-        barcode: 'ITEM000001',
-        name: '雪碧',
-        unit: '瓶',
-        price: 3.00, amount: 2
-      },
-      {
-        barcode: 'ITEM000005',
-        name: '方便面',
-        unit: '袋',
-        price: 4.50, amount: 1
-      }
-    ];
+    let buyTwoFreeOneItems = ['ITEM000001', 'ITEM000005'];
 
     let actual = core.getBuyTwoFreeOneItems(cartItems, fixture.loadPromotions());
     expect(actual).toEqual(buyTwoFreeOneItems);
   })
 });
 
-fdescribe('calculateOriginSubTotal', () => {
+describe('calculateOriginSubTotal', () => {
   it('should return subtotal price of each item', () => {
     let cartItems = [
       {
@@ -160,24 +147,101 @@ fdescribe('calculateOriginSubTotal', () => {
         barcode: 'ITEM000001',
         name: '雪碧',
         unit: '瓶',
-        price: 3.00, amount: 2, subTotal: 6.00
+        price: 3.00, amount: 2, originSubTotal: 6.00
       },
       {
         barcode: 'ITEM000003',
         name: '荔枝',
         unit: '斤',
-        price: 15.00, amount: 1, subTotal: 15.00
+        price: 15.00, amount: 1, originSubTotal: 15.00
       },
       {
         barcode: 'ITEM000005',
         name: '方便面',
         unit: '袋',
-        price: 4.50, amount: 1, subTotal: 4.5
+        price: 4.50, amount: 1, originSubTotal: 4.5
       }
 
     ];
 
     let actual = core.calculateOriginSubtotal(cartItems);
+    expect(actual).toEqual(expected);
+  })
+});
+
+describe('calculateDiscount', () => {
+  it('should return discount price of each item', () => {
+    let cartItems = [
+      {
+        barcode: 'ITEM000001',
+        name: '雪碧',
+        unit: '瓶',
+        price: 3.00, amount: 2
+      },
+      {
+        barcode: 'ITEM000003',
+        name: '荔枝',
+        unit: '斤',
+        price: 15.00, amount: 1
+      },
+      {
+        barcode: 'ITEM000005',
+        name: '方便面',
+        unit: '袋',
+        price: 4.50, amount: 1
+      }
+    ];
+    let buyTwoFreeOneItems = ['ITEM000001', 'ITEM000005'];
+    let discountedList = [
+      {
+        barcode: 'ITEM000001',
+        name: '雪碧',
+        unit: '瓶',
+        price: 3.00, amount: 3, originSubTotal: 9.00, discount: 3.00
+      },
+      {
+        barcode: 'ITEM000003',
+        name: '荔枝',
+        unit: '斤',
+        price: 15.00, amount: 1, originSubTotal: 15.00, discount: 0
+      },
+      {
+        barcode: 'ITEM000005',
+        name: '方便面',
+        unit: '袋',
+        price: 4.50, amount: 3, originSubTotal: 13.50, discount: 9.00
+      }
+    ];
+    let actual = core.calculateDiscount(buyTwoFreeOneItems, cartItems);
+    expect(actual).toEqual(discountedList);
+  })
+});
+
+describe('getTotalPrice', () => {
+  it('should return total price of all item', () => {
+    let subTotalCartItems = [
+      {
+        barcode: 'ITEM000001',
+        name: '雪碧',
+        unit: '瓶',
+        price: 3.00, amount: 3, originSubTotal: 9.00, discount: 3.00
+      },
+      {
+        barcode: 'ITEM000003',
+        name: '荔枝',
+        unit: '斤',
+        price: 15.00, amount: 1, originSubTotal: 15.00, discount: 0
+      },
+      {
+        barcode: 'ITEM000005',
+        name: '方便面',
+        unit: '袋',
+        price: 4.50, amount: 3, originSubTotal: 13.50, discount: 4.50
+      }
+    ];
+    let expected = 37.50 - 7.5;
+
+    let actual = core.getTotalPrice(subTotalCartItems);
     expect(actual).toEqual(expected);
   })
 });
