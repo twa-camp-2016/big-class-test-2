@@ -58,9 +58,21 @@ function getCartItems(finalBarcodes) {
     return array;
 }
 
+function getPromotions(allItems){
+    let array=[];
+    let promotions=obj2.loadPromotions();
+    allItems.map(function(element1){
+        promotion.filter(function(element2){
+             element2.map(function (code) {
+                 if(element1.barcode===code)
+             })
+        })
+    })
+}
 
 module.exports = {
     formatBarcodes: formatBarcodes,
     getBarcodeAmount: getBarcodeAmount,
-    getCartItems: getCartItems
+    getCartItems: getCartItems,
+    getPromotions:getPromotions
 }
