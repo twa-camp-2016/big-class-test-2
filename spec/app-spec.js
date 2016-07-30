@@ -1,6 +1,6 @@
 'use strict'
 const obj1=require('../src/app.js');
-//const obj2=require('fixture.js');
+
 
 describe("formatBarcodes",function () {
     fit("get all barcodes and amount",function () {
@@ -29,13 +29,23 @@ describe("getBarcodeAmount",function () {
         let expected=[
                 {barcode:'ITEM000001',amount:3},
                 {barcode:'ITEM000003',amount:2}
-            ]
+            ];
          let result=obj1.getBarcodeAmount(allTags);
         expect(result).toEqual(expected);
     });
 });
 
-// describe("loadAllItems",function () {
-//     it("get all items information")
-//
-// })
+describe("getCartItems",function () {
+       fit("get all cartItems information",function () {
+           let finalBarcodes=[
+               {barcode:'ITEM000001',amount:3},
+               {barcode:'ITEM000003',amount:2}
+           ];
+           let expected=[
+               {barcode:'ITEM000001',amount:3,name:"雪碧",unit: '瓶', price: 3.00},
+               {barcode:'ITEM000003',amount:2,name: '荔枝', unit: '斤', price: 15.00}
+           ];
+           let result=obj1.getCartItems(finalBarcodes);
+           expect(result).toEqual(expected);
+       });
+});
