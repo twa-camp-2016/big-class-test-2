@@ -77,6 +77,23 @@ function getTotal(afterSavedItems) {
   return total;
 }
 
+
+function Print(afterSavedItems, total) {
+  let receiptString = "***<没钱赚商店>收据***\n";
+  let savedTotal = 0;
+
+  for (let item of afterSavedItems) {
+    receiptString += "名称：" + item.name + "，数量：" + item.count + item.unit +
+            "，单价：" + item.price.toFixed(2) + "(元)，小计：" + item.afterSavedSubtotal.toFixed(2) + "(元)\n";
+    savedTotal += item.subtotal - item.afterSavedSubtotal;
+  }
+  receiptString += "----------------------\n";
+  receiptString += "总计：" + total.toFixed(2) + "(元)\n";
+  receiptString += "节省：" + savedTotal.toFixed(2) + "(元)\n";
+  receiptString += "**********************";
+  return receiptString;
+
+}
 module.exports = {
   getBarcodes: getBarcodes,
   mergeBarcodes: mergeBarcodes,
@@ -84,5 +101,6 @@ module.exports = {
   getPromotionType: getPromotionType,
   getSubtotal: getSubtotal,
   getSavedSubtotal: getSavedSubtotal,
-  getTotal: getTotal
+  getTotal: getTotal,
+  Print: Print
 }

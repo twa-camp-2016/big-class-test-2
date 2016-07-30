@@ -29,6 +29,37 @@ describe("getBarcodes", function () {
   });
 });
 
+describe("mergeBarcodes", function () {
+  it("to merge barcodes", function () {
+    let inputs = [{
+      barcode: 'ITEM000001',
+      count: 1
+    }, {
+      barcode: 'ITEM000001',
+      count: 1
+    }, {
+      barcode: 'ITEM000003',
+      count: 2
+    }, {
+      barcode: 'ITEM000005',
+      count: 1
+    }];
+
+    let expected = [{
+      barcode: 'ITEM000001',
+      count: 2
+    }, {
+      barcode: 'ITEM000003',
+      count: 2
+    }, {
+      barcode: 'ITEM000005',
+      count: 1
+    }]
+
+    expect(callFunction.mergeBarcodes(inputs)).toEqual(expected);
+  });
+});
+
 describe("getCartItems", function () {
   it("to get cartItems", function () {
     let inputs = [{
@@ -142,5 +173,30 @@ describe("gteTotal", function () {
     let total = 12;
 
     expect(callFunction.getTotal(inputs)).toBe(total);
+  });
+});
+
+describe("Print", function () {
+  it("to print the result", function () {
+    let inputs = [{
+      barcode: 'ITEM000000',
+      name: '可口可乐',
+      unit: '瓶',
+      price: 3.00,
+      count: 5,
+      type: 'BUY_TWO_GET_ONE_FREE',
+      subtotal: 15,
+      afterSavedSubtotal: 12
+    }]
+
+    let total = 12;
+    let result = `***<没钱赚商店>收据***
+名称：可口可乐，数量：5瓶，单价：3.00(元)，小计：12.00(元)
+----------------------
+总计：12.00(元)
+节省：3.00(元)
+**********************`.trim();
+
+    expect(callFunction.Print(inputs, total)).toEqual(result);
   });
 });
