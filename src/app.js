@@ -24,6 +24,7 @@ function getAmount(formattedTags) {
     return barcodesAmount;
 }
 
+
 module.exports = {
     formatTags: formatTags,
     getAmount: getAmount
