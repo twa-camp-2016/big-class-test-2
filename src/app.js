@@ -62,8 +62,12 @@ function generateReceipt(subTotalCartItems, totalPrice) {
 }
 
 function getSubTotalCartItems(originSubTotalCartItems, discountList) {
-
+  return originSubTotalCartItems.map( item => {
+    let discounted = discountList.find(entry => entry.barcode === item.barcode);
+    return Object.assign({}, item, {subTotal: item.originSubTotal - discounted.discount});
+  })
 }
+
 function printReceipt(tags) {
   const formattedTags = formatTags(tags);
   const mergedBarcodes = mergeTags(formattedTags);
