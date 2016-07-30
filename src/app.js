@@ -22,38 +22,48 @@ function getAllItemAmount(itemAmount) {
 }
 
 function getCartItems(itemAllItems, allItems) {
-    let items =  allItems.filter(function (all) {
-        return itemAllItems.find(function (item) {
+   let result = allItems.filter(function (all) {
+        itemAllItems.find(function (item) {
             return item.barcode === all.barcode;
         });
     });
-}
-
-function addAmount(cartitems,itemAllItems){
-    cartitems.map(function(item){
-        let result = 
+    return result.map(function(res){
+        let thing = itemAllItems.find(function(item){
+            return item.barcode === res.barcode;
+        });
+        return res.amount = thing.amount;
     })
 }
 
 function promotedType(promotions, cartItems) {
-    let result = promotions.filter(item){
+    let result = promotions.filter(item)
+    {
         return item.type = 'BUY_TWO_GET_ONE_FREE';
     }
     let arr = result.type;
-    return cartItems.map(function(item){
-        let type = arr.find(function(a){
+    return cartItems.map(function (item) {
+        let type = arr.find(function (a) {
             return a === item.barcode;
         })
-        if(type){
+        if (type) {
             item.type = 'BUY_TWO_GET_ONE_FREE';
-        }else{
+        } else {
             item.type = 'none';
         }
     });
 }
 
-function calculatePromotedAmount(promotedType,)
+function calculatePromotedAmount(promotedType){
+    return promotedType.map(function(item){
+        if(item.type === "BUY_TWO_GET_ONE_FREE"){
+            item.promotedAmount = item.amount-item.amount%3
+        }else{
+            item.promotedAmount = item.amount;
+        }
+    });
+}
 
+function calculatePromotedMoney(promotedAmount)
 module.exports = {
     getItemAmount: getItemAmount
 }
