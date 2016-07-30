@@ -64,5 +64,52 @@ describe('getCarItems', function () {
         }];
         let result = app.getCartItems(mergedBarcodes, allItems);
         expect(result).toEqual(expected);
-    })
-})
+    });
+});
+
+describe('getSubSaveMoney', function () {
+    it('should return cartItems with subSaveMoney', function () {
+        let cartItems = [{
+
+            barcode: 'ITEM000000',
+            name: '可口可乐',
+            unit: '瓶',
+            price: 3.00,
+            amount: 3
+        }, {
+
+            barcode: 'ITEM000001',
+            name: '雪碧',
+            unit: '瓶',
+            price: 3.00,
+            amount: 2
+        }];
+        let allPromotions = [{
+            type: 'BUY_TWO_GET_ONE_FREE',
+            barcodes: [
+                'ITEM000000',
+                'ITEM000001',
+                'ITEM000005'
+            ]
+        }];
+        let expected = [{
+
+            barcode: 'ITEM000000',
+            name: '可口可乐',
+            unit: '瓶',
+            price: 3.00,
+            amount: 3,
+            subSaveMoney: 3.00
+        }, {
+
+            barcode: 'ITEM000001',
+            name: '雪碧',
+            unit: '瓶',
+            price: 3.00,
+            amount: 2,
+            subSaveMoney: 0
+        }]
+        let result = app.getSubSaveMoney(cartItems, allPromotions);
+        expect(result).toEqual(expected);
+    });
+});
