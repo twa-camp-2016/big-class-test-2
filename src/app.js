@@ -58,29 +58,29 @@ function calculateTotal(subTotalItems) {
 
 function getPromotionsTypeItems(promotions, subTotalItems) {
   let promtionsTypeItems = [];
-  for (let i = 0; i < subTotalItems.length; i++) {
+  subTotalItems.forEach(item=> {
     let flag = false;
     let type = "";
-    for (let j = 0; j < promotions.length; j++) {
-      for (let z = 0; z < promotions[j].barcodes.length; z++) {
-        if (subTotalItems[i].barcode === promotions[j].barcodes[z]) {
-          flag = true;
-          type = promotions[j].type;
-        }
+    promotions.forEach(it=> {
+      let exist = it.barcodes.find(is=> {
+        return item.barcode === is
+      });
+      if (exist) {
+        flag = true;
+        type = it.type;
+      } else {
+        type = null;
       }
-    }
-    if (!flag) {
-      type = null;
-    }
-    promtionsTypeItems.push(Object.assign({}, subTotalItems[i], {type: type}));
-  }
+    });
+    promtionsTypeItems.push(Object.assign({}, item, {type: type}));
+  });
   return promtionsTypeItems;
 }
 
 function getPromotionsSubTotalItems(promtionsTypeItems) {
   let getPromotionSubTotalItems = [];
-  promtionsTypeItems.forEach(item=>{
-    if(item.type === 'BUY_TWO_GET_ONE_FREE'){
+  promtionsTypeItems.forEach(item=> {
+    if (item.type === 'BUY_TWO_GET_ONE_FREE') {
       let PromotionsSubTotal = item.subTotal - parseInt(item.amount / 3) * item.price;
       getPromotionSubTotalItems.push(Object.assign({}, item, {PromotionsSubTotal: PromotionsSubTotal}));
     }

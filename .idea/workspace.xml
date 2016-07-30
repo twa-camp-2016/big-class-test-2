@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="52432b57-3369-4fae-ac7e-f6ffc09b2464" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spec/app-spec.js" afterPath="$PROJECT_DIR$/spec/app-spec.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app.js" afterPath="$PROJECT_DIR$/src/app.js" />
     </list>
@@ -46,11 +47,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="app.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="app.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-40">
-              <caret line="11" column="18" selection-start-line="11" selection-start-column="18" selection-end-line="11" selection-end-column="18" />
+            <state relative-caret-position="180">
+              <caret line="9" column="12" selection-start-line="9" selection-start-column="12" selection-end-line="9" selection-end-column="12" />
               <folding>
                 <element signature="e#14#81#0" expanded="true" />
               </folding>
@@ -68,15 +69,15 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="app-spec.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="app-spec.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/spec/app-spec.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="413">
-              <caret line="364" column="17" selection-start-line="364" selection-start-column="17" selection-end-line="364" selection-end-column="17" />
+            <state relative-caret-position="433">
+              <caret line="489" column="11" selection-start-line="489" selection-start-column="11" selection-end-line="489" selection-end-column="11" />
               <folding>
-                <element signature="e#14#277#0" expanded="true" />
-                <marker date="1469853393000" expanded="true" signature="9779:9959" ph="..." />
-                <marker date="1469853393000" expanded="true" signature="9779:10017" ph="..." />
+                <element signature="e#14#243#0" expanded="true" />
+                <marker date="1469856696000" expanded="true" signature="9808:9988" ph="..." />
+                <marker date="1469856696000" expanded="true" signature="9808:10046" ph="..." />
               </folding>
             </state>
           </provider>
@@ -120,8 +121,8 @@
         <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/spec/support/jasmine.json" />
         <option value="$PROJECT_DIR$/tsconfig.json" />
-        <option value="$PROJECT_DIR$/spec/app-spec.js" />
         <option value="$PROJECT_DIR$/src/app.js" />
+        <option value="$PROJECT_DIR$/spec/app-spec.js" />
       </list>
     </option>
   </component>
@@ -212,6 +213,24 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="big-class-test-2" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="big-class-test-2" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="spec" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="support" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
     </panes>
@@ -283,12 +302,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1469844715828</updated>
-      <workItem from="1469844718176" duration="8322000" />
+      <workItem from="1469844718176" duration="9657000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="8322000" />
+    <option name="totallyTimeSpent" value="9657000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="4" y="23" width="1276" height="777" extended-state="6" />
@@ -361,14 +380,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/spec/app-spec.js">
+    <entry file="file://$PROJECT_DIR$/src/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="413">
-          <caret line="364" column="17" selection-start-line="364" selection-start-column="17" selection-end-line="364" selection-end-column="17" />
+        <state relative-caret-position="180">
+          <caret line="9" column="12" selection-start-line="9" selection-start-column="12" selection-end-line="9" selection-end-column="12" />
           <folding>
-            <element signature="e#14#277#0" expanded="true" />
-            <marker date="1469853393000" expanded="true" signature="9779:9959" ph="..." />
-            <marker date="1469853393000" expanded="true" signature="9779:10017" ph="..." />
+            <element signature="e#14#81#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -381,12 +398,14 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/app.js">
+    <entry file="file://$PROJECT_DIR$/spec/app-spec.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-40">
-          <caret line="11" column="18" selection-start-line="11" selection-start-column="18" selection-end-line="11" selection-end-column="18" />
+        <state relative-caret-position="433">
+          <caret line="489" column="11" selection-start-line="489" selection-start-column="11" selection-end-line="489" selection-end-column="11" />
           <folding>
-            <element signature="e#14#81#0" expanded="true" />
+            <element signature="e#14#243#0" expanded="true" />
+            <marker date="1469856696000" expanded="true" signature="9808:9988" ph="..." />
+            <marker date="1469856696000" expanded="true" signature="9808:10046" ph="..." />
           </folding>
         </state>
       </provider>

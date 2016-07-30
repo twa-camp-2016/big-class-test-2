@@ -3,16 +3,19 @@ import {
   formatTag,
   mergeTag,
   getCartItems,
-  loadAllItems,
   getSubTotalItems,
   calculateTotal,
-  loadPromotions,
   getPromotionsTypeItems,
   getPromotionsSubTotalItems,
   calculatePromotionTotal,
   calculateSaving,
   getSummaryString
 } from "../src/app";
+
+import {
+  loadAllItems,
+  loadPromotions
+} from "./fixture";
 
 describe("formatTag", function () {
   it("should return tags", function () {
