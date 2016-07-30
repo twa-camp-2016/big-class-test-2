@@ -52,7 +52,7 @@ describe('mergeBarcode', () => {
   })
 });
 
-fdescribe('getCartItems', () => {
+describe('getCartItems', () => {
   it('should return cartItem information list', () => {
 
     let mergedBarcodes = [{
@@ -169,14 +169,14 @@ describe('calculateOriginSubTotal', () => {
   })
 });
 
-describe('calculateDiscount', () => {
+describe('getDiscountedItems', () => {
   it('should return discount price of each item', () => {
     let cartItems = [
       {
         barcode: 'ITEM000001',
         name: '雪碧',
         unit: '瓶',
-        price: 3.00, amount: 2
+        price: 3.00, amount: 3
       },
       {
         barcode: 'ITEM000003',
@@ -188,7 +188,7 @@ describe('calculateDiscount', () => {
         barcode: 'ITEM000005',
         name: '方便面',
         unit: '袋',
-        price: 4.50, amount: 1
+        price: 4.50, amount: 3
       }
     ];
     let buyTwoFreeOneItems = ['ITEM000001', 'ITEM000005'];
@@ -197,22 +197,22 @@ describe('calculateDiscount', () => {
         barcode: 'ITEM000001',
         name: '雪碧',
         unit: '瓶',
-        price: 3.00, amount: 3, originSubTotal: 9.00, discount: 3.00
+        price: 3.00, amount: 3, discount: 3.00
       },
       {
         barcode: 'ITEM000003',
         name: '荔枝',
         unit: '斤',
-        price: 15.00, amount: 1, originSubTotal: 15.00, discount: 0
+        price: 15.00, amount: 1,  discount: 0
       },
       {
         barcode: 'ITEM000005',
         name: '方便面',
         unit: '袋',
-        price: 4.50, amount: 3, originSubTotal: 13.50, discount: 9.00
+        price: 4.50, amount: 3,  discount: 4.5
       }
     ];
-    let actual = core.calculateDiscount(buyTwoFreeOneItems, cartItems);
+    let actual = core.getDiscountedItems(buyTwoFreeOneItems, cartItems);
     expect(actual).toEqual(discountedList);
   })
 });
@@ -246,7 +246,7 @@ describe('getTotalPrice', () => {
   })
 });
 
-describe('generateReceipt', () => {
+fdescribe('generateReceipt', () => {
   it('should return receipt of input tags', () => {
     let subTotalCartItems = [
       {
