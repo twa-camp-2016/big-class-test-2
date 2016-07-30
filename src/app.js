@@ -1,4 +1,4 @@
-
+'use strict';
 const load=require('../spec/fixture');
 
 function splitTags(tags) {
@@ -67,7 +67,7 @@ function getDiscount(cartItems) {
     let hasSubtotalItems=[];
     for(let i of cartItems){
         if(i.type==='BUY_TWO_GET_ONE_FREE'){
-            let subtotal=i.price*i.count-Math.floor(i.price*((i.count)/3));
+            let subtotal=i.price*i.count-(i.price*(Math.floor((i.count)/3)));
             hasSubtotalItems.push(Object.assign({},i,{subtotal:subtotal}));
         }
         else {
@@ -97,6 +97,23 @@ function getSavedMoney(hasSubtotalItems) {
     return savedMoney;
 }
 
+function print(tags) {
+    let hasSubtotalItems=getDiscount(getCartItems(getType(getCount(splitTags(tags)))));
+
+    let total=getTotal(hasSubtotalItems);
+    let savedMoney=getSavedMoney(hasSubtotalItems);
+    let text='***<没钱赚商店>收据***\n';
+    for(let i of hasSubtotalItems){
+        text+='名称：'+i.name+'，数量：'+i.count+i.unit+'，单价：'+i.price+'(元)，小计：'+i.subtotal+'(元)\n';
+    }
+    text+='----------------------\n'+
+'总计：'+total+'(元)\n'+
+'节省：'+savedMoney+'(元)\n'+
+'**********************';
+
+    return text;
+}
+
 module.exports={
  splitTags:splitTags,
     getCount:getCount,
@@ -104,5 +121,6 @@ module.exports={
     getCartItems:getCartItems,
     getDiscount:getDiscount,
     getTotal:getTotal,
-    getSavedMoney:getSavedMoney
+    getSavedMoney:getSavedMoney,
+    print:print
 };

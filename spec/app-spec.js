@@ -1,4 +1,4 @@
-
+'use strict'
 const app=require('../src/app');
 
 
@@ -130,6 +130,7 @@ describe('getCartItems',function () {
     })
 });
 
+
 describe("getDiscount",function () {
     it("should get discount",function () {
         let cartItems=[
@@ -234,3 +235,27 @@ describe("getSavedMoney",function () {
 });
 
 
+describe('print',function () {
+    it('should print result',function () {
+        let tags=[
+            'ITEM000001',
+            'ITEM000001',
+            'ITEM000001',
+            'ITEM000001',
+            'ITEM000001',
+            'ITEM000003-2',
+            'ITEM000005',
+            'ITEM000005',
+            'ITEM000005'
+        ];
+        let result=app.print(tags);
+        expect(result).toEqual('***<没钱赚商店>收据***\n'+
+    '名称：雪碧，数量：5瓶，单价：3(元)，小计：12(元)\n'+
+    '名称：荔枝，数量：2斤，单价：15(元)，小计：30(元)\n'+
+    '名称：方便面，数量：3袋，单价：4.5(元)，小计：9(元)\n'+
+    '----------------------\n'+
+    '总计：51(元)\n'+
+    '节省：7.5(元)\n'+
+   ' **********************\n');
+    });
+});
