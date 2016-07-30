@@ -78,11 +78,23 @@ function getDiscount(cartItems) {
 }
 
 function getTotal(hasSubtotalItems) {
-    let total=0;
-    for(let i of hasSubtotalItems){
-        total+=i.subtotal;
+    let total = 0;
+    for (let i of hasSubtotalItems) {
+        total += i.subtotal;
     }
     return total;
+}
+
+function getSavedMoney(hasSubtotalItems) {
+    let total=getTotal(hasSubtotalItems);
+    let savedMoney=0;
+    let totalInit=0
+    for(let i of hasSubtotalItems){
+        totalInit+=i.price*i.count;
+    }
+    savedMoney=totalInit-total;
+    
+    return savedMoney;
 }
 
 module.exports={
@@ -91,5 +103,6 @@ module.exports={
     getType:getType,
     getCartItems:getCartItems,
     getDiscount:getDiscount,
-    getTotal:getTotal
+    getTotal:getTotal,
+    getSavedMoney:getSavedMoney
 };
