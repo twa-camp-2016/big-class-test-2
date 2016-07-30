@@ -1,4 +1,14 @@
 'use strict'
+
+function printRecript(barcodes) {
+    let formatedBarcodes = formatBarcodes(barcodes);
+    let mergedBarcodes = mergeBarcodes(formatedBarcodes);
+    let cartItems = getCartItems(mergedBarcodes);
+    let promotedCartItems = getSubSaveMoney(cartItems);
+    let detailedCartItems = getSubTotal(promotedCartItems);
+    let totalAndSaveMoney = getTotalAndSaveMoney(detailedCartItems);
+    console.log(print(detailedCartItems, totalAndSaveMoney));
+}
 function formatBarcodes(barcodes) {
     return barcodes.map(function (barcode) {
         let temp = barcode.split('-');
@@ -85,5 +95,6 @@ module.exports = {
     getSubSaveMoney: getSubSaveMoney,
     getSubTotal: getSubTotal,
     getTotalAndSaveMoney: getTotalAndSaveMoney,
-    print: print
+    print: print,
+    printReceipt:printRecript
 }
