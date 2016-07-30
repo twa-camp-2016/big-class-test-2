@@ -60,4 +60,36 @@ describe('getCount',function () {
             }
         ])
     })
-})
+});
+
+describe('getType',function () {
+    it("should add type after countedItems",function () {
+        let countedItems=[
+
+            {
+                barcode:'ITEM000001',
+                count:2
+            },{
+                barcode:'ITEM000003',
+                count:2
+            }
+
+        ];
+        let result=app.getType(countedItems);
+        
+        expect(result).toEqual([
+
+            {
+                barcode:'ITEM000001',
+                count:2,
+                type: 'BUY_TWO_GET_ONE_FREE'
+                
+            },{
+                barcode:'ITEM000003',
+                count:2,
+                type:'other'
+            }
+
+        ]);
+    });
+});

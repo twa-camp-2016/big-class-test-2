@@ -31,8 +31,27 @@ function getCount(formatedTags) {
     return countedItems;
 }
 
+function getType(countedItems) {
+    let proInfo=load.loadPromotions();
+    let hasTypeItems=[];
+    for(let i of countedItems){
+        let exist=proInfo.find((pro)=>{
+           return pro.barcodes.includes(i.barcode);
+        });
+        if(exist){
+            hasTypeItems.push(Object.assign({},i,{type: 'BUY_TWO_GET_ONE_FREE'}));
+
+        }
+        else {
+            hasTypeItems.push(Object.assign({},i,{type: 'other'}));
+        }
+
+    }
+    return hasTypeItems;
+}
 
 module.exports={
  splitTags:splitTags,
-    getCount:getCount
+    getCount:getCount,
+    getType:getType
 };
