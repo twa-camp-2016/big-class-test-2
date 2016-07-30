@@ -93,6 +93,14 @@ function calculateTotal(itemsDiscountSubtotal) {
     return total;
 }
 
+function getDiscount(itemSubtotal, itemsDiscountSubtotal) {
+    let discount = 0;
+    for (let i = 0;i<itemSubtotal.length;i++){
+        discount += itemSubtotal[i].subtotal -itemsDiscountSubtotal[i].discountSubtotal;
+    }
+    return discount;
+}
+
 module.exports = {
     separateTags: separateTags,
     amountBarcodes: amountBarcodes,
@@ -100,7 +108,8 @@ module.exports = {
     matchItems: matchItems,
     calculateSubtotal: calculateSubtotal,
     calculateSavedSubtotal: calculateSavedSubtotal,
-    calculateTotal: calculateTotal
+    calculateTotal: calculateTotal,
+    getDiscount: getDiscount
 };
 
 
