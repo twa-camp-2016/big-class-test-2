@@ -1,5 +1,7 @@
 'use strict';
-
+const fix=require('../spec/fixture')
+    
+    
 let tags=[
     'ITEM000',
     'ITEM001',
@@ -24,6 +26,28 @@ function getCartItems(tags) {
     });
 }
 
+function calAmountItems(items) {
+    let amountBarList=[];
+    for (let i=0;i<items.length;i++){
+        let exsit=amountBarList.find(function (item) {
+            return item.barcode===items[i].barcode;
+        })
+        if (!exsit){
+            amountBarList.push(items[i])
+        }
+        else {
+            exsit.amount=parseFloat(items[i].amount)+parseFloat(exsit.amount);
+        }
+    }
+    return amountBarList;
+}
+
+
+let loadPromotions=fix.loadPromotions();
+let loadAllItems=fix.loadAllItems();
+
+
+
 module.exports={
-    getCartItems:getCartItems
+    getCartItems:getCartItems,calAmountItems:calAmountItems
 }
