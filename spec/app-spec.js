@@ -2,6 +2,18 @@
 
 const fn = require('../src/app')
 
+describe('printReceipt', function () {
+   it('should return receiptString', function () {
+       let tags = ['ITEM000000-3'];
+       let expected = `
+
+`;
+       let result = fn.printReceipt(tags);
+
+       expect(result).toEqual(expected);
+   })
+});
+
 describe('formateBarcode', function () {
     it('should return formatedBarcodes', function () {
         let tags = [

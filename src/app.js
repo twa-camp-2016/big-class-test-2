@@ -15,7 +15,20 @@ function printReceipt(tags) {
 
     let promotiondItem = calculatePromotion(subtotaledItem, promotionedId)
     let second = promotiondTotal(promotiondItem);
+    let totalType = judge(total, second);
 
+    let receiptString = '';
+    for(let item of subtotaledItem) {
+        receiptString += '名称：' + item.name + ',数量：' + item.count + item.unit + '（元），小计：' + item.subotal + '（元）\n';
+    }
+    if(totalType.save === 0) {
+        receiptString += '总计：' + totalType.total + '（元）';
+    } else {
+        receiptString += '节省：' + totalType.save + '（元）';
+        receiptString += '总计：' + totalType.total + '（元）';
+    }
+
+    return receiptString;
 }
 
 function formateBarcode(tags) {
@@ -131,5 +144,5 @@ module.exports = {
     judge: judge,
     calculatePromotion: calculatePromotion,
     promotiondTotal: promotiondTotal,
-
+    printReceipt: printReceipt
 };
