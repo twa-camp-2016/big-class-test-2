@@ -52,7 +52,7 @@ describe('mergeBarcode', () => {
   })
 });
 
-describe('getCartItems', () => {
+fdescribe('getCartItems', () => {
   it('should return cartItem information list', () => {
 
     let mergedBarcodes = [{
@@ -224,19 +224,19 @@ describe('getTotalPrice', () => {
         barcode: 'ITEM000001',
         name: '雪碧',
         unit: '瓶',
-        price: 3.00, amount: 3, originSubTotal: 9.00, discount: 3.00
+        price: 3.00, amount: 3, originSubTotal: 9.00, discount: 3.00, subTotal:6
       },
       {
         barcode: 'ITEM000003',
         name: '荔枝',
         unit: '斤',
-        price: 15.00, amount: 1, originSubTotal: 15.00, discount: 0
+        price: 15.00, amount: 1, originSubTotal: 15.00, discount: 0, subTotal:15.00
       },
       {
         barcode: 'ITEM000005',
         name: '方便面',
         unit: '袋',
-        price: 4.50, amount: 3, originSubTotal: 13.50, discount: 4.50
+        price: 4.50, amount: 3, originSubTotal: 13.50, discount: 4.50, subTotal:9.00
       }
     ];
     let expected = 37.50 - 7.5;
@@ -246,4 +246,32 @@ describe('getTotalPrice', () => {
   })
 });
 
+describe('generateReceipt', () => {
+  it('should return receipt of input tags', () => {
+    let subTotalCartItems = [
+      {
+        barcode: 'ITEM000001',
+        name: '雪碧',
+        unit: '瓶',
+        price: 3.00, amount: 3, originSubTotal: 9.00, discount: 3.00, subTotal: 6.00
+      },
+      {
+        barcode: 'ITEM000003',
+        name: '荔枝',
+        unit: '斤',
+        price: 15.00, amount: 1, originSubTotal: 15.00, discount: 0, subTotal: 15.00
+      },
+      {
+        barcode: 'ITEM000005',
+        name: '方便面',
+        unit: '袋',
+        price: 4.50, amount: 3, originSubTotal: 13.50, discount: 4.50, subTotal: 9.00
+      }
+    ];
+    let totalPrice = 30;
+
+    let actual = core.generateReceipt(subTotalCartItems, totalPrice);
+    expect(actual).toEqual(expected);
+  })
+});
 

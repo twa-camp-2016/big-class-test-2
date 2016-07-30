@@ -1,4 +1,5 @@
 'use strict';
+const fixture = require('../spec/fixture');
 
 
 function formatTags(tags) {
@@ -23,10 +24,9 @@ function mergeTags(formattedTags) {
 }
 
 function getCartItems(mergedBarcodes, allItems) {
-  return mergedBarcodes.reduce((acc, cur)=> {
-    let found = allItems.find(item => item.barcode === cur.barcode);
-    return acc.push(Object.assign({}, found, {amount: cur.amount}));
-  }, []);
+  return mergedBarcodes.map( item=> {
+    return Object.assign({}, allItems.find(entry => entry.barcode === item.barcode), {amount: item.amount}) ;
+  });
 }
 
 function getBuyTwoFreeOneItems(cartItems, allPromotions) {
@@ -57,10 +57,30 @@ function calculateDiscount(buyTwoFreeOneItems, cartItems) {
 }
 
 function getTotalPrice(subTotalCartItems) {
-  return subTotalCartItems.reduce( (acc, cur) => {
+  return subTotalCartItems.reduce((acc, cur) => {
     return acc += (cur.originSubTotal - cur.discount);
   }, 0)
 
+}
+
+function generateReceipt(subTotalCartItems, totalPrice) {
+
+}
+
+function getSubTotalCartItems(originSubTotalCartItems, discountList) {
+
+}
+function printReceipt(tags) {
+  const formattedTags = formatTags(tags);
+  const mergedBarcodes = mergeTags(formattedTags);
+  const cartItems = getCartItems(mergedBarcodes, fixture.loadAllItems());
+  const originSubTotalCartItems = calculateOriginSubtotal(cartItems);
+  const buyTwoFreeOneItems = getBuyTwoFreeOneItems(cartItems, fixture.loadPromotions());
+  const discountList = calculateDiscount(buyTwoFreeOneItems, cartItems);
+  const subTotalCartItems = getSubTotalCartItems(originSubTotalCartItems, discountList);
+  const totalPrice = getTotalPrice(subTotalCartItems);
+  const receipt = generateReceipt(subTotalCartItems, totalPrice);
+  return receipt;
 }
 
 module.exports = {
@@ -70,7 +90,8 @@ module.exports = {
   getBuyTwoFreeOneItems,
   calculateOriginSubtotal,
   calculateDiscount,
-  getTotalPrice
-
-
+  getTotalPrice,
+  generateReceipt,
+  getSubTotalCartItems,
+  printReceipt
 };
