@@ -374,7 +374,7 @@ describe("getPromotionsSubTotalItems", function () {
         unit: '斤',
         price: 15,
         subTotal: 30,
-        type: 'BUY_TWO_GET_ONE_FREE',
+        type: null,
         PromotionsSubTotal: 30
       },
       {

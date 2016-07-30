@@ -79,14 +79,14 @@ function getPromotionsTypeItems(promotions, subTotalItems) {
 
 function getPromotionsSubTotalItems(promtionsTypeItems) {
   let getPromotionSubTotalItems = [];
-  for (let i = 0; i < promtionsTypeItems.length; i++) {
-    if (promtionsTypeItems[i].type = 'BUY_TWO_GET_ONE_FREE') {
-      let PromotionsSubTotal = promtionsTypeItems[i].subTotal - parseInt(promtionsTypeItems[i].amount / 3) * promtionsTypeItems[i].price;
-      getPromotionSubTotalItems.push(Object.assign({}, promtionsTypeItems[i], {PromotionsSubTotal: PromotionsSubTotal}));
+  promtionsTypeItems.forEach(item=>{
+    if(item.type === 'BUY_TWO_GET_ONE_FREE'){
+      let PromotionsSubTotal = item.subTotal - parseInt(item.amount / 3) * item.price;
+      getPromotionSubTotalItems.push(Object.assign({}, item, {PromotionsSubTotal: PromotionsSubTotal}));
     }
     else
-      getPromotionSubTotalItems.push(Object.assign({}, promtionsTypeItems[i], {PromotionsSubTotal: promtionsTypeItems[i].subTotal}));
-  }
+      getPromotionSubTotalItems.push(Object.assign({}, item, {PromotionsSubTotal: item.subTotal}))
+  });
   return getPromotionSubTotalItems;
 }
 
