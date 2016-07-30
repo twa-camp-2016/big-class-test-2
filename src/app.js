@@ -70,12 +70,28 @@ function calculateSubtotal(itemsList) {
     return itemSubtotal;
 }
 
+function calculateSavedSubtotal(itemsList) {
+    let itemsDiscountSubtotal = [];
+    let discountSubtotal = 0;
+    itemsList.find(function (item) {
+        if (item.type === 'BUY_TWO_GET_ONE_FREE') {
+            discountSubtotal = item.price * item.count - item.price * (parseInt(item.count / 3));
+        }
+        else if (item.type === '1') {
+            discountSubtotal = item.price * item.count;
+        }
+        itemsDiscountSubtotal.push(Object.assign({}, item, {discountSubtotal: discountSubtotal}));
+    });
+    return itemsDiscountSubtotal;
+}
+
 module.exports = {
     separateTags: separateTags,
     amountBarcodes: amountBarcodes,
     matchPromotions: matchPromotions,
     matchItems: matchItems,
-    calculateSubtotal: calculateSubtotal
+    calculateSubtotal: calculateSubtotal,
+    calculateSavedSubtotal: calculateSavedSubtotal
 };
 
 

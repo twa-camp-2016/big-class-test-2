@@ -163,7 +163,50 @@ describe("calculateSubtotal", function () {
     })
 });
 
+describe("calculateSavedSubtotal", function () {
+    it("calculateSavedSubtotal test", function () {
+        let itemsList = [
+            {
+                "barcode": "ITEM000001",
+                "name": "雪碧",
+                "unit": "瓶",
+                "price": 3,
+                "count": 3,
+                "type": "BUY_TWO_GET_ONE_FREE"
+            },
+            {
+                "barcode": "ITEM000003",
+                "name": "荔枝",
+                "unit": "斤",
+                "price": 15,
+                "count": 2.5,
+                "type": "1"
+            }
+        ];
+        let result = pos.calculateSavedSubtotal(itemsList);
+        expect(result).toEqual([
+            {
+                "barcode": "ITEM000001",
+                "name": "雪碧",
+                "unit": "瓶",
+                "price": 3,
+                "count": 3,
+                "type": "BUY_TWO_GET_ONE_FREE",
+                "discountSubtotal": 6.00
+            },
+            {
+                "barcode": "ITEM000003",
+                "name": "荔枝",
+                "unit": "斤",
+                "price": 15,
+                "count": 2.5,
+                "type": "1",
+                "discountSubtotal": 37.5
+            }
+        ]);
 
+    })
+});
 
 
 
