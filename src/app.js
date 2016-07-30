@@ -67,13 +67,12 @@ function getDiscount(cartItems) {
     let hasSubtotalItems=[];
     for(let i of cartItems){
         if(i.type==='BUY_TWO_GET_ONE_FREE'){
-            let subtotal=i.price*(i.count*2/3);
-            hasSubtotalItems=cartItems.push({subtotal:subtotal});
+            let subtotal=i.price*i.count-i.price*((i.count)/3);
+            hasSubtotalItems.push(Object.assign({},i,{subtotal:subtotal}));
         }
         else {
             let subtotal=i.price*i.count;
-            hasSubtotalItems=cartItems.push({subtotal:subtotal});
-        }
+            hasSubtotalItems.push(Object.assign({},i,{subtotal:subtotal}));        }
     }
     return hasSubtotalItems;
 }
@@ -82,5 +81,6 @@ module.exports={
  splitTags:splitTags,
     getCount:getCount,
     getType:getType,
-    getCartItems:getCartItems
+    getCartItems:getCartItems,
+    getDiscount:getDiscount
 };
