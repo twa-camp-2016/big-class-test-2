@@ -180,8 +180,8 @@ describe('calculatePromotion',function () {
            name: 'Ñ©±Ì',
            unit: 'Æ¿',
            price: 3.00,
-           count: 2,
-           subtotal: 6
+           count: 3,
+           subtotal: 9
        }];
        let expected = [
            {
@@ -196,6 +196,8 @@ describe('calculatePromotion',function () {
            }
        ];
        let result = fn.calculatePromotion(subtotaledItem,promotionedId)
-       
+
+       expect(result).toEqual(expected);
    })
 });
+

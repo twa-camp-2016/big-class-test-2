@@ -85,14 +85,19 @@ function calculatePromotion(subtotaledItem, prototionedId) {
             return p === item.barcode;
         })
         if(exit) {
-            let save = exit.count - parseInt(exit.count / 3);
-            let savesbutotal = exit.subotal - save;
-            return Object.assign({}, subtotaledItem, {save: save, saveSubtotal:savesbutotal})
+            let temp =  parseInt(item.count / 3);
+            let save = temp * item.price;
+            let savesbutotal = item.subtotal - save;
+            return Object.assign({}, item, {save: save, saveSubtotal:savesbutotal})
         }else  {
-            return Object.assign({}, subtotaledItem, {save: 0, saveSubtotal:0})
+            return Object.assign({}, item, {save: 0, saveSubtotal:0})
         }
     })
 
+}
+
+function promotiondTotal() {
+    
 }
 
 module.exports = {
