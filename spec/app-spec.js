@@ -293,23 +293,6 @@ describe("calculateTotal", function () {
     })
 });
 
-// describe("printReceipt", function () {
-//     it("printReceipt test", function () {
-//         let tags = [
-//             'ITEM000001',
-//             'ITEM000001',
-//             'ITEM000001',
-//             'ITEM000001',
-//             'ITEM000001',
-//             'ITEM000003-2.5',
-//             'ITEM000005',
-//             'ITEM000005-2',
-//         ];
-//         let result = pos.printReceipt(tags);
-//         expect(result).toEqual(58.50);
-//     })
-// });
-
 describe("printReceipt", function () {
     it("should print text", function () {
         const tags = [
