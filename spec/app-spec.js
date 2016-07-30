@@ -171,6 +171,34 @@ describe("getDiscount",function () {
                 subtotal:30.00
             }
         ]);
-        
     })
 });
+
+describe("getTotal",function () {
+    it("should get total",function () {
+        let hasSubtotal=[
+            {
+                barcode:'ITEM000001',
+                name: '可口可乐',
+                unit: '瓶',
+                price: 3.00,
+                count:3,
+                type: 'BUY_TWO_GET_ONE_FREE',
+                subtotal:6.00
+
+            },{
+                barcode:'ITEM000003',
+                name: '荔枝',
+                unit: '斤',
+                price: 15.00,
+                count:2,
+                type:'other',
+                subtotal:30.00
+            }
+        ];
+
+        let result=app.getTotal(hasSubtotal);
+
+        expect(result).toEqual(36);
+    })
+})
