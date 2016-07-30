@@ -57,14 +57,13 @@ function matchItems(itemsPromotionList, allItems) {
     });
     return itemsList;
 }
-
 function calculateSubtotal(itemsList) {
     let itemSubtotal = [];
-    let sum = 0;
-    for (let i = 0; i < itemsList.length; i++) {
-        sum = itemsList[i].count * itemsList[i].price;
-        itemSubtotal.push(Object.assign({}, itemsList[i], {subtotal: sum}));
-    }
+    let subtotal = 0;
+    itemsList.find(function (item) {
+        subtotal = item.count * item.price;
+        itemSubtotal.push(Object.assign({}, item, {subtotal: subtotal}));
+    });
     return itemSubtotal;
 }
 
