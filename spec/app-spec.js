@@ -86,6 +86,23 @@ describe('getItemsAmount',()=>{
         expect(obj.getItemsAmount(barcodesAmount,items)).toEqual(itemsAmount);
     });
 });
+describe('getSubtotal',()=>{
+    it('return itemsSubtotal',()=>{
+        let itemsAmount=[
+            {barcode: 'ITEM000001', name: '雪碧', unit: '瓶', price: 3.00,amount:5},
+            {barcode: 'ITEM000003', name: '荔枝', unit: '斤', price: 15.00,amount:2},
+            {barcode: 'ITEM000005', name: '方便面', unit: '袋', price: 4.50,amount:3}
+        ];
+        let itemsSubtotal=[
+            {barcode: 'ITEM000001', name: '雪碧', unit: '瓶', price: 3.00,amount:5,subtotal:15},
+            {barcode: 'ITEM000003', name: '荔枝', unit: '斤', price: 15.00,amount:2,subtotal:30},
+            {barcode: 'ITEM000005', name: '方便面', unit: '袋', price: 4.50,amount:3,subtotal:13.5}
+        ];
+        expect(obj.getSubtotal(itemsAmount)).toEqual(itemsSubtotal);
+    });
+});
+
+
 
 
 
