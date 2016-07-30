@@ -113,3 +113,46 @@ describe('getSubSaveMoney', function () {
         expect(result).toEqual(expected);
     });
 });
+
+describe('getsubtotal',function(){
+    it('should return cartItems with subTotal',function(){
+        let test=[{
+
+            barcode: 'ITEM000000',
+            name: '可口可乐',
+            unit: '瓶',
+            price: 3.00,
+            amount: 3,
+            subSaveMoney: 3.00
+        }, {
+
+            barcode: 'ITEM000001',
+            name: '雪碧',
+            unit: '瓶',
+            price: 3.00,
+            amount: 2,
+            subSaveMoney: 0
+        }];
+        let expected=[{
+
+            barcode: 'ITEM000000',
+            name: '可口可乐',
+            unit: '瓶',
+            price: 3.00,
+            amount: 3,
+            subSaveMoney: 3.00,
+            subTotal:9
+        }, {
+
+            barcode: 'ITEM000001',
+            name: '雪碧',
+            unit: '瓶',
+            price: 3.00,
+            amount: 2,
+            subSaveMoney: 0,
+            subTotal:6
+        }];
+        let result=app.getSubTotal(test);
+        expect(result).toEqual(expected);
+    })
+})

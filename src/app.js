@@ -55,14 +55,18 @@ function getSubSaveMoney(cartItems, allPromotions) {
 }
 
 function getSubTotal(promotedCartItems) {
-    let detailedCartItems = [];
     return promotedCartItems.map(function (item) {
         return Object.assign({}, item, {subTotal: item.amount * item.price});
-    })
+    });
+}
+
+function getTotalAndSaveMoney(detailedCartItems) {
+    let result = {};
 }
 module.exports = {
     formatBarcodes: formatBarcodes,
     mergeBarcodes: mergeBarcodes,
     getCartItems: getCartItems,
-    getSubSaveMoney: getSubSaveMoney
+    getSubSaveMoney: getSubSaveMoney,
+    getSubTotal: getSubTotal
 }

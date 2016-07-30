@@ -29,8 +29,8 @@
       <file leaf-file-name="app.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="529">
-              <caret line="57" column="31" selection-start-line="57" selection-start-column="31" selection-end-line="57" selection-end-column="31" />
+            <state relative-caret-position="485">
+              <caret line="63" column="20" selection-start-line="63" selection-start-column="20" selection-end-line="63" selection-end-column="20" />
               <folding />
             </state>
           </provider>
@@ -40,7 +40,7 @@
         <entry file="file://$PROJECT_DIR$/spec/app-spec.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="595">
-              <caret line="114" column="3" selection-start-line="114" selection-start-column="3" selection-end-line="114" selection-end-column="3" />
+              <caret line="155" column="41" selection-start-line="155" selection-start-column="41" selection-end-line="155" selection-end-column="41" />
               <folding />
             </state>
           </provider>
@@ -193,12 +193,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1469844723763</updated>
-      <workItem from="1469844725151" duration="4329000" />
+      <workItem from="1469844725151" duration="4929000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="4329000" />
+    <option name="totallyTimeSpent" value="4929000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="65" y="24" width="1301" height="744" extended-state="6" />
@@ -258,15 +258,15 @@
     <entry file="file://$PROJECT_DIR$/spec/app-spec.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="595">
-          <caret line="114" column="3" selection-start-line="114" selection-start-column="3" selection-end-line="114" selection-end-column="3" />
+          <caret line="155" column="41" selection-start-line="155" selection-start-column="41" selection-end-line="155" selection-end-column="41" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="529">
-          <caret line="57" column="31" selection-start-line="57" selection-start-column="31" selection-end-line="57" selection-end-column="31" />
+        <state relative-caret-position="485">
+          <caret line="63" column="20" selection-start-line="63" selection-start-column="20" selection-end-line="63" selection-end-column="20" />
           <folding />
         </state>
       </provider>
