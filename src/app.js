@@ -92,9 +92,9 @@ function calculateTotal(itemsDiscountSubtotal) {
 
 function getDiscount(itemSubtotal, itemsDiscountSubtotal) {
     let discount = 0;
-    for (let i = 0; i < itemSubtotal.length; i++) {
-        discount += itemSubtotal[i].subtotal - itemsDiscountSubtotal[i].discountSubtotal;
-    }
+    itemSubtotal.find(function (item, index, arr) {
+        discount += item.subtotal - itemsDiscountSubtotal[index].discountSubtotal;
+    });
     return discount;
 }
 
