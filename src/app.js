@@ -100,12 +100,12 @@ function getDiscount(itemSubtotal, itemsDiscountSubtotal) {
 
 function print(itemsDiscountSubtotal, total, discount) {
     var receiptText = '***<没钱赚商店>收据***\n';
-    for (var i = 0; i < itemsDiscountSubtotal.length; i++) {
-        receiptText += '名称：' + itemsDiscountSubtotal[i].name
-            + '，数量：' + itemsDiscountSubtotal[i].count + itemsDiscountSubtotal[i].unit
-            + '，单价：' + itemsDiscountSubtotal[i].price.toFixed(2) + '(元)'
-            + '，小计：' + itemsDiscountSubtotal[i].discountSubtotal.toFixed(2) + '(元)' + '\n';
-    }
+    itemsDiscountSubtotal.find(function (item) {
+        receiptText += '名称：' + item.name
+            + '，数量：' + item.count + item.unit
+            + '，单价：' + item.price.toFixed(2) + '(元)'
+            + '，小计：' + item.discountSubtotal.toFixed(2) + '(元)' + '\n';
+    });
     receiptText += '----------------------\n'
         + '总计：' + total.toFixed(2) + '(元)' + '\n' + '节省：' + discount.toFixed(2) + '(元)' + '\n'
         + '**********************';
