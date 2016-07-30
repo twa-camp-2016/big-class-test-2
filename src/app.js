@@ -24,7 +24,21 @@ function getCartItems(mergedBarcodes, allItems) {
   });
 }
 
+function getPromotions(cartItems, promotions) {
+  return cartItems.map(function (item) {
+    for (let pro of promotions) {
+      let exist = pro.barcodes.find(function (barcode) {
+        return barcode === item.barcode;
+      });
+
+      if (exist) {
+        return Object.assign({}, item, {type: pro.type});
+      }
+    }
+  });
+}
 module.exports = {
   getBarcodes: getBarcodes,
   getCartItems: getCartItems,
+  getPromotions:getPromotions,
 }

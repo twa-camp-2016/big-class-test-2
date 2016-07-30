@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e10b0934-103e-4b02-a2f1-e4ec95a3bb19" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spec/app-spec.js" afterPath="$PROJECT_DIR$/spec/app-spec.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app.js" afterPath="$PROJECT_DIR$/src/app.js" />
     </list>
@@ -24,11 +25,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="app-spec.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="app-spec.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/spec/app-spec.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="413">
-              <caret line="22" column="27" selection-start-line="22" selection-start-column="27" selection-end-line="22" selection-end-column="27" />
+            <state relative-caret-position="479">
+              <caret line="78" column="0" selection-start-line="78" selection-start-column="0" selection-end-line="78" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -37,18 +38,18 @@
       <file leaf-file-name="fixture.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/spec/fixture.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state relative-caret-position="303">
+              <caret line="49" column="22" selection-start-line="49" selection-start-column="13" selection-end-line="49" selection-end-column="33" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="app.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="app.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="198">
-              <caret line="9" column="11" selection-start-line="9" selection-start-column="11" selection-end-line="9" selection-end-column="11" />
+            <state relative-caret-position="193">
+              <caret line="29" column="30" selection-start-line="29" selection-start-column="30" selection-end-line="29" selection-end-column="30" />
               <folding />
             </state>
           </provider>
@@ -62,8 +63,8 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/app.js" />
         <option value="$PROJECT_DIR$/spec/app-spec.js" />
+        <option value="$PROJECT_DIR$/src/app.js" />
       </list>
     </option>
   </component>
@@ -179,12 +180,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1469845136380</updated>
-      <workItem from="1469845137915" duration="1610000" />
+      <workItem from="1469845137915" duration="4268000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1610000" />
+    <option name="totallyTimeSpent" value="4268000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="65" y="24" width="1301" height="742" extended-state="0" />
@@ -219,24 +220,24 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/spec/fixture.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="9" column="11" selection-start-line="9" selection-start-column="11" selection-end-line="9" selection-end-column="11" />
+        <state relative-caret-position="303">
+          <caret line="49" column="22" selection-start-line="49" selection-start-column="13" selection-end-line="49" selection-end-column="33" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/spec/app-spec.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="413">
-          <caret line="22" column="27" selection-start-line="22" selection-start-column="27" selection-end-line="22" selection-end-column="27" />
+        <state relative-caret-position="479">
+          <caret line="78" column="0" selection-start-line="78" selection-start-column="0" selection-end-line="78" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="193">
+          <caret line="29" column="30" selection-start-line="29" selection-start-column="30" selection-end-line="29" selection-end-column="30" />
           <folding />
         </state>
       </provider>

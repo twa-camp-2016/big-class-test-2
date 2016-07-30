@@ -46,6 +46,33 @@ describe("getCartItems", function () {
 
     let allItems = load.loadAllItems();
     expect(callFunction.getCartItems(inputs, allItems)).toEqual(expected);
+  });
+});
+
+describe("getPromotions", function(){
+  it("to get promotion type", function(){
+    let inputs = [{
+      barcode: 'ITEM000000',
+      name: '可口可乐',
+      unit: '瓶',
+      price: 3.00,
+      count: 2
+    }]
+
+    let expected = [{
+      barcode: 'ITEM000000',
+      name: '可口可乐',
+      unit: '瓶',
+      price: 3.00,
+      count: 2,
+      type: 'BUY_TWO_GET_ONE_FREE'
+    }]
+    
+    let promotions = load.loadPromotions();
+    
+    expect(callFunction.getPromotions(inputs, promotions)).toEqual(expected);
+
+
   })
 })
 
