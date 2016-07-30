@@ -39,7 +39,7 @@ function getCartPromotionItems(detailedCartItems, promotions) {
 }
 
 function getPromotionTotal(cartPromotionItems) {
-    return detailedCartItems.reduce((v,k)=>v+=k.subtotal,0);
+    return cartPromotionItems.reduce((v,k)=>v+=k.subtotal,0);
 }
 function print(cartPromotionItems,total,promotionTotal){
    let result='<没钱赚商店>收据***\n';
@@ -49,18 +49,16 @@ function print(cartPromotionItems,total,promotionTotal){
     result+='节省：'+(total-promotionTotal).toFixed(2)+'（元）\n*************************';
     return result;
 }
-function printReceipts(tags){
+function printReceipt(tags){
     let barcodes=formatTags(tags);
     let accountedBarcodes=mergedBarcodes(barcodes);
     let cartItems=getCartItems(b.loadAllItems(),accountedBarcodes);
     let detailedCartItems=getSubtotal(cartItems);
     let total=getTotal(detailedCartItems);
     let cartPromotionItems=getCartPromotionItems(detailedCartItems, b.loadPromotions());
-    print(cartPromotionItems,total,promotionTotal);
+    let promotionTotal=getPromotionTotal(cartPromotionItems);
+    return print(cartPromotionItems,total,promotionTotal);
 }
-// function getPromrionTotal(cartPromotionItems) {
-//     return cartPromotionItems.reduce((v,k)=>v+=k.subtotal,0);
-// }
 module.exports={
     formatTags:formatTags,
     mergedBarcodes:mergedBarcodes,
@@ -68,5 +66,7 @@ module.exports={
     getSubtotal:getSubtotal,
     getTotal:getTotal,
     getCartPromotionItems:getCartPromotionItems,
-     print:print
+    getPromotionTotal:getPromotionTotal,
+     print:print,
+    printReceipt:printReceipt
 }

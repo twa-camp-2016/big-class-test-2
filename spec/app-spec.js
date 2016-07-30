@@ -51,6 +51,13 @@ describe('getCartPromotionItems',function () {
             amount: 2, subtotal: 3 },{ barcode: 'ITEM000002', name: '苹果', unit: '斤', price: 5.5, amount: 3, subtotal: 16.5 }]);
     })
 })
+describe('getPromotionTotal',function () {
+    it('show ',function () {
+        let cartPromotionItems=[{ barcode: 'ITEM000000', name: '可口可乐', unit: '瓶', price: 3,
+            amount: 2, subtotal: 3 },{ barcode: 'ITEM000002', name: '苹果', unit: '斤', price: 5.5, amount: 3, subtotal: 16.5 }];
+        expect(a.getPromotionTotal(cartPromotionItems)).toEqual(19.5);
+    })
+})
 describe('print',function () {
     it('show ,',function () {
         let CartPromotionItems=[{ barcode: 'ITEM000000', name: '可口可乐', unit: '瓶', price: 3,
@@ -67,3 +74,11 @@ describe('print',function () {
 //         let
 //     })
 // })
+describe('printReceipt',function () {
+    it('show ..',function () {
+        let tags=['ITEM000000','ITEM000000','ITEM000002','ITEM000002','ITEM000002'];
+        let result='<没钱赚商店>收据***\n名称：可口可乐，数量：2瓶，单价：3.00（元），小计：3.00（元）\n名称：苹果，数量：3斤，单价：5.50（元）' +
+            '，小计：16.50（元）\n------------\n总计：19.50（元）\n节省：3.00（元）\n*************************'.trim();
+        expect(a.printReceipt(tags)).toEqual(result);
+    })
+})
