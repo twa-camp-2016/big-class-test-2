@@ -9,9 +9,11 @@ function printReceipt(tags) {
     let barcodes = formateBarcode(tags);
     let mergedBarcodes = mergeBarcode(barcodes);
     let itemsInfo = getItemsInfo(allItems, mergedBarcodes);
-    let total = calculateSubotal(itemsInfo);
+    let subtotaledItem = calculateSubotal(itemsInfo);
+    let total = calculateTotal(subtotaledItem);
     let promotionedId = getPromotionsIds(promotions)
 
+    let promotiondItem = calculatePromotion(subtotaledItem, promotionedId)
 }
 
 function formateBarcode(tags) {
@@ -77,7 +79,21 @@ function getPromotionsIds(promotions) {
     return prototionedId;
 }
 
-let promotions =
+function calculatePromotion(subtotaledItem, prototionedId) {
+    return subtotaledItem.map(function (item) {
+        let exit = prototionedId.find(function (p) {
+            return p === item.barcode;
+        })
+        if(exit) {
+            let save = exit.count - parseInt(exit.count / 3);
+            let savesbutotal = exit.subotal - save;
+            return Object.assign({}, subtotaledItem, {save: save, saveSubtotal:savesbutotal})
+        }else  {
+            return Object.assign({}, subtotaledItem, {save: 0, saveSubtotal:0})
+        }
+    })
+
+}
 
 module.exports = {
     formateBarcode: formateBarcode,
@@ -86,4 +102,6 @@ module.exports = {
     calculateSubotal: calculateSubotal,
     calculateTotal: calculateTotal,
     getPromotionsIds: getPromotionsIds,
+    calculatePromotion: calculatePromotion,
+
 };

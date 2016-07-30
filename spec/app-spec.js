@@ -77,7 +77,7 @@ describe('getItemsInfo', function () {
 });
 
 describe('calculate', function () {
-   it('should return total and subtoal with Object', function () {
+   it('should return subtoaledItem', function () {
        let itemsInfo = [
            {
                barcode: 'ITEM000000',
@@ -165,5 +165,37 @@ describe('getPromotionsIds', function () {
        let result = fn.getPromotionsIds(promotions);
 
        expect(result).toEqual(expected);
+   })
+});
+
+describe('calculatePromotion',function () {
+   it('should return promotiedItems', function () {
+       let promotionedId = [
+           'ITEM000000',
+           'ITEM000001',
+           'ITEM000005'
+       ];
+       let subtotaledItem = [{
+           barcode: 'ITEM000001',
+           name: 'Ñ©±Ì',
+           unit: 'Æ¿',
+           price: 3.00,
+           count: 2,
+           subtotal: 6
+       }];
+       let expected = [
+           {
+               barcode: 'ITEM000001',
+               name: 'Ñ©±Ì',
+               unit: 'Æ¿',
+               price: 3.00,
+               count: 3,
+               subtotal: 9,
+               save: 3,
+               savedSubtotal: 6
+           }
+       ];
+       let result = fn.calculatePromotion(subtotaledItem,promotionedId)
+       
    })
 });
