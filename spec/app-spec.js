@@ -22,10 +22,19 @@ describe("separateTags", function () {
 
 describe("amountBarcodes", function () {
     it("should amount the items barcodes", function () {
-        let itemsTag = [{barcode: 'IEM0000000', count: 1}, {barcode: 'IEM0000003', count: 2}, {
-            barcode: 'IEM0000003',
-            count: 2
-        }];
+        let itemsTag = [
+            {
+                barcode: 'IEM0000000',
+                count: 1
+            },
+            {
+                barcode: 'IEM0000003',
+                count: 2
+            },
+            {
+                barcode: 'IEM0000003',
+                count: 2
+            }];
         let result = pos.amountBarcodes(itemsTag);
         let itemsCount = [
             {
@@ -208,6 +217,33 @@ describe("calculateSavedSubtotal", function () {
     })
 });
 
+describe("calculateTotal", function () {
+    it("calculateTotal test", function () {
+        let itemsList = [
+            {
+                barcode: "ITEM000001",
+                name: "雪碧",
+                unit: "瓶",
+                price: 3,
+                count: 3,
+                type: "BUY_TWO_GET_ONE_FREE",
+                discountSubtotal: 6.00
+            },
+            {
+                barcode: "ITEM000003",
+                name: "荔枝",
+                unit: "斤",
+                price: 15,
+                count: 2.5,
+                type: "1",
+                discountSubtotal: 37.5
+            }
+        ];
+        let result = pos.calculateTotal(itemsList);
+        expect(result).toEqual(43.5);
+
+    })
+});
 
 
 

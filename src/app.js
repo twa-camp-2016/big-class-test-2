@@ -85,13 +85,22 @@ function calculateSavedSubtotal(itemsList) {
     return itemsDiscountSubtotal;
 }
 
+function calculateTotal(itemsDiscountSubtotal) {
+    let total = 0;
+    itemsDiscountSubtotal.find(function (item) {
+        total += item.discountSubtotal;
+    });
+    return total;
+}
+
 module.exports = {
     separateTags: separateTags,
     amountBarcodes: amountBarcodes,
     matchPromotions: matchPromotions,
     matchItems: matchItems,
     calculateSubtotal: calculateSubtotal,
-    calculateSavedSubtotal: calculateSavedSubtotal
+    calculateSavedSubtotal: calculateSavedSubtotal,
+    calculateTotal: calculateTotal
 };
 
 
