@@ -60,11 +60,22 @@ function matchItems(itemsPromotionList, allItems) {
     return itemsList;
 }
 
+function calculateSubtotal(itemsList) {
+    let itemSubtotal = [];
+    let subtotal = 0;
+    itemsList.find(function (item) {
+        subtotal = item.price * item.count;
+        itemSubtotal.push(Object.assign({}, item, {subtotal: subtotal}));
+    });
+    return itemSubtotal;
+}
+
 module.exports = {
     separateTags: separateTags,
     amountBarcodes: amountBarcodes,
     matchPromotions: matchPromotions,
-    matchItems: matchItems
+    matchItems: matchItems,
+    calculateSubtotal: calculateSubtotal
 };
 
 
