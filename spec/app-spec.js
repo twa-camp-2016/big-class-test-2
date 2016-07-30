@@ -80,8 +80,43 @@ describe("matchPromotions", function () {
     })
 });
 
+describe("matchItems", function () {
+    it("match items message", function () {
+        let itemsPromotionList = [
+            {
+                "barcode": "ITEM000001",
+                "count": 1,
+                "type": "BUY_TWO_GET_ONE_FREE"
+            },
+            {
+                "barcode": "ITEM000003",
+                "count": 2.5,
+                "type": "1"
+            }
+        ];
+        let allItems = load.loadAllItems();
+        let result = pos.matchItems(itemsPromotionList, allItems);
+        expect(result).toEqual([
+            {
+                "barcode": "ITEM000001",
+                "name": "雪碧",
+                "unit": "瓶",
+                "price": 3,
+                "count": 1,
+                "type": "BUY_TWO_GET_ONE_FREE"
+            },
+            {
+                "barcode": "ITEM000003",
+                "name": "荔枝",
+                "unit": "斤",
+                "price": 15,
+                "count": 2.5,
+                "type": "1"
+            }
+        ]);
 
-
+    })
+});
 
 
 

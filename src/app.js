@@ -1,4 +1,6 @@
 'use strict';
+const load = require("../spec/fixture");
+
 function separateTags(tags) {
     return tags.map(function (tag) {
         let info = tag.split('-');
@@ -44,10 +46,25 @@ function matchPromotions(itemsCount, allPromoteItems) {
     return itemsPromotionList;
 }
 
+function matchItems(itemsPromotionList, allItems) {
+    let itemsList = [];
+    for (let i = 0; i < itemsPromotionList.length; i++) {
+        let existItems = allItems.find(function (item) {
+            return item.barcode === itemsPromotionList[i].barcode;
+        });
+        if (existItems) {
+            itemsList.push(Object.assign({}, existItems, {count: itemsPromotionList[i].count},
+                {type: itemsPromotionList[i].type}));
+        }
+    }
+    return itemsList;
+}
+
 module.exports = {
     separateTags: separateTags,
     amountBarcodes: amountBarcodes,
-    matchPromotions: matchPromotions
+    matchPromotions: matchPromotions,
+    matchItems: matchItems
 };
 
 
