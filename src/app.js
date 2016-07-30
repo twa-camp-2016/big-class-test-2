@@ -35,10 +35,10 @@ function matchPromotions(itemsCount, allPromoteItems) {
             let existItems = item.barcodes.find(function (barcode) {
                 return barcode === items.barcode;
             });
-            if (existItems){
+            if (existItems) {
                 type = item.type;
             }
-            itemsPromotionList.push(Object.assign({},items,{type:type}));
+            itemsPromotionList.push(Object.assign({}, items, {type: type}));
         });
     });
     return itemsPromotionList;
@@ -46,16 +46,15 @@ function matchPromotions(itemsCount, allPromoteItems) {
 
 function matchItems(itemsPromotionList, allItems) {
     let itemsList = [];
-    for (let i = 0; i < itemsPromotionList.length; i++) {
+    itemsPromotionList.find(function (items) {
         let existItems = allItems.find(function (item) {
-            if (item.barcode === itemsPromotionList[i].barcode)
+            if (item.barcode === items.barcode)
                 return item;
         });
         if (existItems) {
-            let tempTtems = Object.assign(existItems, {count: itemsPromotionList[i].count});
-            itemsList.push(Object.assign(tempTtems, {type: itemsPromotionList[i].type}));
+            itemsList.push(Object.assign({}, existItems, {count: items.count}, {type: items.type}));
         }
-    }
+    });
     return itemsList;
 }
 
