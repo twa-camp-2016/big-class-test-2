@@ -69,16 +69,16 @@ function calculateSubtotal(itemsList) {
 
 function calculateSavedSubtotal(itemsList) {
     let itemsDiscountSubtotal = [];
-    let sum = 0;
-    for (let i = 0; i < itemsList.length; i++) {
-        if (itemsList[i].type === "BUY_TWO_GET_ONE_FREE") {
-            sum = itemsList[i].count * itemsList[i].price - itemsList[i].price * (parseInt(itemsList[i].count / 3));
+    let discountSubtotal = 0;
+    itemsList.find(function (item) {
+        if (item.type === "BUY_TWO_GET_ONE_FREE") {
+            discountSubtotal = item.count * item.price - item.price * (parseInt(item.count / 3));
         }
-        else if (itemsList[i].type === "1") {
-            sum = itemsList[i].count * itemsList[i].price;
+        else if (item.type === "1") {
+            discountSubtotal = item.price * item.count;
         }
-        itemsDiscountSubtotal.push(Object.assign({}, itemsList[i], {discountSubtotal: sum}));
-    }
+        itemsDiscountSubtotal.push(Object.assign({}, item, {discountSubtotal: discountSubtotal}));
+    });
     return itemsDiscountSubtotal;
 }
 
