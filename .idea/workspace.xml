@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4478c762-81d8-4332-a80d-0cb82eab217c" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spec/app-spec.js" afterPath="$PROJECT_DIR$/spec/app-spec.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app.js" afterPath="$PROJECT_DIR$/src/app.js" />
-    </list>
+    <list default="true" id="4478c762-81d8-4332-a80d-0cb82eab217c" name="Default" comment="" />
     <ignored path="big-class-test-2.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -81,8 +78,8 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="63" />
-    <option name="y" value="86" />
+    <option name="x" value="482" />
+    <option name="y" value="96" />
     <option name="width" value="1303" />
     <option name="height" value="687" />
   </component>
@@ -188,15 +185,15 @@
       <option name="presentableId" value="Default" />
       <updated>1469845089432</updated>
       <workItem from="1469845090853" duration="1819000" />
-      <workItem from="1469847245157" duration="4114000" />
+      <workItem from="1469847245157" duration="4281000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="5933000" />
+    <option name="totallyTimeSpent" value="6100000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="63" y="86" width="1303" height="687" extended-state="0" />
+    <frame x="482" y="96" width="1303" height="687" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17498082" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
