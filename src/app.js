@@ -41,15 +41,15 @@ function getItemsAmount(barcodesAmount, items) {
     return itemsAmount;
 }
 function getSubtotal(itemsAmount) {
-    let itemsSubtotal=[];
-    for(let i=0; i<itemsAmount.length; i++){
-        itemsSubtotal[i]={
-            barcode:itemsAmount[i].barcode,
-            name:itemsAmount[i].name,
-            unit:itemsAmount[i].unit,
-            price:itemsAmount[i].price,
-            amount:itemsAmount[i].amount,
-            subtotal:itemsAmount[i].amount*itemsAmount[i].price
+    let itemsSubtotal = [];
+    for (let i = 0; i < itemsAmount.length; i++) {
+        itemsSubtotal[i] = {
+            barcode: itemsAmount[i].barcode,
+            name: itemsAmount[i].name,
+            unit: itemsAmount[i].unit,
+            price: itemsAmount[i].price,
+            amount: itemsAmount[i].amount,
+            subtotal: itemsAmount[i].amount * itemsAmount[i].price
         }
     }
     return itemsSubtotal;
@@ -59,5 +59,5 @@ module.exports = {
     formatTags: formatTags,
     getAmount: getAmount,
     getItemsAmount: getItemsAmount,
-    getSubtotal:getSubtotal
+    getSubtotal: getSubtotal
 };
