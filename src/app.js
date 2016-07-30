@@ -92,15 +92,6 @@ function computeTotal(itemsSubtotal) {
     return result;
 }
 
-
-`***<没钱赚商店>收据***
-名称：可口可乐，数量：3瓶，单价：3.00(元)，小计：6.00(元)
-名称：羽毛球，数量：5个，单价：1.00(元)，小计：4.00(元)
-名称：苹果，数量：2斤，单价：5.50(元)，小计：11.00(元)
-----------------------
-    总计：21.00(元)
-节省：4.00(元)
-**********************`
 function print (itemsSubtotal,total) {
     let result=`***<没钱赚商店>收据***`;
     itemsSubtotal.forEach(function (item) {
@@ -113,4 +104,18 @@ function print (itemsSubtotal,total) {
     return result;
 }
 
-module.exports={dividedItems:dividedItems,computeItems:computeItems,generateItems:generateItems,computeSubtotal:computeSubtotal,computeTotal:computeTotal,print:print};
+
+function printReceipt(inputs) {
+    let items=fix.loadAllItems();
+    let promotionsArray=fix.loadPromotions();
+    let inputDivide=dividedItems(inputs);
+    let inputDivideCompute=computeItems(inputDivide);
+    let itemsMatch=generateItems(inputDivideCompute,items);
+    let itemsSubtotal=computeSubtotal(itemsMatch,promotionsArray);
+    let total=computeTotal(itemsSubtotal);
+    let result=print(itemsSubtotal,total);
+
+    return result;
+
+}
+module.exports={dividedItems:dividedItems,computeItems:computeItems,generateItems:generateItems,computeSubtotal:computeSubtotal,computeTotal:computeTotal,print:print,printReceipt:printReceipt};
