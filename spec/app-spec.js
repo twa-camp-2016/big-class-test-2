@@ -395,16 +395,15 @@ describe("getSummaryString",function(){
       { barcode: 'ITEM000005', amount: 3, name: '方便面', unit: '袋', price: 4.5, subTotal: 13.5, type: 'BUY_TWO_GET_ONE_FREE', PromotionsSubTotal: 9 }
     ];
     let promotionsTotal = 51;
-    let result = getSummaryString(getPromotionSubTotalItems,saving,promotionsTotal);
-    let saving = 7;
+    let result = getSummaryString(getPromotionSubTotalItems,7,promotionsTotal);
     let expectResult = `***<没钱赚商店>收据***
-    名称：雪碧，数量：5瓶，单价：3.00(元)，小计：12.00(元)
-    名称：荔枝，数量：2斤，单价：15.00(元)，小计：30.00(元)
-    名称：方便面，数量：3袋，单价：4.50(元)，小计：9.00(元)
-    ----------------------
-    总计：51.00(元)
-    节省：7.00(元)
-    **********************`.trim();
+名称：雪碧，数量：5瓶，单价：3.00(元)，小计：12.00(元)
+名称：荔枝，数量：2斤，单价：15.00(元)，小计：30.00(元)
+名称：方便面，数量：3袋，单价：4.50(元)，小计：9.00(元)
+----------------------
+总计：51.00(元)
+节省：7.00(元)
+**********************`.trim();
     expect(result).toEqual(expectResult)
   })
 })

@@ -158,18 +158,9 @@ function getSummaryString(getPromotionSubTotalItems,saving,promotionsTotal){
   }
   str += "----------------------\n";
   str += "总计："+promotionsTotal.toFixed(2)+"(元)\n";
-  str += "节省："+"7.00"+"(元)\n";
+  str += "节省："+saving.toFixed(2)+"(元)\n";
   str +="**********************";
   return str.trim();
-
-  return `***<没钱赚商店>收据***
-名称：可口可乐，数量：3瓶，单价：3.00(元)，小计：6.00(元)
-名称：羽毛球，数量：5个，单价：1.00(元)，小计：4.00(元)
-名称：苹果，数量：斤，单价：5.50(元)，小计：11.00(元)
-----------------------
-总计：21.00(元)
-节省：4.00(元)
-**********************`
 }
 
 module.exports = {
