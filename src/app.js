@@ -53,8 +53,8 @@ function promotedType(promotions, cartItems) {
     });
 }
 
-function calculatePromotedAmount(promotedType){
-    return promotedType.map(function(item){
+function calculatePromotedAmount(promotedTypes){
+    return promotedTypes.map(function(item){
         if(item.type === "BUY_TWO_GET_ONE_FREE"){
             item.promotedAmount = item.amount-item.amount%3
         }else{
@@ -63,7 +63,22 @@ function calculatePromotedAmount(promotedType){
     });
 }
 
-function calculatePromotedMoney(promotedAmount)
-module.exports = {
-    getItemAmount: getItemAmount
+function calculatePromotedMoney(proAmounts){
+    return proAmounts.map(function(item){
+        return item.promotedMoney = item.price * item.promotedAmount;
+    });
 }
+
+function calculateSubTotal(proMoneys){
+    return proMoneys.map(function(item){
+        return item.subTotal = item.price * item.amount;
+    });
+}
+
+function calculateTotal(subTotals){
+    return subTotals.reduce(function(cur,item){
+        return cur+item.promotedMoney;
+    });
+}
+
+function calculatePromotedTotalMoney(subTotals){}
