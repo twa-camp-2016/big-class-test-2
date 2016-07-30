@@ -24,7 +24,7 @@ function getCartItems(mergedBarcodes, allItems) {
   });
 }
 
-function getPromotions(cartItems, promotions) {
+function getPromotionType(cartItems, promotions) {
   return cartItems.map(function (item) {
     for (let pro of promotions) {
       let exist = pro.barcodes.find(function (barcode) {
@@ -44,16 +44,28 @@ function getSubtotal(promotionTypedCartItems) {
   });
 }
 
-function getSavedSubtotal(subtotalCartItems){
-  return subtotalCartItems.map(function(item){
+function getSavedSubtotal(subtotalCartItems) {
+  return subtotalCartItems.map(function (item) {
     let money = (item.count - parseInt(item.count / 3)) * item.price;
     return Object.assign({}, item, {afterSavedSubtotal: money});
-  })
+  });
 }
+
+function getTotal(afterSavedItems) {
+  let total = 0;
+
+  for (let item of afterSavedItems) {
+    total += item.afterSavedSubtotal;
+  }
+
+  return total;
+}
+
 module.exports = {
   getBarcodes: getBarcodes,
   getCartItems: getCartItems,
-  getPromotions: getPromotions,
+  getPromotionType: getPromotionType,
   getSubtotal: getSubtotal,
   getSavedSubtotal: getSavedSubtotal,
+  getTotal: getTotal
 }

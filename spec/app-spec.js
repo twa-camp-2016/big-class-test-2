@@ -49,7 +49,7 @@ describe("getCartItems", function () {
   });
 });
 
-describe("getPromotions", function () {
+describe("getPromotionType", function () {
   it("to get promotion type", function () {
     let inputs = [{
       barcode: 'ITEM000000',
@@ -66,11 +66,11 @@ describe("getPromotions", function () {
       price: 3.00,
       count: 2,
       type: 'BUY_TWO_GET_ONE_FREE'
-    }]
+    }];
 
     let promotions = load.loadPromotions();
 
-    expect(callFunction.getPromotions(inputs, promotions)).toEqual(expected);
+    expect(callFunction.getPromotionType(inputs, promotions)).toEqual(expected);
   });
 });
 
@@ -126,3 +126,21 @@ describe("getSavedSubtotal", function () {
   });
 });
 
+describe("gteTotal", function () {
+  it("to get total", function () {
+    let inputs = [{
+      barcode: 'ITEM000000',
+      name: '可口可乐',
+      unit: '瓶',
+      price: 3.00,
+      count: 5,
+      type: 'BUY_TWO_GET_ONE_FREE',
+      subtotal: 15,
+      afterSavedSubtotal: 12
+    }]
+
+    let total = 12;
+
+    expect(callFunction.getTotal(inputs)).toBe(total);
+  });
+});
