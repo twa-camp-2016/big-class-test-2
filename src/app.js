@@ -35,11 +35,17 @@ function getBuyTwoFreeOneItems(cartItems, allPromotions) {
   return cartItems.filter(item => allBuyTwoFreeOneBarcodes.find(entry => entry === item.barcode) === undefined ? false : true);
 }
 
+function calculateOriginSubtotal(cartItems) {
+  return cartItems.map(item=> Object.assign({}, item, {subTotal: item.amount * item.price}));
+}
+
 module.exports = {
   formatTags,
   mergeTags,
   getCartItems,
   getBuyTwoFreeOneItems,
+  calculateOriginSubtotal,
+
 
 
 };

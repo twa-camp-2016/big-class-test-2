@@ -50,7 +50,7 @@ describe('mergeBarcode', () => {
     let actual = core.mergeTags(formattedTags);
     expect(actual).toEqual(mergedBarcodes);
   })
-})
+});
 
 describe('getCartItems', () => {
   it('should return cartItem information list', () => {
@@ -86,9 +86,9 @@ describe('getCartItems', () => {
     let actual = core.getCartItems(mergedBarcodes, fixture.loadAllItems());
     expect(actual).toEqual(cartItems);
   })
-})
+});
 
-fdescribe('getBuyTwoFreeOneItems', () => {
+describe('getBuyTwoFreeOneItems', () => {
   it('should return cartItem information list of buy two free one item', () => {
     let cartItems = [
       {
@@ -130,6 +130,56 @@ fdescribe('getBuyTwoFreeOneItems', () => {
     let actual = core.getBuyTwoFreeOneItems(cartItems, fixture.loadPromotions());
     expect(actual).toEqual(buyTwoFreeOneItems);
   })
-})
+});
+
+fdescribe('calculateOriginSubTotal', () => {
+  it('should return subtotal price of each item', () => {
+    let cartItems = [
+      {
+        barcode: 'ITEM000001',
+        name: '雪碧',
+        unit: '瓶',
+        price: 3.00, amount: 2
+      },
+      {
+        barcode: 'ITEM000003',
+        name: '荔枝',
+        unit: '斤',
+        price: 15.00, amount: 1
+      },
+      {
+        barcode: 'ITEM000005',
+        name: '方便面',
+        unit: '袋',
+        price: 4.50, amount: 1
+      }
+
+    ];
+    let expected = [
+      {
+        barcode: 'ITEM000001',
+        name: '雪碧',
+        unit: '瓶',
+        price: 3.00, amount: 2, subTotal: 6.00
+      },
+      {
+        barcode: 'ITEM000003',
+        name: '荔枝',
+        unit: '斤',
+        price: 15.00, amount: 1, subTotal: 15.00
+      },
+      {
+        barcode: 'ITEM000005',
+        name: '方便面',
+        unit: '袋',
+        price: 4.50, amount: 1, subTotal: 4.5
+      }
+
+    ];
+
+    let actual = core.calculateOriginSubtotal(cartItems);
+    expect(actual).toEqual(expected);
+  })
+});
 
 
