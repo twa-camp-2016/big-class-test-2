@@ -232,6 +232,12 @@ describe('judge', function () {
            save: 3,
            total: 6
        };
+       let expected = {
+           save: 3,
+           total: 6
+       };
        let result = fn.judge(total, second);
+
+       expect(result).toEqual(expected);
    })
 });

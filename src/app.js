@@ -111,7 +111,14 @@ function promotiondTotal(promotionedItems) {
 }
 
 function judge(total, second) {
-
+    if(total > second.total) {
+        return second;
+    } else {
+        return{
+            save: 0,
+            total: total
+        }
+    }
 }
 
 module.exports = {
@@ -121,6 +128,7 @@ module.exports = {
     calculateSubotal: calculateSubotal,
     calculateTotal: calculateTotal,
     getPromotionsIds: getPromotionsIds,
+    judge: judge,
     calculatePromotion: calculatePromotion,
     promotiondTotal: promotiondTotal,
 
