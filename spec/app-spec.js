@@ -9,3 +9,18 @@ describe('formatBarcodes', function () {
         expect(result).toEqual(expected);
     });
 });
+
+describe('mergeBarcodes', function () {
+    it('should return mergedBarcodes', function () {
+        let test = [
+            {barcode: 'item0001', amount: 1},
+            {barcode: 'item0001', amount: 1},
+            {
+                barcode: 'item0002',
+                amount: 2
+            }];
+        let result = app.mergeBarcodes(test);
+        let expected = [{barcode: 'item0001', amount: 2}, {barcode: 'item0002', amount: 2}];
+        expect(result).toEqual(expected);
+    })
+})

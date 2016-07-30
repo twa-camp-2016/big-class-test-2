@@ -6,6 +6,24 @@ function formatBarcodes(barcodes) {
     });
 }
 
+function mergeBarcodes(formatedBarcodes) {
+    let result = [];
+    result = formatedBarcodes.reduce(function (cur, newValue) {
+        let exist = cur.find(function (item) {
+            return item.barcode === newValue.barcode;
+        });
+        if (exist) {
+            exist.amount += newValue.amount;
+        }
+        else {
+            cur.push(newValue);
+        }
+        return cur;
+    }, []);
+    return result;
+}
+
 module.exports = {
-    formatBarcodes: formatBarcodes
+    formatBarcodes: formatBarcodes,
+    mergeBarcodes: mergeBarcodes
 }
