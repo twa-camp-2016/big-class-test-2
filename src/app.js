@@ -14,6 +14,8 @@ function printReceipt(tags) {
     let promotionedId = getPromotionsIds(promotions)
 
     let promotiondItem = calculatePromotion(subtotaledItem, promotionedId)
+    let second = promotiondTotal(promotiondItem);
+
 }
 
 function formateBarcode(tags) {
@@ -96,8 +98,20 @@ function calculatePromotion(subtotaledItem, prototionedId) {
 
 }
 
-function promotiondTotal() {
-    
+function promotiondTotal(promotionedItems) {
+    let save = 0, saveTotal = 0;
+    for(let item of promotionedItems) {
+        save += item.save;
+        saveTotal += item.savedSubtotal;
+    }
+    return {
+        save: save,
+        total: saveTotal
+    };
+}
+
+function judge(total, second) {
+
 }
 
 module.exports = {
@@ -108,5 +122,6 @@ module.exports = {
     calculateTotal: calculateTotal,
     getPromotionsIds: getPromotionsIds,
     calculatePromotion: calculatePromotion,
+    promotiondTotal: promotiondTotal,
 
 };

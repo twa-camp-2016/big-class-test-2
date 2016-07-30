@@ -201,3 +201,37 @@ describe('calculatePromotion',function () {
    })
 });
 
+describe('promotiondTotal', function () {
+   it('should return promotionde subtotal and total', function () {
+       let promotionedItems = [
+           {
+               barcode: 'ITEM000001',
+               name: 'Ñ©±Ì',
+               unit: 'Æ¿',
+               price: 3.00,
+               count: 3,
+               subtotal: 9,
+               save: 3,
+               savedSubtotal: 6
+           }
+       ];
+       let expected = {
+           save: 3,
+           total: 6
+       };
+       let result = fn.promotiondTotal(promotionedItems);
+
+       expect(result).toEqual(expected);
+   })
+});
+
+describe('judge', function () {
+   it('should return the result type and total', function () {
+       let total = 9;
+       let second = {
+           save: 3,
+           total: 6
+       };
+       let result = fn.judge(total, second);
+   })
+});
