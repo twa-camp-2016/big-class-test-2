@@ -84,9 +84,9 @@ function calculateSavedSubtotal(itemsList) {
 
 function calculateTotal(itemsDiscountSubtotal) {
     let total = 0;
-    for (let i = 0; i < itemsDiscountSubtotal.length; i++) {
-        total += itemsDiscountSubtotal[i].discountSubtotal;
-    }
+    itemsDiscountSubtotal.find(function (item) {
+        total += item.discountSubtotal;
+    });
     return total;
 }
 
