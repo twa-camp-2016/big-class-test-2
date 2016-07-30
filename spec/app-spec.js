@@ -5,14 +5,26 @@ let fix=require('./fixture.js');
 
 describe('formatTags',()=>{
     it('return formattedTags',()=>{
-        let tags=['ITEM01','ITEM01','ITEM01','ITEM02-2','ITEM03-2','ITEM03'];
+        let tags=[
+            'ITEM000001',
+            'ITEM000001',
+            'ITEM000001',
+            'ITEM000001',
+            'ITEM000001',
+            'ITEM000003-2',
+            'ITEM000005',
+            'ITEM000005',
+            'ITEM000005'];
         let formattedTags=[
-            {barcode:'ITEM01', amount:1},
-            {barcode:'ITEM01', amount:1},
-            {barcode:'ITEM01', amount:1},
-            {barcode:'ITEM02', amount:2},
-            {barcode:'ITEM03', amount:2},
-            {barcode:'ITEM03', amount:1},
+            {barcode:'ITEM000001', amount:1},
+            {barcode:'ITEM000001', amount:1},
+            {barcode:'ITEM000001', amount:1},
+            {barcode:'ITEM000001', amount:1},
+            {barcode:'ITEM000001', amount:1},
+            {barcode:'ITEM000003', amount:2},
+            {barcode:'ITEM000005', amount:1},
+            {barcode:'ITEM000005', amount:1},
+            {barcode:'ITEM000005', amount:1}
         ];
         expect(obj.formatTags(tags)).toEqual(formattedTags);
     });
@@ -20,17 +32,20 @@ describe('formatTags',()=>{
 describe('getAmount',()=>{
     it('return barcodesAmount',()=>{
         let formattedTags=[
-            {barcode:'ITEM01', amount:1},
-            {barcode:'ITEM01', amount:1},
-            {barcode:'ITEM01', amount:1},
-            {barcode:'ITEM02', amount:2},
-            {barcode:'ITEM03', amount:2},
-            {barcode:'ITEM03', amount:1},
+            {barcode:'ITEM000001', amount:1},
+            {barcode:'ITEM000001', amount:1},
+            {barcode:'ITEM000001', amount:1},
+            {barcode:'ITEM000001', amount:1},
+            {barcode:'ITEM000001', amount:1},
+            {barcode:'ITEM000003', amount:2},
+            {barcode:'ITEM000005', amount:1},
+            {barcode:'ITEM000005', amount:1},
+            {barcode:'ITEM000005', amount:1}
         ];
         let barcodesAmount=[
-            {barcode:'ITEM01', amount:3},
-            {barcode:'ITEM02', amount:2},
-            {barcode:'ITEM03', amount:3},
+            {barcode:'ITEM000001', amount:5},
+            {barcode:'ITEM000003', amount:2},
+            {barcode:'ITEM000005', amount:3},
         ];
         expect(obj.getAmount(formattedTags)).toEqual(barcodesAmount);
     });
