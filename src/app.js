@@ -1,5 +1,24 @@
 'use strict';
 
+let load = require('../spec/fixture');
+
+function printReceipt(tags) {
+  let allItems = load.loadAllItems();
+  let promotions = load.loadPromotions();
+
+  let barcodes = getBarcodes(tags);
+  let mergedBarcodes = mergeBarcodes(barcodes);
+  let cartItems = getCartItems(mergedBarcodes, allItems);
+  let promotionTypedItems = getPromotionType(cartItems, promotions);
+  let subtotalItems = getSubtotal(promotionTypedItems);
+  let afterSavedItems = getSavedSubtotal(subtotalItems);
+  let total = getTotal(afterSavedItems);
+
+  let receiptString = Print(afterSavedItems, total);
+
+  return receiptString;
+}
+
 function getBarcodes(tags) {
 
   return tags.map(function (item) {
@@ -49,11 +68,12 @@ function getPromotionType(cartItems, promotions) {
 
       if (exist) {
         return Object.assign({}, item, {type: pro.type});
+      } else {
+        return Object.assign({}, item, {type: 'NO_PROMOTION'});
       }
     }
   });
 }
-
 function getSubtotal(promotionTypedCartItems) {
   return promotionTypedCartItems.map(function (item) {
     return Object.assign({}, item, {subtotal: item.price * item.count});
@@ -85,16 +105,18 @@ function Print(afterSavedItems, total) {
   for (let item of afterSavedItems) {
     receiptString += "名称：" + item.name + "，数量：" + item.count + item.unit +
             "，单价：" + item.price.toFixed(2) + "(元)，小计：" + item.afterSavedSubtotal.toFixed(2) + "(元)\n";
-    savedTotal += item.subtotal - item.afterSavedSubtotal;
+    savedTotal += (item.subtotal - item.afterSavedSubtotal);
   }
   receiptString += "----------------------\n";
   receiptString += "总计：" + total.toFixed(2) + "(元)\n";
   receiptString += "节省：" + savedTotal.toFixed(2) + "(元)\n";
   receiptString += "**********************";
+
   return receiptString;
 
 }
 module.exports = {
+  printReceipt: printReceipt,
   getBarcodes: getBarcodes,
   mergeBarcodes: mergeBarcodes,
   getCartItems: getCartItems,
