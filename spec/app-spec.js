@@ -112,7 +112,7 @@ describe('getCartItems',function () {
         expect(result).toEqual([
             {
                 barcode:'ITEM000001',
-                name: '可口可乐',
+                name: '雪碧',
                 unit: '瓶',
                 price: 3.00,
                 count:2,
@@ -209,7 +209,7 @@ describe("getSavedMoney",function () {
         let hasSubtotal=[
             {
                 barcode:'ITEM000001',
-                name: '可口可乐',
+                name: '雪碧',
                 unit: '瓶',
                 price: 3.00,
                 count:3,
@@ -232,4 +232,5 @@ describe("getSavedMoney",function () {
         expect(result).toEqual(3);
     })
 });
+
 

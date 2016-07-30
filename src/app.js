@@ -53,7 +53,7 @@ function getType(countedItems) {
 function getCartItems(hasTypeItems) {
     let cartItems=[];
     let allItems=load.loadAllItems();
-    for(let i of cartItems){
+    for(let i of hasTypeItems){
         for(let j of allItems){
             if(i.barcode===j.barcode){
                 cartItems.push(Object.assign({},j,{count:i.count,type:i.type}));
