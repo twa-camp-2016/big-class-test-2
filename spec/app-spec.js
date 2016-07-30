@@ -178,8 +178,35 @@ describe('getTotalAndSaveMoney',function(){
             subSaveMoney: 0,
             subTotal: 6
         }];
-        let expected={total:15,saveMoney:3};
+        let expected={total:12,saveMoney:3};
         let result=app.getTotalAndSaveMoney(test);
         expect(result).toEqual(expected);
+    });
+});
+
+describe('print',function(){
+    it('should return string',function(){
+        let detailedCartItems=[{
+
+            barcode: 'ITEM000000',
+            name: '可口可乐',
+            unit: '瓶',
+            price: 3.00,
+            amount: 3,
+            subSaveMoney: 3.00,
+            subTotal: 9
+        }, {
+
+            barcode: 'ITEM000001',
+            name: '雪碧',
+            unit: '瓶',
+            price: 3.00,
+            amount: 2,
+            subSaveMoney: 0,
+            subTotal: 6
+        }];
+        let totalAndSaveMoney={total:12,saveMoney:3};
+        let result=app.print(detailedCartItems,totalAndSaveMoney);
+        let expected='***<没钱赚商店>***收据'+'\n';
     })
 })
