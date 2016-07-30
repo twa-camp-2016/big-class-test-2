@@ -23,9 +23,26 @@ function getAmount(formattedTags) {
     }
     return barcodesAmount;
 }
-
+function getItemsAmount(barcodesAmount, items) {
+    let itemsAmount = [];
+    for (let i = 0; i < barcodesAmount.length; i++) {
+        for (let j = 0; j < items.length; j++)
+            if (barcodesAmount[i].barcode === items[j].barcode) {
+                itemsAmount[i] = {
+                    barcode: items[j].barcode,
+                    name: items[j].name,
+                    unit: items[j].unit,
+                    price: items[j].price,
+                    amount: barcodesAmount[i].amount,
+                };
+                break;
+            }
+    }
+    return itemsAmount;
+}
 
 module.exports = {
     formatTags: formatTags,
-    getAmount: getAmount
+    getAmount: getAmount,
+    getItemsAmount: getItemsAmount
 };
