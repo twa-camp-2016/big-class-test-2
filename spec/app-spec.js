@@ -19,8 +19,23 @@ describe("separateTags",function () {
     })
 });
 
-
-
+describe("amountBarcodes",function () {
+    it("should amount the items barcodes",function () {
+        let tags = [{barcode:'IEM0000000',count:1},{barcode:'IEM0000003',count:2},{barcode:'IEM0000003',count:2}];
+        let result = pos.amountBarcodes(tags);
+        let itemsCount = [
+            {
+                barcode:'IEM0000000',
+                count:1
+            },
+            {
+                barcode:'IEM0000003',
+                count:4
+            }
+        ];
+        expect(result).toEqual(itemsCount);
+    })
+});
 
 
 
