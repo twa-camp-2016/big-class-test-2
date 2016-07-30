@@ -114,9 +114,9 @@ describe('getSubSaveMoney', function () {
     });
 });
 
-describe('getsubtotal',function(){
-    it('should return cartItems with subTotal',function(){
-        let test=[{
+describe('getsubtotal', function () {
+    it('should return cartItems with subTotal', function () {
+        let test = [{
 
             barcode: 'ITEM000000',
             name: '可口可乐',
@@ -133,7 +133,7 @@ describe('getsubtotal',function(){
             amount: 2,
             subSaveMoney: 0
         }];
-        let expected=[{
+        let expected = [{
 
             barcode: 'ITEM000000',
             name: '可口可乐',
@@ -141,7 +141,7 @@ describe('getsubtotal',function(){
             price: 3.00,
             amount: 3,
             subSaveMoney: 3.00,
-            subTotal:9
+            subTotal: 9
         }, {
 
             barcode: 'ITEM000001',
@@ -150,9 +150,36 @@ describe('getsubtotal',function(){
             price: 3.00,
             amount: 2,
             subSaveMoney: 0,
-            subTotal:6
+            subTotal: 6
         }];
-        let result=app.getSubTotal(test);
+        let result = app.getSubTotal(test);
+        expect(result).toEqual(expected);
+    });
+});
+
+describe('getTotalAndSaveMoney',function(){
+    it('should return total and saveMoney',function(){
+        let test=[{
+
+            barcode: 'ITEM000000',
+            name: '可口可乐',
+            unit: '瓶',
+            price: 3.00,
+            amount: 3,
+            subSaveMoney: 3.00,
+            subTotal: 9
+        }, {
+
+            barcode: 'ITEM000001',
+            name: '雪碧',
+            unit: '瓶',
+            price: 3.00,
+            amount: 2,
+            subSaveMoney: 0,
+            subTotal: 6
+        }];
+        let expected={total:15,saveMoney:3};
+        let result=app.getTotalAndSaveMoney(test);
         expect(result).toEqual(expected);
     })
 })

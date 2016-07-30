@@ -61,12 +61,22 @@ function getSubTotal(promotedCartItems) {
 }
 
 function getTotalAndSaveMoney(detailedCartItems) {
-    let result = {};
+    let total = 0, saveMoney = 0;
+    for (let i = 0; i < detailedCartItems.length; i++) {
+        total += detailedCartItems[i].subTotal;
+        saveMoney += detailedCartItems[i].subSaveMoney;
+    }
+    return Object.assign({}, {total: total, saveMoney: saveMoney});
+}
+
+function print(detailedCartItems,totalAndSaveMoney){
+    
 }
 module.exports = {
     formatBarcodes: formatBarcodes,
     mergeBarcodes: mergeBarcodes,
     getCartItems: getCartItems,
     getSubSaveMoney: getSubSaveMoney,
-    getSubTotal: getSubTotal
+    getSubTotal: getSubTotal,
+    getTotalAndSaveMoney:getTotalAndSaveMoney
 }
