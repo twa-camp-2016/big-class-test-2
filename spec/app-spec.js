@@ -30,3 +30,34 @@ describe('splitTags',function () {
 
     })
 });
+
+describe('getCount',function () {
+    it("should compute items number in total",function () {
+        let splitedTags=[
+
+            {
+                barcode:'ITEM000001',
+                count:1
+            },{
+                barcode:'ITEM000003',
+                count:2
+            },
+            {
+                barcode:'ITEM000001',
+                count:1
+            }
+
+        ];
+        let result=app.getCount(splitedTags);
+        
+        expect(result).toEqual([
+            {
+                barcode:'ITEM000001',
+                count:2
+            },{
+                barcode:'ITEM000003',
+                count:2
+            }
+        ])
+    })
+})

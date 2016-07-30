@@ -2,8 +2,8 @@
 const load=require('../spec/fixture');
 
 function splitTags(tags) {
-    let result=[];
-    result=tags.map((tag)=>{
+    let splitedTags=[];
+    splitedTags=tags.map((tag)=>{
         let arr=tag.split('-');
         return {
             barcode:arr[0],
@@ -11,10 +11,28 @@ function splitTags(tags) {
         }
     });
 
-    return result;
+    return splitedTags;
+}
+
+function getCount(formatedTags) {
+    let countedItems = [];
+    countedItems = formatedTags.reduce(function (cur, newArr) {
+        let exist = cur.find(function (item) {
+            return item.barcode === newArr.barcode;
+        });
+        if (!exist) {
+            exist = Object.assign({}, newArr, {count: 0});
+            cur.push(exist);
+        }
+        exist.count += newArr.count;
+        return cur;
+    }, []);
+
+    return countedItems;
 }
 
 
 module.exports={
- splitTags:splitTags   
-}
+ splitTags:splitTags,
+    getCount:getCount
+};
