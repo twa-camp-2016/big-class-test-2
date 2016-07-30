@@ -54,16 +54,16 @@ describe("matchPromotions", function () {
     it("match the item's promotion type", function () {
         let itemsCount = [
             {
-                "barcode": "ITEM000001",
-                "count": 1
+                barcode: "ITEM000001",
+                count: 1
             },
             {
-                "barcode": "ITEM000003",
-                "count": 2.5
+                barcode: "ITEM000003",
+                count: 2.5
             },
             {
-                "barcode": "ITEM000005",
-                "count": 3
+                barcode: "ITEM000005",
+                count: 3
             }
         ];
         let allPromoteItems = load.loadPromotions();
@@ -71,19 +71,19 @@ describe("matchPromotions", function () {
 
         expect(result).toEqual([
             {
-                "barcode": "ITEM000001",
-                "count": 1,
-                "type": "BUY_TWO_GET_ONE_FREE"
+                barcode: "ITEM000001",
+                count: 1,
+                type: "BUY_TWO_GET_ONE_FREE"
             },
             {
-                "barcode": "ITEM000003",
-                "count": 2.5,
-                "type": "1"
+                barcode: "ITEM000003",
+                count: 2.5,
+                type: "1"
             },
             {
-                "barcode": "ITEM000005",
-                "count": 3,
-                "type": "BUY_TWO_GET_ONE_FREE"
+                barcode: "ITEM000005",
+                count: 3,
+                type: "BUY_TWO_GET_ONE_FREE"
             }
         ]);
     })
@@ -93,34 +93,34 @@ describe("matchItems", function () {
     it("match items message", function () {
         let itemsPromotionList = [
             {
-                "barcode": "ITEM000001",
-                "count": 1,
-                "type": "BUY_TWO_GET_ONE_FREE"
+                barcode: "ITEM000001",
+                count: 1,
+                type: "BUY_TWO_GET_ONE_FREE"
             },
             {
-                "barcode": "ITEM000003",
-                "count": 2.5,
-                "type": "1"
+                barcode: "ITEM000003",
+                count: 2.5,
+                type: "1"
             }
         ];
         let allItems = load.loadAllItems();
         let result = pos.matchItems(itemsPromotionList, allItems);
         expect(result).toEqual([
             {
-                "barcode": "ITEM000001",
-                "name": "雪碧",
-                "unit": "瓶",
-                "price": 3,
-                "count": 1,
-                "type": "BUY_TWO_GET_ONE_FREE"
+                barcode: "ITEM000001",
+                name: "雪碧",
+                unit: "瓶",
+                price: 3,
+                count: 1,
+                type: "BUY_TWO_GET_ONE_FREE"
             },
             {
-                "barcode": "ITEM000003",
-                "name": "荔枝",
-                "unit": "斤",
-                "price": 15,
-                "count": 2.5,
-                "type": "1"
+                barcode: "ITEM000003",
+                name: "荔枝",
+                unit: "斤",
+                price: 15,
+                count: 2.5,
+                type: "1"
             }
         ]);
 
@@ -131,41 +131,41 @@ describe("calculateSubtotal", function () {
     it("calculateSubtotal test", function () {
         let itemsList = [
             {
-                "barcode": "ITEM000001",
-                "name": "雪碧",
-                "unit": "瓶",
-                "price": 3,
-                "count": 1,
-                "type": "BUY_TWO_GET_ONE_FREE"
+                barcode: "ITEM000001",
+                name: "雪碧",
+                unit: "瓶",
+                price: 3,
+                count: 1,
+                type: "BUY_TWO_GET_ONE_FREE"
             },
             {
-                "barcode": "ITEM000003",
-                "name": "荔枝",
-                "unit": "斤",
-                "price": 15,
-                "count": 2.5,
-                "type": "1"
+                barcode: "ITEM000003",
+                name: "荔枝",
+                unit: "斤",
+                price: 15,
+                count: 2.5,
+                type: "1"
             }
         ];
         let result = pos.calculateSubtotal(itemsList);
         expect(result).toEqual([
             {
-                "barcode": "ITEM000001",
-                "name": "雪碧",
-                "unit": "瓶",
-                "price": 3,
-                "count": 1,
-                "type": "BUY_TWO_GET_ONE_FREE",
-                "subtotal": 3.00
+                barcode: "ITEM000001",
+                name: "雪碧",
+                unit: "瓶",
+                price: 3,
+                count: 1,
+                type: "BUY_TWO_GET_ONE_FREE",
+                subtotal: 3.00
             },
             {
-                "barcode": "ITEM000003",
-                "name": "荔枝",
-                "unit": "斤",
-                "price": 15,
-                "count": 2.5,
-                "type": "1",
-                "subtotal": 37.5
+                barcode: "ITEM000003",
+                name: "荔枝",
+                unit: "斤",
+                price: 15,
+                count: 2.5,
+                type: "1",
+                subtotal: 37.5
             }
         ]);
 
@@ -176,41 +176,41 @@ describe("calculateSavedSubtotal", function () {
     it("calculateSavedSubtotal test", function () {
         let itemsList = [
             {
-                "barcode": "ITEM000001",
-                "name": "雪碧",
-                "unit": "瓶",
-                "price": 3,
-                "count": 3,
-                "type": "BUY_TWO_GET_ONE_FREE"
+                barcode: "ITEM000001",
+                name: "雪碧",
+                unit: "瓶",
+                price: 3,
+                count: 3,
+                type: "BUY_TWO_GET_ONE_FREE"
             },
             {
-                "barcode": "ITEM000003",
-                "name": "荔枝",
-                "unit": "斤",
-                "price": 15,
-                "count": 2.5,
-                "type": "1"
+                barcode: "ITEM000003",
+                name: "荔枝",
+                unit: "斤",
+                price: 15,
+                count: 2.5,
+                type: "1"
             }
         ];
         let result = pos.calculateSavedSubtotal(itemsList);
         expect(result).toEqual([
             {
-                "barcode": "ITEM000001",
-                "name": "雪碧",
-                "unit": "瓶",
-                "price": 3,
-                "count": 3,
-                "type": "BUY_TWO_GET_ONE_FREE",
-                "discountSubtotal": 6.00
+                barcode: "ITEM000001",
+                name: "雪碧",
+                unit: "瓶",
+                price: 3,
+                count: 3,
+                type: "BUY_TWO_GET_ONE_FREE",
+                discountSubtotal: 6.00
             },
             {
-                "barcode": "ITEM000003",
-                "name": "荔枝",
-                "unit": "斤",
-                "price": 15,
-                "count": 2.5,
-                "type": "1",
-                "discountSubtotal": 37.5
+                barcode: "ITEM000003",
+                name: "荔枝",
+                unit: "斤",
+                price: 15,
+                count: 2.5,
+                type: "1",
+                discountSubtotal: 37.5
             }
         ]);
 
