@@ -22,5 +22,47 @@ describe('mergeBarcodes', function () {
         let result = app.mergeBarcodes(test);
         let expected = [{barcode: 'item0001', amount: 2}, {barcode: 'item0002', amount: 2}];
         expect(result).toEqual(expected);
+    });
+});
+
+describe('getCarItems', function () {
+    it('should return cartItems', function () {
+        let mergedBarcodes = [{barcode: 'ITEM000000', amount: 2}, {barcode: 'ITEM000001', amount: 2}];
+        let allItems = [
+            {
+                barcode: 'ITEM000000',
+                name: '可口可乐',
+                unit: '瓶',
+                price: 3.00
+            },
+            {
+                barcode: 'ITEM000001',
+                name: '雪碧',
+                unit: '瓶',
+                price: 3.00
+            },
+            {
+                barcode: 'ITEM000002',
+                name: '苹果',
+                unit: '斤',
+                price: 5.50
+            }];
+        let expected = [{
+
+            barcode: 'ITEM000000',
+            name: '可口可乐',
+            unit: '瓶',
+            price: 3.00,
+            amount: 2
+        }, {
+
+            barcode: 'ITEM000001',
+            name: '雪碧',
+            unit: '瓶',
+            price: 3.00,
+            amount: 2
+        }];
+        let result = app.getCartItems(mergedBarcodes, allItems);
+        expect(result).toEqual(expected);
     })
 })

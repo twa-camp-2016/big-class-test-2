@@ -23,8 +23,19 @@ function mergeBarcodes(formatedBarcodes) {
 
 function getCartItems(mergedBarcodes, allItems) {
     let result = [];
+    allItems.reduce(function (cur, newValue) {
+        let exist = cur.find(function (item) {
+            return item.barcode === newValue.barcode;
+        });
+        if (exist) {
+            result.push(Object.assign({}, newValue, {amount: exist.amount}));
+        }
+        return cur;
+    }, mergedBarcodes);
+    return result;
 }
 module.exports = {
     formatBarcodes: formatBarcodes,
-    mergeBarcodes: mergeBarcodes
+    mergeBarcodes: mergeBarcodes,
+    getCartItems: getCartItems
 }
