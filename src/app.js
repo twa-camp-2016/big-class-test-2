@@ -44,9 +44,16 @@ function getSubtotal(promotionTypedCartItems) {
   });
 }
 
+function getSavedSubtotal(subtotalCartItems){
+  return subtotalCartItems.map(function(item){
+    let money = (item.count - parseInt(item.count / 3)) * item.price;
+    return Object.assign({}, item, {afterSavedSubtotal: money});
+  })
+}
 module.exports = {
   getBarcodes: getBarcodes,
   getCartItems: getCartItems,
   getPromotions: getPromotions,
-  getSubtotal: getSubtotal
+  getSubtotal: getSubtotal,
+  getSavedSubtotal: getSavedSubtotal,
 }

@@ -99,3 +99,30 @@ describe("getSubtotal", function () {
   });
 });
 
+describe("getSavedSubtotal", function () {
+  it("to get saved subtotal", function () {
+    let inputs = [{
+      barcode: 'ITEM000000',
+      name: '可口可乐',
+      unit: '瓶',
+      price: 3.00,
+      count: 5,
+      type: 'BUY_TWO_GET_ONE_FREE',
+      subtotal: 15
+    }]
+
+    let expected = [{
+      barcode: 'ITEM000000',
+      name: '可口可乐',
+      unit: '瓶',
+      price: 3.00,
+      count: 5,
+      type: 'BUY_TWO_GET_ONE_FREE',
+      subtotal: 15,
+      afterSavedSubtotal: 12
+    }]
+
+    expect(callFunction.getSavedSubtotal(inputs)).toEqual(expected);
+  });
+});
+
