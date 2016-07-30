@@ -12,7 +12,7 @@ function formatBarcodes(tags) {
 
 function getBarcodeAmount(allTags) {
     let countBarcodes = [];
-    let exist = 0;
+    let exist;
     for (let i = 0; i < allTags.length; i++) {
         for (m of countBarcodes) {
             exist = (m.barcode === allTags[i].barcode);
@@ -25,6 +25,20 @@ function getBarcodeAmount(allTags) {
         else {
             countBarcodes.push({barcode: allTags[i].barcode, amount: allTags[i].amount});
         }
+        // allTags.map(function (element) {
+        //     let exist=countBarcodes.map(function (m) {
+        //         if (m.barcode === element.barcode) {
+        //             //noinspection JSAnnotator
+        //             break;
+        //         }
+        //     });
+        //     if (exist) {
+        //         m.amount += element.amount;
+        //     }
+        //     else {
+        //         countBarcodes.push({barcode: element.barcode, amount: element.amount});
+        //     }
+        // });
     }
     return countBarcodes;
 }

@@ -49,3 +49,6 @@ describe("getCartItems",function () {
            expect(result).toEqual(expected);
        });
 });
+
+
+describe("get promote information",)
