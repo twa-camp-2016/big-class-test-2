@@ -481,7 +481,7 @@ describe("getSummaryString", function () {
     ];
     let promotionsTotal = 51;
     let saving = 7;
-    let result = getSummaryString(getPromotionSubTotalItems,saving, promotionsTotal);
+    let result = getSummaryString(getPromotionSubTotalItems, saving, promotionsTotal);
     let expectResult = `***<没钱赚商店>收据***
 名称：雪碧，数量：5瓶，单价：3.00(元)，小计：12.00(元)
 名称：荔枝，数量：2斤，单价：15.00(元)，小计：30.00(元)
