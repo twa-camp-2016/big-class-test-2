@@ -8,14 +8,14 @@ function formatTag(tag) {
       amount: Number(div[1]) || 1
     };
   });
-};
+}
 
 function mergeTag(tags) {
   let mergedTags = [];
   tags.forEach(item=> {
     let existItem = mergedTags.find(it=> {
       return it.barcode === item.barcode;
-    })
+    });
     if (existItem) {
       existItem.amount += item.amount;
     }
@@ -74,7 +74,7 @@ function getCartItems(items, mergedItems) {
       return it.barcode === item.barcode;
     });
     cartItems.push(Object.assign({}, exist, item));
-  })
+  });
   return cartItems;
 }
 
@@ -83,7 +83,7 @@ function getSubTotalItems(cartItems) {
   cartItems.forEach(item=> {
     let subTotal = item.price * item.amount;
     subTotalItems.push(Object.assign({}, item, {subTotal: subTotal}));
-  })
+  });
   return subTotalItems;
 }
 
@@ -176,4 +176,4 @@ module.exports = {
   calculatePromotionTotal,
   calculateSaving,
   getSummaryString
-}
+};

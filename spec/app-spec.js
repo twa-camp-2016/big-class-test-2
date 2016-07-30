@@ -390,7 +390,6 @@ describe("getPromotionsSubTotalItems", function () {
     ];
     expect(result).toEqual(expectResult);
   })
-
 });
 
 describe("calculatePromotionTotal", function () {
@@ -431,16 +430,18 @@ describe("calculatePromotionTotal", function () {
     let expectResult = 51;
     expect(result).toEqual(expectResult)
   })
-})
+});
+
 describe("calculateSaving", function () {
   it("should return saving", function () {
     let total = 58;
-    let promotionsTotal = 51
+    let promotionsTotal = 51;
     let result = calculateSaving(total, promotionsTotal);
     let expectResult = 7;
     expect(result).toEqual(expectResult)
   })
-})
+});
+
 describe("getSummaryString", function () {
   it("should return saving", function () {
     let getPromotionSubTotalItems = [
@@ -476,7 +477,8 @@ describe("getSummaryString", function () {
       }
     ];
     let promotionsTotal = 51;
-    let result = getSummaryString(getPromotionSubTotalItems, 7, promotionsTotal);
+    let saving = 7;
+    let result = getSummaryString(getPromotionSubTotalItems,saving, promotionsTotal);
     let expectResult = `***<没钱赚商店>收据***
 名称：雪碧，数量：5瓶，单价：3.00(元)，小计：12.00(元)
 名称：荔枝，数量：2斤，单价：15.00(元)，小计：30.00(元)
@@ -487,4 +489,4 @@ describe("getSummaryString", function () {
 **********************`.trim();
     expect(result).toEqual(expectResult)
   })
-})
+});

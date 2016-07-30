@@ -46,11 +46,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="app.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="app.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="609">
-              <caret line="43" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="178" selection-end-column="1" />
+            <state relative-caret-position="-2889">
+              <caret line="10" column="1" selection-start-line="10" selection-start-column="1" selection-end-line="10" selection-end-column="1" />
               <folding />
             </state>
           </provider>
@@ -66,15 +66,15 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="app-spec.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="app-spec.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/spec/app-spec.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-87">
-              <caret line="458" column="9" selection-start-line="0" selection-start-column="0" selection-end-line="489" selection-end-column="2" />
+            <state relative-caret-position="-1447">
+              <caret line="392" column="0" selection-start-line="392" selection-start-column="0" selection-end-line="392" selection-end-column="0" />
               <folding>
                 <element signature="e#14#277#0" expanded="true" />
-                <marker date="1469851868000" expanded="true" signature="9769:9949" ph="..." />
-                <marker date="1469851868000" expanded="true" signature="9769:10007" ph="..." />
+                <marker date="1469852170000" expanded="true" signature="9797:9977" ph="..." />
+                <marker date="1469852170000" expanded="true" signature="9797:10035" ph="..." />
               </folding>
             </state>
           </provider>
@@ -118,8 +118,8 @@
         <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/spec/support/jasmine.json" />
         <option value="$PROJECT_DIR$/tsconfig.json" />
-        <option value="$PROJECT_DIR$/src/app.js" />
         <option value="$PROJECT_DIR$/spec/app-spec.js" />
+        <option value="$PROJECT_DIR$/src/app.js" />
       </list>
     </option>
   </component>
@@ -299,12 +299,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1469844715828</updated>
-      <workItem from="1469844718176" duration="6750000" />
+      <workItem from="1469844718176" duration="7040000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="6750000" />
+    <option name="totallyTimeSpent" value="7040000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="4" y="23" width="1276" height="777" extended-state="6" />
@@ -385,23 +385,23 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/app.js">
+    <entry file="file://$PROJECT_DIR$/spec/app-spec.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="609">
-          <caret line="43" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="178" selection-end-column="1" />
-          <folding />
+        <state relative-caret-position="-1447">
+          <caret line="392" column="0" selection-start-line="392" selection-start-column="0" selection-end-line="392" selection-end-column="0" />
+          <folding>
+            <element signature="e#14#277#0" expanded="true" />
+            <marker date="1469852170000" expanded="true" signature="9797:9977" ph="..." />
+            <marker date="1469852170000" expanded="true" signature="9797:10035" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/spec/app-spec.js">
+    <entry file="file://$PROJECT_DIR$/src/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-87">
-          <caret line="458" column="9" selection-start-line="0" selection-start-column="0" selection-end-line="489" selection-end-column="2" />
-          <folding>
-            <element signature="e#14#277#0" expanded="true" />
-            <marker date="1469851868000" expanded="true" signature="9769:9949" ph="..." />
-            <marker date="1469851868000" expanded="true" signature="9769:10007" ph="..." />
-          </folding>
+        <state relative-caret-position="-2889">
+          <caret line="10" column="1" selection-start-line="10" selection-start-column="1" selection-end-line="10" selection-end-column="1" />
+          <folding />
         </state>
       </provider>
     </entry>
