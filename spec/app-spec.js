@@ -192,7 +192,7 @@ describe('calculateSubtotal()()', function () {
             originalSubtotal: 13.5,
             type: 'BUY_TWO_GET_ONE_FREE'
         }];
-        let expected=[{
+        let expected = [{
             barcode: 'ITEM000001',
             name: '雪碧',
             unit: '瓶',
@@ -253,8 +253,43 @@ describe('calculatePromotion()()', function () {
             type: 'BUY_TWO_GET_ONE_FREE',
             subtotal: 9
         }];
-        let expected=7.5;
+        let expected = 7.5;
         let result = links.calculatePromotion(inputs);
+        expect(result).toEqual(expected);
+    });
+});
+
+describe('calculateTotal()()', function () {
+    it('it should print items total', function () {
+        let inputs = [{
+            barcode: 'ITEM000001',
+            name: '雪碧',
+            unit: '瓶',
+            price: 3.00,
+            amount: 5,
+            originalSubtotal: 15,
+            type: 'BUY_TWO_GET_ONE_FREE',
+            subtotal: 12
+        }, {
+            barcode: 'ITEM000003',
+            name: '荔枝',
+            unit: '斤',
+            price: 15.00,
+            amount: 2,
+            originalSubtotal: 30,
+            subtotal: 30,
+        }, {
+            barcode: 'ITEM000005',
+            name: '方便面',
+            unit: '袋',
+            price: 4.50,
+            amount: 3,
+            originalSubtotal: 13.5,
+            type: 'BUY_TWO_GET_ONE_FREE',
+            subtotal: 9
+        }];
+        let expected = 51;
+        let result = links.calculateTotal(inputs);
         expect(result).toEqual(expected);
     });
 });
