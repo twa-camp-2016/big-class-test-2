@@ -207,8 +207,13 @@ describe('print', function () {
         }];
         let totalAndSaveMoney = {total: 12, saveMoney: 3};
         let result = app.print(detailedCartItems, totalAndSaveMoney);
-        let expected = '***<没钱赚商店>***收据' + '\n' + '名称:' + '可口可乐,数量:3瓶,单价:3元,小计:6' + '\n' + '名称:雪碧,数量:2瓶,单价:3元,小计:6' +
-            '\n' + '--------------' + '\n' + '总计:12(元)' + '\n' + '节省:3(元)';
+        let expected = `***<没钱赚商店>***收据
+名称:可口可乐,数量:3瓶,单价:3元,小计:6
+名称:雪碧,数量:2瓶,单价:3元,小计:6
+--------------
+总计:12(元)
+节省:3(元)`;
         expect(result).toEqual(expected);
-    })
-})
+    });
+});
+
