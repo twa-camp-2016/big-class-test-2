@@ -64,14 +64,7 @@ function getDiscountedItems(buyTwoFreeOneItems, cartItems) {
 }
 
 function getTotalPrice(subTotalCartItems) {
-  return subTotalCartItems.reduce((acc, cur) => {
-    return acc + cur.originSubTotal
-  }, 0);
-
-  return subTotalCartItems.reduce((acc, cur) => {
-    return acc += (cur.originSubTotal - cur.discount);
-  }, 0)
-
+  return subTotalCartItems.reduce((acc, cur) => acc + cur.originSubTotal, 0);
 }
 
 function getSubTotalCartItems(originSubTotalCartItems, discountList) {
@@ -113,7 +106,6 @@ function generateReceipt(subTotalCartItems, totalPrice) {
 
   return `${header}${body}${footer}`;
 }
-
 
 
 module.exports = {
