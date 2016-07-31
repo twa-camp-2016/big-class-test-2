@@ -1,10 +1,10 @@
 'use strict';
 /*global require*/
-const obj1 = require('../src/app.js');
+const link = require('../src/app.js');
 
 
 describe("formatBarcodes", function () {
-    fit("get all barcodes and amount", function () {
+    it("get all barcodes and amount", function () {
         let tags = [
             'ITEM000001', 'ITEM000001', 'ITEM000001', 'ITEM000003-2'
         ];
@@ -14,13 +14,13 @@ describe("formatBarcodes", function () {
             {barcode: 'ITEM000001', amount: 1},
             {barcode: 'ITEM000003', amount: 2}
         ];
-        let result = obj1.formatBarcodes(tags);
+        let result = link.formatBarcodes(tags);
         expect(result).toEqual(expected);
     });
 });
 
 describe("getBarcodeAmount", function () {
-    fit("calculate amount", function () {
+    it("calculate amount", function () {
         let allTags = [
             {barcode: 'ITEM000001', amount: 1},
             {barcode: 'ITEM000001', amount: 1},
@@ -31,13 +31,13 @@ describe("getBarcodeAmount", function () {
             {barcode: 'ITEM000001', amount: 3},
             {barcode: 'ITEM000003', amount: 2}
         ];
-        let result = obj1.getBarcodeAmount(allTags);
+        let result = link.getBarcodeAmount(allTags);
         expect(result).toEqual(expected);
     });
 });
 
 describe("getCartItems", function () {
-    fit("get all cartItems information", function () {
+    it("get all cartItems information", function () {
         let finalBarcodes = [
             {barcode: 'ITEM000001', amount: 3},
             {barcode: 'ITEM000003', amount: 2}
@@ -46,14 +46,14 @@ describe("getCartItems", function () {
             {barcode: 'ITEM000001', amount: 3, name: "雪碧", unit: '瓶', price: 3.00},
             {barcode: 'ITEM000003', amount: 2, name: '荔枝', unit: '斤', price: 15.00}
         ];
-        let result = obj1.getCartItems(finalBarcodes);
+        let result = link.getCartItems(finalBarcodes);
         expect(result).toEqual(expected);
     });
 });
 
 
 describe("getPromotions", function () {
-    fit("get promote information", function () {
+    it("get promote information", function () {
         let allItems = [
             {barcode: 'ITEM000001', amount: 3, name: "雪碧", unit: '瓶', price: 3.00},
             {barcode: 'ITEM000005', amount: 2, name: "方便面", unit: "袋", price: 4.50}
@@ -62,13 +62,13 @@ describe("getPromotions", function () {
             {barcode: 'ITEM000001', amount: 3, name: "雪碧", unit: '瓶', price: 3.00, type: 'BUY_TWO_GET_ONE_FREE'},
             {barcode: 'ITEM000005', amount: 2, name: "方便面", unit: "袋", price: 4.50, type: 'BUY_TWO_GET_ONE_FREE'}
         ];
-        let result = obj1.getPromotions(allItems);
+        let result = link.getPromotions(allItems);
         expect(result).toEqual(expected);
     });
 });
 
 describe("getUnPromoteSubtotal", function () {
-    fit("get UnPromoteSubtotal", function () {
+    it("get UnPromoteSubtotal", function () {
         let allPromoteItems = [
             {barcode: 'ITEM000001', amount: 3, name: "雪碧", unit: '瓶', price: 3.00, type: 'BUY_TWO_GET_ONE_FREE'},
             {barcode: 'ITEM000005', amount: 2, name: "方便面", unit: "袋", price: 4.50, type: 'BUY_TWO_GET_ONE_FREE'}
@@ -93,14 +93,14 @@ describe("getUnPromoteSubtotal", function () {
                 unPromoteSubtotal: 9
             }
         ];
-        let result = obj1.getUnPromoteSubtotal(allPromoteItems);
+        let result = link.getUnPromoteSubtotal(allPromoteItems);
         expect(result).toEqual(expected);
     });
 });
 
 
 describe("getPromoteSubtotal", function () {
-    fit("get promote subtotal", function () {
+    it("get promote subtotal", function () {
         let items = [
             {
                 barcode: 'ITEM000001',
@@ -143,13 +143,13 @@ describe("getPromoteSubtotal", function () {
                 promoteSubtotal: 9
             }
         ];
-        let result = obj1.getPromoteSubtotal(items);
+        let result = link.getPromoteSubtotal(items);
         expect(result).toEqual(expected);
     });
 });
 
 describe("getPromoteTotal", function () {
-    fit("get promoteTotal And  Save", function () {
+    it("get promoteTotal And  Save", function () {
         let totalInformation = [
             {
                 barcode: 'ITEM000001',
@@ -172,7 +172,7 @@ describe("getPromoteTotal", function () {
                 promoteSubtotal: 9
             }
         ];
-        let result = obj1.getPromoteTotal(totalInformation);
+        let result = link.getPromoteTotal(totalInformation);
         let expected = [{
             total: 15,
             save: 7.5
@@ -183,7 +183,7 @@ describe("getPromoteTotal", function () {
 
 
 describe("print", function () {
-    fit("get all  information", function () {
+    it("get all  information", function () {
         let totalInformation = [
             {
                 barcode: 'ITEM000001',
@@ -213,21 +213,21 @@ describe("print", function () {
         let expected = [{name: "雪碧", amount: 3, unit: '瓶', price: 3.00, promoteSubtotal: 6},
             {name: "方便面", amount: 3, unit: "袋", price: 4.50, promoteSubtotal: 9},
             {total: 15, save: 7.5}];
-        let result = obj1.print(totalInformation, total);
+        let result = link.print(totalInformation, total);
         expect(result).toEqual(expected);
     });
 });
 
 
 describe("printReceipt", function () {
-    fit("link all parts function", function () {
+    it("link all parts function", function () {
         let tags = [
             'ITEM000001', 'ITEM000001', 'ITEM000001', 'ITEM000005-3'
         ];
         let expected = [{name: "雪碧", amount: 3, unit: '瓶', price: 3.00, promoteSubtotal: 6},
             {name: "方便面", amount: 3, unit: "袋", price: 4.50, promoteSubtotal: 9},
             {total: 15, save: 7.5}];
-        let result = obj1.printReceipt(tags);
+        let result = link.printReceipt(tags);
         expect(result).toEqual(expected);
     });
 });
