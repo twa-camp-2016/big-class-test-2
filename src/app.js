@@ -116,11 +116,10 @@ function print(discountSubtotal, total, saveTotal) {
         receiptText += '名称：' + discountSubtotal[i].name
             + ',数量：' + discountSubtotal[i].count + discountSubtotal[i].unit
             + ',单价：' + discountSubtotal[i].price + '元'
-            + ',小计：' + discountSubtotal[i].discountSubtotalSum;
-
+            + ',小计：' + discountSubtotal[i].discountSubtotalSum+ '元';
     }
     receiptText += '----------------------\n'
-        + '总计：' + total + '(元)' + '\n' + '节省：' + saveTotal + ')' + '\n'
+        + '总计：' + total + '元' + '\n' + '节省：' + saveTotal + '元\n'
         + '**********************';
     return receiptText;
 }

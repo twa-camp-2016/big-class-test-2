@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4478c762-81d8-4332-a80d-0cb82eab217c" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spec/app-spec.js" afterPath="$PROJECT_DIR$/spec/app-spec.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/app.js" afterPath="$PROJECT_DIR$/src/app.js" />
     </list>
     <ignored path="big-class-test-2.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -25,11 +25,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="app.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="app.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="578">
-              <caret line="124" column="23" selection-start-line="124" selection-start-column="23" selection-end-line="124" selection-end-column="23" />
+            <state relative-caret-position="326">
+              <caret line="121" column="64" selection-start-line="121" selection-start-column="64" selection-end-line="121" selection-end-column="64" />
               <folding>
                 <element signature="n#!!block;n#splitTag#0" expanded="false" />
                 <element signature="n#!!block;n#getTagCount#0" expanded="false" />
@@ -53,11 +53,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="app-spec.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="app-spec.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/spec/app-spec.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="21">
-              <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="21" selection-end-column="3" />
+            <state relative-caret-position="-5344">
+              <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
               <folding>
                 <marker date="1469939916963" expanded="true" signature="7567:7737" ph="..." />
               </folding>
@@ -126,8 +126,8 @@
         <option value="$PROJECT_DIR$/src/b.js" />
         <option value="$PROJECT_DIR$/src/c.js" />
         <option value="$PROJECT_DIR$/spec/fixture.js" />
-        <option value="$PROJECT_DIR$/src/app.js" />
         <option value="$PROJECT_DIR$/spec/app-spec.js" />
+        <option value="$PROJECT_DIR$/src/app.js" />
       </list>
     </option>
   </component>
@@ -298,12 +298,12 @@
       <workItem from="1469845090853" duration="1819000" />
       <workItem from="1469847245157" duration="5514000" />
       <workItem from="1469853289561" duration="905000" />
-      <workItem from="1469929530788" duration="9965000" />
+      <workItem from="1469929530788" duration="10077000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="18203000" />
+    <option name="totallyTimeSpent" value="18315000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="226" y="52" width="1304" height="686" extended-state="0" />
@@ -536,10 +536,20 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/spec/app-spec.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-5344">
+          <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
+          <folding>
+            <marker date="1469939916963" expanded="true" signature="7567:7737" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="578">
-          <caret line="124" column="23" selection-start-line="124" selection-start-column="23" selection-end-line="124" selection-end-column="23" />
+        <state relative-caret-position="326">
+          <caret line="121" column="64" selection-start-line="121" selection-start-column="64" selection-end-line="121" selection-end-column="64" />
           <folding>
             <element signature="n#!!block;n#splitTag#0" expanded="false" />
             <element signature="n#!!block;n#getTagCount#0" expanded="false" />
@@ -548,16 +558,6 @@
             <element signature="n#!!block;n#getSubtotal#0" expanded="false" />
             <element signature="n#!!block;n#getSaveTotal#0" expanded="false" />
             <element signature="n#!!block;n#getTotal#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/spec/app-spec.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="21">
-          <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="21" selection-end-column="3" />
-          <folding>
-            <marker date="1469939916963" expanded="true" signature="7567:7737" ph="..." />
           </folding>
         </state>
       </provider>
