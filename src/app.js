@@ -23,7 +23,7 @@ function printReceipt(tags) {
     let receiptString = '';
     for(let item of subtotaledItem) {
         receiptString +=`
-名称：${item.name}，数量：${item.count}瓶，小计：${item.subtotal}（元）`
+名称：${item.name}，数量：${item.count}${item.unit}，小计：${item.subtotal}（元）`
     }
     if(totalType.save === 0) {
         receiptString += `
