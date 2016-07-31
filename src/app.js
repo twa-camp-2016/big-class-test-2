@@ -81,18 +81,18 @@ function getPromotionsSubTotalItems(promtionsTypeItems) {
   let getPromotionSubTotalItems = [];
   promtionsTypeItems.forEach(item=> {
     if (item.type === 'BUY_TWO_GET_ONE_FREE') {
-      let PromotionsSubTotal = item.subTotal - parseInt(item.amount / 3) * item.price;
-      getPromotionSubTotalItems.push(Object.assign({}, item, {PromotionsSubTotal: PromotionsSubTotal}));
+      let promotionsSubTotal = item.subTotal - parseInt(item.amount / 3) * item.price;
+      getPromotionSubTotalItems.push(Object.assign({}, item, {promotionsSubTotal: promotionsSubTotal}));
     }
     else
-      getPromotionSubTotalItems.push(Object.assign({}, item, {PromotionsSubTotal: item.subTotal}))
+      getPromotionSubTotalItems.push(Object.assign({}, item, {promotionsSubTotal: item.subTotal}))
   });
   return getPromotionSubTotalItems;
 }
 
 function calculatePromotionTotal(getPromotionSubTotalItems) {
   return getPromotionSubTotalItems.reduce((a, b)=> {
-    return a += b.PromotionsSubTotal
+    return a += b.promotionsSubTotal
   }, 0);
 }
 
@@ -101,14 +101,18 @@ function calculateSaving(total, promotionsTotal) {
 }
 
 function getSummaryString(getPromotionSubTotalItems, saving, promotionsTotal) {
-  let str = "***<没钱赚商店>收据***" + "\n";
-  for (let i = 0; i < getPromotionSubTotalItems.length; i++) {
-    str += "名称：" + getPromotionSubTotalItems[i].name + "，数量：" + getPromotionSubTotalItems[i].amount + getPromotionSubTotalItems[i].unit
-      + "，单价：" + getPromotionSubTotalItems[i].price.toFixed(2) + "(元)，小计：" + getPromotionSubTotalItems[i].PromotionsSubTotal.toFixed(2) + "(元)\n"
-  }
-  str += "----------------------\n";
-  str += "总计：" + promotionsTotal.toFixed(2) + "(元)\n";
-  str += "节省：" + saving.toFixed(2) + "(元)\n";
+  let str = `***<没钱赚商店>收据***
+`;
+  getPromotionSubTotalItems.forEach(item=>{
+    str += `名称：${item.name}，数量：${item.amount}${item.unit}，单价：${item.price.toFixed(2)}(元)，小计：${item.promotionsSubTotal.toFixed(2)}(元)
+`
+  });
+  str += `----------------------
+`;
+  str += `总计：${promotionsTotal.toFixed(2)}(元)
+`;
+  str += `节省：${saving.toFixed(2)}(元)
+`;
   str += "**********************";
   return str.trim();
 }

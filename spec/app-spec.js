@@ -368,7 +368,7 @@ describe("getPromotionsSubTotalItems", function () {
         price: 3,
         subTotal: 15,
         type: 'BUY_TWO_GET_ONE_FREE',
-        PromotionsSubTotal: 12
+        promotionsSubTotal: 12
       },
       {
         barcode: 'ITEM000003',
@@ -378,7 +378,7 @@ describe("getPromotionsSubTotalItems", function () {
         price: 15,
         subTotal: 30,
         type: null,
-        PromotionsSubTotal: 30
+        promotionsSubTotal: 30
       },
       {
         barcode: 'ITEM000005',
@@ -388,7 +388,7 @@ describe("getPromotionsSubTotalItems", function () {
         price: 4.5,
         subTotal: 13.5,
         type: 'BUY_TWO_GET_ONE_FREE',
-        PromotionsSubTotal: 9
+        promotionsSubTotal: 9
       }
     ];
     expect(result).toEqual(expectResult);
@@ -406,7 +406,7 @@ describe("calculatePromotionTotal", function () {
         price: 3,
         subTotal: 15,
         type: 'BUY_TWO_GET_ONE_FREE',
-        PromotionsSubTotal: 12
+        promotionsSubTotal: 12
       },
       {
         barcode: 'ITEM000003',
@@ -416,7 +416,7 @@ describe("calculatePromotionTotal", function () {
         price: 15,
         subTotal: 30,
         type: 'BUY_TWO_GET_ONE_FREE',
-        PromotionsSubTotal: 30
+        promotionsSubTotal: 30
       },
       {
         barcode: 'ITEM000005',
@@ -426,7 +426,7 @@ describe("calculatePromotionTotal", function () {
         price: 4.5,
         subTotal: 13.5,
         type: 'BUY_TWO_GET_ONE_FREE',
-        PromotionsSubTotal: 9
+        promotionsSubTotal: 9
       }
     ];
     let result = calculatePromotionTotal(getPromotionSubTotalItems);
@@ -456,7 +456,7 @@ describe("getSummaryString", function () {
         price: 3,
         subTotal: 15,
         type: 'BUY_TWO_GET_ONE_FREE',
-        PromotionsSubTotal: 12
+        promotionsSubTotal: 12
       },
       {
         barcode: 'ITEM000003',
@@ -466,7 +466,7 @@ describe("getSummaryString", function () {
         price: 15,
         subTotal: 30,
         type: 'BUY_TWO_GET_ONE_FREE',
-        PromotionsSubTotal: 30
+        promotionsSubTotal: 30
       },
       {
         barcode: 'ITEM000005',
@@ -476,7 +476,7 @@ describe("getSummaryString", function () {
         price: 4.5,
         subTotal: 13.5,
         type: 'BUY_TWO_GET_ONE_FREE',
-        PromotionsSubTotal: 9
+        promotionsSubTotal: 9
       }
     ];
     let promotionsTotal = 51;
