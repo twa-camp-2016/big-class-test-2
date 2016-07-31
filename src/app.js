@@ -74,6 +74,7 @@ function getPromotionType(cartItems, promotions) {
     }
   });
 }
+
 function getSubtotal(promotionTypedCartItems) {
   return promotionTypedCartItems.map(function (item) {
     return Object.assign({}, item, {subtotal: item.price * item.count});
@@ -82,8 +83,12 @@ function getSubtotal(promotionTypedCartItems) {
 
 function getSavedSubtotal(subtotalCartItems) {
   return subtotalCartItems.map(function (item) {
-    let money = (item.count - parseInt(item.count / 3)) * item.price;
-    return Object.assign({}, item, {afterSavedSubtotal: money});
+    if (item.type == 'BUY_TWO_GET_ONE_FREE') {
+      let money = (item.count - parseInt(item.count / 3)) * item.price;
+      return Object.assign({}, item, {afterSavedSubtotal: money});
+    } else if (item.type == 'NO_PROMOTION') {
+      return Object.assign({}, item, {afterSavedSubtotal: item.subtotal});
+    }
   });
 }
 
@@ -106,10 +111,10 @@ function print(afterSavedItems, total) {
     savedTotal += (item.subtotal - item.afterSavedSubtotal);
   }
 
-  if(savedTotal){
+  if (savedTotal) {
     receiptString += `----------------------\n总计：${total.toFixed(2)}(元)\n`;
     receiptString += `节省：${savedTotal.toFixed(2)}(元)\n**********************`;
-  }else{
+  } else {
     receiptString += `总计：${total.toFixed(2)}(元)\n**********************`;
   }
 
