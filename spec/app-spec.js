@@ -203,7 +203,7 @@ describe("gteTotal", function () {
   });
 });
 
-describe("Print", function () {
+describe("print", function () {
   it("to print the result", function () {
     let inputs = [{
       barcode: 'ITEM000000',
@@ -224,6 +224,6 @@ describe("Print", function () {
 节省：3.00(元)
 **********************`.trim();
 
-    expect(callFunction.Print(inputs, total)).toEqual(result);
+    expect(callFunction.print(inputs, total)).toEqual(result);
   });
 });

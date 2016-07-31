@@ -14,7 +14,7 @@ function printReceipt(tags) {
   let afterSavedItems = getSavedSubtotal(subtotalItems);
   let total = getTotal(afterSavedItems);
 
-  let receiptString = Print(afterSavedItems, total);
+  let receiptString = print(afterSavedItems, total);
 
   return receiptString;
 }
@@ -97,24 +97,26 @@ function getTotal(afterSavedItems) {
   return total;
 }
 
-
-function Print(afterSavedItems, total) {
-  let receiptString = "***<没钱赚商店>收据***\n";
+function print(afterSavedItems, total) {
+  let receiptString = `***<没钱赚商店>收据***\n`;
   let savedTotal = 0;
 
   for (let item of afterSavedItems) {
-    receiptString += "名称：" + item.name + "，数量：" + item.count + item.unit +
-            "，单价：" + item.price.toFixed(2) + "(元)，小计：" + item.afterSavedSubtotal.toFixed(2) + "(元)\n";
+    receiptString += `名称：${item.name}，数量：${item.count}${item.unit}，单价：${item.price.toFixed(2)}(元)，小计：${item.afterSavedSubtotal.toFixed(2)}(元)\n`;
     savedTotal += (item.subtotal - item.afterSavedSubtotal);
   }
-  receiptString += "----------------------\n";
-  receiptString += "总计：" + total.toFixed(2) + "(元)\n";
-  receiptString += "节省：" + savedTotal.toFixed(2) + "(元)\n";
-  receiptString += "**********************";
+
+  if(savedTotal){
+    receiptString += `----------------------\n总计：${total.toFixed(2)}(元)\n`;
+    receiptString += `节省：${savedTotal.toFixed(2)}(元)\n**********************`;
+  }else{
+    receiptString += `总计：${total.toFixed(2)}(元)\n**********************`;
+  }
 
   return receiptString;
 
 }
+
 module.exports = {
   printReceipt: printReceipt,
   getBarcodes: getBarcodes,
@@ -124,5 +126,5 @@ module.exports = {
   getSubtotal: getSubtotal,
   getSavedSubtotal: getSavedSubtotal,
   getTotal: getTotal,
-  Print: Print
-}
+  print: print
+};
