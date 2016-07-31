@@ -12,7 +12,7 @@ function getItems(tags) {
 
 function getItemsAmount(items) {
     let itemsAmount = [];
-    for (let item of items) {
+    items.map(item=>{
         let exit = itemsAmount.find(function (temp) {
             return item.barcode === temp.barcode;
         });
@@ -22,37 +22,60 @@ function getItemsAmount(items) {
         else {
             itemsAmount.push(Object.assign({}, item));
         }
-    }
+    });
     return itemsAmount;
 }
 
 function getCartItems(itemsAmount) {
     let allItems = link.loadAllItems();
     let cartItems = [];
-    for (let item of itemsAmount) {
+    itemsAmount.map(item=>{
         let exit = allItems.find(function (temp) {
             return temp.barcode === item.barcode;
         });
-       if(exit){
-           cartItems.push(Object.assign({},exit,{amount:item.amount}));
-       }
-    }
+        if (exit) {
+            cartItems.push(Object.assign({}, exit, {amount: item.amount}));
+        }
+    });
     return cartItems;
 }
 
 function calculateOriginalSubtotal(cartItems) {
-  let originalSubtotal=[];
-  cartItems.map(item=>{
-      originalSubtotal.push(Object.assign({},item,{originalSubtotal:item.amount*item.price}));
-  });
-  return originalSubtotal;
+    let originalSubtotal = [];
+    cartItems.map(item=> {
+        originalSubtotal.push(Object.assign({}, item, {originalSubtotal: item.amount * item.price}));
+    });
+    return originalSubtotal;
 }
+
+function getCartItemsPromotion(originalSubtotal) {
+    let itemsPromotion = [];
+    let promotions = link.loadPromotions();
+    originalSubtotal.map(item=> {
+        let exit = promotions.find(temp=> {
+            return temp.barcodes.find(code=> {
+                return code === item.barcode;
+            });
+        });
+        if (exit) {
+            itemsPromotion.push(Object.assign({}, item, {type: exit.type}));
+        }
+        else {
+            itemsPromotion.push(Object.assign({}, item))
+        }
+    });
+    return itemsPromotion;
+}
+
+
+
 
 module.exports = {
     getItems: getItems,
     getItemsAmount: getItemsAmount,
     getCartItems: getCartItems,
-    calculateOriginalSubtotal:calculateOriginalSubtotal
+    calculateOriginalSubtotal: calculateOriginalSubtotal,
+    getCartItemsPromotion: getCartItemsPromotion
 
 }
 
