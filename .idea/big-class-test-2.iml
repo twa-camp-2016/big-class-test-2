@@ -8,6 +8,9 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="big-class-test-2 node_modules" level="project" />
+    <orderEntry type="library" name="jasmine-DefinitelyTyped" level="application" />
     <orderEntry type="library" name="jasmine-ajax-DefinitelyTyped" level="application" />
+    <orderEntry type="library" name="jasmine-data_driven_tests-DefinitelyTyped" level="application" />
   </component>
 </module>
