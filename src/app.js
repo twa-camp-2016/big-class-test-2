@@ -1,7 +1,7 @@
 
-function despiteItemsAmount(barcodes) {
+function despiteBarcodes(barcodes) {
     return barcodes.map(function (item) {
-        let info = item.split(" - ");
+        let info = item.split("-");
         return {
             barcode: info[0],
             amount: parseFloat(info[1]) || 1
@@ -10,8 +10,8 @@ function despiteItemsAmount(barcodes) {
 }
 
 
-function mergeItemAmount(despitedItem) {
-    return despitedItem.reduce(function (cur, old) {
+function mergeItems(despitedBarcode) {
+    return despitedBarcode.reduce(function (cur, old) {
         let existItem = cur.find(function (item) {
             return item.barcode === old.barcode;
         });
@@ -25,27 +25,66 @@ function mergeItemAmount(despitedItem) {
     }, []);
 }
 function matchCartItems(itemAmounts,allItems){
-    return itemAmounts.map(function(object){
-        let array = allItems.find(function(item){
-            return item === object.barcode;
-        }) ;
-        return object.push(array);
+    return itemAmounts.map(function(obj){
+        return Object.assign({},allItems.find(function(item){
+            return item.barcode === obj.barcode;
+        }),{amount:obj.amount})
     });
 }
-function mergePromoteTypes(cartItems,allPromotions){
-    return cartItems.forEach(function(object){
-        let merges = allPromotions.barcode.find(function(pro){
-            return object.barcode === pro;
-        });
-        return object.push(allPromotions.type);
-    });
-}
-function calculateSubtotals(promotedTypes){
-    return promotedTypes.map(function(object){
-        return object.push(object.amount*object.price);
-    });
+function calculateSubtotals(cartItems){
+    return cartItems.map(function(obj){
+       return Object.assign({},obj,{subtotal:obj.price*obj.amount})
+    })
 }
 function calculateAlltotals(subtotals){
-    return subtotals =
+    return subtotals.reduce(function(init,cur){
+        return init + cur.subtotal;
+    },0)
 }
-
+function mergePromotionType(subtotals,promotions){
+    let promoteType = promotions.find(pro =>pro.hasOwnProperty('type')).barcodes;
+    return subtotals.map(function(item){
+        let result = promoteType.find(function(bar){
+            return bar === item.barcode;
+        });
+        if(result){
+            return Object.assign({},item,{type:"BUY_TWO_GET_ONE_FREE"})
+        }else{
+            return Object.assign({},item,{type:"none"})
+        }
+    })
+}
+function promoteItemAmount(promotedItems){
+    return promotedItems.map(obj => {
+        if(obj.type === "BUY_TWO_GET_ONE_FREE"){
+           return Object.assign({},obj,{proAmount:obj.amount - parseInt(obj.amount / 3)})
+        }
+        else{
+            return Object.assign({},obj,{proAmount:obj.amount})
+        }
+    })
+}
+function calculatePromotionSubtotals(promotedAmount){
+    return promotedAmount.map(obj => {
+        return Object.assign({},obj,{promotedSubtotal:obj.price*obj.proAmount})
+    })
+}
+function calculatePromotionAlltotal(promotedSubtotals){
+    return promotedSubtotals.reduce((init,cur) => {
+        return init + cur.promotedSubtotal},0)
+}
+function calculatePromotionCash(alltotal,promotedAlltotal){
+    return alltotal - promotedAlltotal;
+}
+module.exports = {
+    despiteBarcodes: despiteBarcodes,
+    mergeItems: mergeItems,
+    matchCartItems: matchCartItems,
+    calculateSubtotals: calculateSubtotals,
+    calculateAlltotals: calculateAlltotals,
+    mergePromotionType: mergePromotionType,
+    promoteItemAmount: promoteItemAmount,
+    calculatePromotionSubtotals: calculatePromotionSubtotals,
+    calculatePromotionAlltotal: calculatePromotionAlltotal,
+    calculatePromotionCash:calculatePromotionCash
+}
