@@ -316,7 +316,7 @@ describe('getTotalPrice', () => {
 });
 
 describe('generateReceipt', () => {
-  it('should return receipt of input tags', () => {
+  it('should return a receipt with promotion information when input cartItems are promoting', () => {
     let subTotalCartItems = [
       {
         barcode: 'ITEM000001',
@@ -338,9 +338,36 @@ describe('generateReceipt', () => {
       }
     ];
     let totalPrice = 30;
+    const expectedReceipt = `***<没钱赚商店>收据***
+名称：雪碧，数量：3瓶，单价：3.00(元)，小计：9.00(元)
+名称：荔枝，数量：1斤，单价：15.00(元)，小计：15.00(元)
+名称：方便面，数量：3袋，单价：4.50(元)，小计：13.50(元)
+----------------------
+总计：30.00(元)
+节省：7.50(元)
+**********************`;
+    let actual = core.generateReceipt(subTotalCartItems, totalPrice);
+    expect(actual).toEqual(expectedReceipt);
+  });
+
+  it('should return a receipt without promotion without promoting item ', () => {
+    let subTotalCartItems = [
+      {
+        barcode: 'ITEM000003',
+        name: '荔枝',
+        unit: '斤',
+        price: 15.00, amount: 1, originSubTotal: 15.00, discount: 0, subTotal: 15.00
+      }
+    ];
+    let totalPrice = 15.00;
+    const expectedReceipt = `***<没钱赚商店>收据***
+名称：荔枝，数量：1斤，单价：15.00(元)，小计：15.00(元)
+----------------------
+总计：15.00(元)
+**********************`;
 
     let actual = core.generateReceipt(subTotalCartItems, totalPrice);
-    expect(actual).toEqual(expected);
+    expect(actual).toEqual(expectedReceipt);
   })
 });
 

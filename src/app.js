@@ -41,11 +41,11 @@ function calculateOriginSubtotal(cartItems) {
 }
 
 function getDiscountedItems(buyTwoFreeOneItems, cartItems) {
-  return cartItems.map( item => {
-    if(buyTwoFreeOneItems.find(barcode => barcode === item.barcode)){
+  return cartItems.map(item => {
+    if (buyTwoFreeOneItems.find(barcode => barcode === item.barcode)) {
       let discountAmount = Math.floor(item.amount / 3);
       return Object.assign({}, item, {discount: discountAmount * item.price});
-    }else
+    } else
       return Object.assign({}, item, {discount: 0});
   });
 }
@@ -59,10 +59,37 @@ function getTotalPrice(subTotalCartItems) {
 
 function generateReceipt(subTotalCartItems, totalPrice) {
 
+  function formatMoney(price) {
+    return price.toFixed(2);
+  }
+
+  function discountPart(subTotalCartItems) {
+    const discount = subTotalCartItems.reduce((acc, cur) => {
+      return acc += cur.discount
+    }, 0);
+    if (discount) {
+      return `\n节省：${formatMoney(discount)}(元)`
+    }
+    else return ``;
+
+  }
+
+  const header = `***<没钱赚商店>收据***\n`;
+
+  const body = subTotalCartItems
+    .map(item =>
+      `名称：${item.name}，数量：${item.amount}${item.unit}，单价：${formatMoney(item.price)}(元)，小计：${formatMoney(item.originSubTotal)}(元)`
+    ).join('\n');
+
+  const footer = `\n----------------------
+总计：${formatMoney(totalPrice)}(元)${discountPart(subTotalCartItems)}
+**********************`;
+
+  return `${header}${body}${footer}`;
 }
 
 function getSubTotalCartItems(originSubTotalCartItems, discountList) {
-  return originSubTotalCartItems.map( item => {
+  return originSubTotalCartItems.map(item => {
     let discounted = discountList.find(entry => entry.barcode === item.barcode);
     return Object.assign({}, item, {subTotal: item.originSubTotal - discounted.discount});
   })
