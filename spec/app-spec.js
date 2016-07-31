@@ -65,7 +65,7 @@ describe('getCartItems', function () {
         expect(result).toEqual(expected);
     });
 });
-describe('calculateOriginalSubtotal', function () {
+describe('calculateOriginal', function () {
     it('it should print items amount', function () {
         let inputs = [{
             barcode: 'ITEM000001',
@@ -108,7 +108,7 @@ describe('calculateOriginalSubtotal', function () {
             amount: 3,
             originalSubtotal: 13.5
         }];
-        let result = links.calculateOriginalSubtotal(inputs);
+        let result = links.calculateOriginal(inputs);
         expect(result).toEqual(expected);
     });
 });
@@ -291,5 +291,13 @@ describe('calculateTotal()()', function () {
         let expected = 51;
         let result = links.calculateTotal(inputs);
         expect(result).toEqual(expected);
+    });
+});
+
+describe('printReceipt()', function () {
+    it('it should print items amount', function () {
+        let inputs = ['ITEM000001', 'ITEM000001', 'ITEM000001', 'ITEM000001',
+            'ITEM000001', 'ITEM000003-2', 'ITEM000005', 'ITEM000005', 'ITEM000005'];
+        links.printReceipt(inputs);
     });
 });
