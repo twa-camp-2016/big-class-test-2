@@ -67,6 +67,20 @@ function getCartItemsPromotion(originalSubtotal) {
     return itemsPromotion;
 }
 
+function calculateSubtotal(itemsPromotion) {
+  let subtotalItems=[];
+  itemsPromotion.map(item=>{
+     let subtotal=0;
+      if(item.type==='BUY_TWO_GET_ONE_FREE') {
+       subtotal=item.originalSubtotal-parseInt(item.amount/3)*item.price;
+      }
+     else {
+       subtotal=item.originalSubtotal;
+      }
+      subtotalItems.push(Object.assign({},item,{subtotal:subtotal}));
+  });
+    return subtotalItems;
+}
 
 
 
@@ -75,7 +89,8 @@ module.exports = {
     getItemsAmount: getItemsAmount,
     getCartItems: getCartItems,
     calculateOriginalSubtotal: calculateOriginalSubtotal,
-    getCartItemsPromotion: getCartItemsPromotion
+    getCartItemsPromotion: getCartItemsPromotion,
+    calculateSubtotal:calculateSubtotal
 
 }
 
