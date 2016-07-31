@@ -112,3 +112,56 @@ describe('calculateOriginalSubtotal', function () {
         expect(result).toEqual(expected);
     });
 });
+
+describe('getCartItemsPromotion()', function () {
+    it('it should print items amount', function () {
+         let inputs = [{
+            barcode: 'ITEM000001',
+            name: '雪碧',
+            unit: '瓶',
+            price: 3.00,
+            amount: 5,
+            originalSubtotal: 15
+        }, {
+            barcode: 'ITEM000003',
+            name: '荔枝',
+            unit: '斤',
+            price: 15.00,
+            amount: 2,
+            originalSubtotal: 30
+        }, {
+            barcode: 'ITEM000005',
+            name: '方便面',
+            unit: '袋',
+            price: 4.50,
+            amount: 3,
+            originalSubtotal: 13.5
+        }];
+        let expected=[{
+            barcode: 'ITEM000001',
+            name: '雪碧',
+            unit: '瓶',
+            price: 3.00,
+            amount: 5,
+            originalSubtotal: 15,
+            type:'BUY_TWO_GET_ONE_FREE'
+        }, {
+            barcode: 'ITEM000003',
+            name: '荔枝',
+            unit: '斤',
+            price: 15.00,
+            amount: 2,
+            originalSubtotal: 30,
+        }, {
+            barcode: 'ITEM000005',
+            name: '方便面',
+            unit: '袋',
+            price: 4.50,
+            amount: 3,
+            originalSubtotal: 13.5,
+            type:'BUY_TWO_GET_ONE_FREE'
+        }];
+        let result = links.getCartItemsPromotion(inputs);
+        expect(result).toEqual(expected);
+    });
+});
