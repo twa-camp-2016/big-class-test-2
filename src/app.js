@@ -40,7 +40,7 @@ function getCartItems(itemsAmount) {
     return cartItems;
 }
 
-function calculateOriginalSubtotal(cartItems) {
+function calculateOriginal(cartItems) {
     let originalSubtotal = [];
     cartItems.map(item=> {
         originalSubtotal.push(Object.assign({}, item, {originalSubtotal: item.amount * item.price}));
@@ -100,16 +100,34 @@ function calculateTotal(subtotalItems) {
     });
 }
 
-
+function printReceipt(tags) {
+    let items = getItems(tags);
+    let itemsAmount = getItemsAmount(items);
+    let cartItems = getCartItems(itemsAmount);
+    let originalSubtotal = calculateOriginal(cartItems);
+    let promotionItems = getCartItemsPromotion(originalSubtotal);
+    let subtotalItems = calculateSubtotal(promotionItems);
+    let promotion = calculatePromotion(subtotalItems);
+    let total = calculateTotal(subtotalItems);
+    console.log(`******<没钱赚商店>收据******`);
+    subtotalItems.map(item=> {
+        console.log(`名称:${item.name},数量:${item.amount}${item.unit},单价${item.price}(元),小计${item.subtotal}(元)`);
+    });
+    console.log(`--------------------------------`);
+    console.log(`${total}元`);
+    console.log(`${promotion}元`);
+    console.log(`--------------------------------`)
+}
 
 module.exports = {
     getItems: getItems,
     getItemsAmount: getItemsAmount,
     getCartItems: getCartItems,
-    calculateOriginalSubtotal: calculateOriginalSubtotal,
+    calculateOriginal: calculateOriginal,
     getCartItemsPromotion: getCartItemsPromotion,
     calculateSubtotal: calculateSubtotal,
     calculatePromotion: calculatePromotion,
-    calculateTotal: calculateTotal
+    calculateTotal: calculateTotal,
+    printReceipt: printReceipt
 }
 
