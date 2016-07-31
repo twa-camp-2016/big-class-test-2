@@ -2,7 +2,7 @@
 const fixture = require('../spec/fixture');
 
 
-function printReceipt(tags) {
+function printReceiptText(tags) {
   const formattedTags = formatTags(tags);
   const mergedBarcodes = mergeTags(formattedTags);
   const cartItems = getCartItems(mergedBarcodes, fixture.loadAllItems());
@@ -126,5 +126,5 @@ module.exports = {
   getTotalPrice,
   generateReceipt,
   getSubTotalCartItems,
-  printReceipt
+  printReceiptText
 };
