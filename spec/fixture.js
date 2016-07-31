@@ -1,6 +1,9 @@
+/**
+ * Created by fcc on 16-7-31.
+ */
 module.exports = {
-    loadAllItems : loadAllItems,
-    loadPromotions : loadPromotions
+  loadAllItems : loadAllItems,
+  loadPromotions : loadPromotions
 };
 
 function loadAllItems() {
