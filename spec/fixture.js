@@ -3,6 +3,8 @@ module.exports = {
     loadPromotions : loadPromotions
 };
 
+'use strict';
+
 function loadAllItems() {
   return [
     {

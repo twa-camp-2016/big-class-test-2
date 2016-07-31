@@ -17,17 +17,22 @@ function printReceipt(tags) {
     let second = promotiondTotal(promotiondItem);
     let totalType = judge(total, second);
 
+    console.log(allItems)
+    console.log(promotiondItem)
+
     let receiptString = '';
     for(let item of subtotaledItem) {
-        receiptString += '名称：' + item.name + ',数量：' + item.count + item.unit + '（元），小计：' + item.subotal + '（元）\n';
+        receiptString +=`
+名称：${item.name}，数量：${item.count}瓶，小计：${item.subtotal}（元）`
     }
     if(totalType.save === 0) {
-        receiptString += '总计：' + totalType.total + '（元）';
+        receiptString += `
+总计：${totalType.total}（元）`
     } else {
-        receiptString += '节省：' + totalType.save + '（元）';
-        receiptString += '总计：' + totalType.total + '（元）';
+        receiptString += `
+节省：${totalType.save}（元）
+总计：${totalType.total}（元）`
     }
-
     return receiptString;
 }
 
@@ -70,10 +75,12 @@ function getItemsInfo(allItems, mergedBarcodes) {
 }
 
 function calculateSubotal(itemsInfo) {
-   return itemsInfo.map(function (item) {
+    let subtotaledItem = [];
+   itemsInfo.map(function (item) {
        let temp = item.price * item.count;
-        return item = Object.assign({}, item, {subotal: temp})
+        subtotaledItem.push(Object.assign({}, item, {subotal: temp}))
     });
+    return subtotaledItem;
 }
 
 function calculateTotal(subtotaledItem) {
@@ -96,16 +103,17 @@ function getPromotionsIds(promotions) {
 
 function calculatePromotion(subtotaledItem, prototionedId) {
     return subtotaledItem.map(function (item) {
-        let exit = prototionedId.find(function (p) {
-            return p === item.barcode;
-        })
+        let exit = prototionedId.find(function (id) {
+            return id === item.barcode;
+        });
         if(exit) {
-            let temp =  parseInt(item.count / 3);
-            let save = temp * item.price;
-            let savesbutotal = item.subtotal - save;
-            return Object.assign({}, item, {save: save, saveSubtotal:savesbutotal})
-        }else  {
-            return Object.assign({}, item, {save: 0, saveSubtotal:0})
+            let count = item.count - parseInt(item.count /3);
+            console.log(count)
+            let subtoal = count * item.price;
+            let save = item.subotal - subtoal
+            return Object.assign({}, item, {save: save, savedSubtotal:subtoal})
+        } else {
+            return Object.assign({}, item, {save: 0, savedSubtotal:item.savedSubtotal})
         }
     })
 
@@ -133,6 +141,8 @@ function judge(total, second) {
         }
     }
 }
+
+//console.log(judge(9, {save: 3, total: 6}))
 
 module.exports = {
     formateBarcode: formateBarcode,

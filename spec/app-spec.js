@@ -6,8 +6,9 @@ describe('printReceipt', function () {
    it('should return receiptString', function () {
        let tags = ['ITEM000000-3'];
        let expected = `
-
-`;
+名称：可口可乐，数量：3瓶'，小计：6（元）
+节省：3（元）
+总计：6（元）`;
        let result = fn.printReceipt(tags);
 
        expect(result).toEqual(expected);
@@ -63,8 +64,8 @@ describe('getItemsInfo', function () {
     it('should return itemsInfo', function () {
         let allItems = [{
             barcode: 'ITEM000000',
-            name: '�ɿڿ���',
-            unit: 'ƿ',
+            name: '可口可乐',
+            unit: '瓶',
             price: 3.00
         }];
         let mergedBarcode = [
@@ -76,8 +77,8 @@ describe('getItemsInfo', function () {
         let expected = [
             {
                 barcode: 'ITEM000000',
-                name: '�ɿڿ���',
-                unit: 'ƿ',
+                name: '可口可乐',
+                unit: '瓶',
                 price: 3.00,
                 count: 1
             }
@@ -93,15 +94,8 @@ describe('calculate', function () {
        let itemsInfo = [
            {
                barcode: 'ITEM000000',
-               name: '�ɿڿ���',
-               unit: 'ƿ',
-               price: 3.00,
-               count: 1
-           },
-           {
-               barcode: 'ITEM000001',
-               name: 'ѩ��',
-               unit: 'ƿ',
+               name: '可口可乐',
+               unit: '瓶',
                price: 3.00,
                count: 1
            }
@@ -109,19 +103,11 @@ describe('calculate', function () {
        let expected = [
            {
                barcode: 'ITEM000000',
-               name: '�ɿڿ���',
-               unit: 'ƿ',
+               name: '可口可乐',
+               unit: '瓶',
                price: 3.00,
                count: 1,
                subtotal: 3
-           },
-           {
-               barcode: 'ITEM000001',
-               name: 'ѩ��',
-               unit: 'ƿ',
-               price: 3.00,
-               count: 2,
-               subtotal: 6
            }
        ];
        let result = fn.calculateSubotal(itemsInfo);
@@ -135,16 +121,16 @@ describe('calculate', function () {
        let subtotaledItem = [
            {
                barcode: 'ITEM000000',
-               name: '�ɿڿ���',
-               unit: 'ƿ',
+               name: '可口可乐',
+               unit: '瓶',
                price: 3.00,
                count: 1,
                subtotal: 3
            },
            {
                barcode: 'ITEM000001',
-               name: 'ѩ��',
-               unit: 'ƿ',
+               name: '雪碧',
+               unit: '瓶',
                price: 3.00,
                count: 2,
                subtotal: 6
@@ -189,8 +175,8 @@ describe('calculatePromotion',function () {
        ];
        let subtotaledItem = [{
            barcode: 'ITEM000001',
-           name: 'ѩ��',
-           unit: 'ƿ',
+           name: '雪碧',
+           unit: '瓶',
            price: 3.00,
            count: 3,
            subtotal: 9
@@ -198,8 +184,8 @@ describe('calculatePromotion',function () {
        let expected = [
            {
                barcode: 'ITEM000001',
-               name: 'ѩ��',
-               unit: 'ƿ',
+               name: '雪碧',
+               unit: '瓶',
                price: 3.00,
                count: 3,
                subtotal: 9,
@@ -209,7 +195,8 @@ describe('calculatePromotion',function () {
        ];
        let result = fn.calculatePromotion(subtotaledItem,promotionedId)
 
-       expect(result).toEqual(expected);
+       //expect(result).toEqual(expected);
+       expect(result).toEqual(expected)
    })
 });
 
@@ -218,8 +205,8 @@ describe('promotiondTotal', function () {
        let promotionedItems = [
            {
                barcode: 'ITEM000001',
-               name: 'ѩ��',
-               unit: 'ƿ',
+               name: '雪碧',
+               unit: '瓶',
                price: 3.00,
                count: 3,
                subtotal: 9,
