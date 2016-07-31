@@ -1,3 +1,6 @@
+//noinspection JSUnresolvedFunction
+let fix = require('../spec/fixture.js');
+
 function formatTags(tags) {
     return tags.map(c=> {
         let temp = c.split('-');
@@ -54,10 +57,72 @@ function getSubtotal(itemsAmount) {
     }
     return itemsSubtotal;
 }
+function getSubtotalPromotion(promotions, itemsSubtotal) {
+    let itemsSubtotalPromotion = [];
+    for (let i = 0; i < itemsSubtotal.length; i++)
+        itemsSubtotalPromotion[i] = {
+            barcode: itemsSubtotal[i].barcode,
+            name: itemsSubtotal[i].name,
+            unit: itemsSubtotal[i].unit,
+            price: itemsSubtotal[i].price,
+            amount: itemsSubtotal[i].amount,
+            subtotal: itemsSubtotal[i].subtotal
+        };
+
+    for (let i = 0; i < itemsSubtotal.length; i++) {
+        let j;
+        for (j = 0; j < promotions.length; j++) {
+            let k;
+            for (k = 0; k < promotions[j].barcodes.length; k++)
+                if (promotions[j].barcodes[k] === itemsSubtotal[i].barcode)
+                    break;
+            if (k !== promotions[j].barcodes.length)
+                break;
+        }
+        if (j !== promotions.length)
+            switch (promotions[j].type) {
+                case 'BUY_TWO_GET_ONE_FREE':
+                    itemsSubtotalPromotion[i].subtotal -= itemsSubtotal[i].price * parseInt(itemsSubtotal[i].amount / 3);
+                    break;
+            }
+    }
+    return itemsSubtotalPromotion;
+}
+function getReceipt(itemsSubtotalPromotion, itemsSubtotal) {
+    let total = 0, totalPromotion = 0;
+    for (let i = 0; i < itemsSubtotal.length; i++)
+        total += itemsSubtotal[i].subtotal;
+    for (let i = 0; i < itemsSubtotalPromotion.length; i++)
+        totalPromotion += itemsSubtotalPromotion[i].subtotal;
+
+    let receipt = '\n***<没钱赚商店>收据***\n';
+    for (let i = 0; i < itemsSubtotal.length; i++)
+        receipt += '名称：' + itemsSubtotal[i].name + '，数量：' + itemsSubtotal[i].amount + itemsSubtotal[i].unit + '，单价：' + Number(itemsSubtotal[i].price).toFixed(2) + '(元)' + '，小计：' + Number(itemsSubtotalPromotion[i].subtotal).toFixed(2) + '(元)\n';
+    receipt += '----------------------\n';
+    receipt += '总计：' + Number(totalPromotion).toFixed(2) + '(元)\n';
+    if (totalPromotion < total)
+        receipt += '节省：' + Number(total - totalPromotion).toFixed(2) + '(元)\n';
+    receipt += '**********************';
+
+    return receipt;
+}
+function printReceipt(tags) {
+    let formattedTags = formatTags(tags);
+    let barcodesAmount = getAmount(formattedTags);
+    let items = fix.loadAllItems();
+    let itemsAmount = getItemsAmount(barcodesAmount, items);
+    let itemsSubtotal = getSubtotal(itemsAmount);
+    let promotions = fix.loadPromotions();
+    let itemsSubtotalPromotion = getSubtotalPromotion(promotions, itemsSubtotal);
+    return getReceipt(itemsSubtotalPromotion, itemsSubtotal);
+}
 
 module.exports = {
     formatTags: formatTags,
     getAmount: getAmount,
     getItemsAmount: getItemsAmount,
-    getSubtotal: getSubtotal
+    getSubtotal: getSubtotal,
+    getSubtotalPromotion: getSubtotalPromotion,
+    getReceipt: getReceipt,
+    printReceipt: printReceipt
 };
