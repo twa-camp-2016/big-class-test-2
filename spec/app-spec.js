@@ -4,9 +4,9 @@ const fn = require('../src/app')
 
 describe('printReceipt', function () {
    it('should return receiptString', function () {
-       let tags = ['ITEM000000-3'];
+       let tags = ['ITEM000001-3'];
        let expected = `
-名称：可口可乐，数量：3瓶'，小计：6（元）
+名称：雪碧，数量：3瓶'，小计：9（元）
 节省：3（元）
 总计：6（元）`;
        let result = fn.printReceipt(tags);

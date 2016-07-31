@@ -4,7 +4,7 @@ let fn = require('../spec/fixture')
 
 function printReceipt(tags) {
     let allItems = fn.loadAllItems();
-    let promotions = fn.loadAllItems();
+    let promotions = fn.loadPromotions();
 
     let barcodes = formateBarcode(tags);
     let mergedBarcodes = mergeBarcode(barcodes);
@@ -16,9 +16,16 @@ function printReceipt(tags) {
     let promotiondItem = calculatePromotion(subtotaledItem, promotionedId)
     let second = promotiondTotal(promotiondItem);
     let totalType = judge(total, second);
-
-    console.log(allItems)
+    console.log(promotions)
+    console.log(barcodes)
+    console.log(mergedBarcodes)
+    console.log(itemsInfo)
+    console.log(subtotaledItem)
+    console.log(total)
+    console.log(promotionedId)
     console.log(promotiondItem)
+    console.log(second)
+    console.log(totalType)
 
     let receiptString = '';
     for(let item of subtotaledItem) {
@@ -78,7 +85,7 @@ function calculateSubotal(itemsInfo) {
     let subtotaledItem = [];
    itemsInfo.map(function (item) {
        let temp = item.price * item.count;
-        subtotaledItem.push(Object.assign({}, item, {subotal: temp}))
+        subtotaledItem.push(Object.assign({}, item, {subtotal: temp}))
     });
     return subtotaledItem;
 }
@@ -93,35 +100,40 @@ function calculateTotal(subtotaledItem) {
 
 function getPromotionsIds(promotions) {
     let prototionedId = [];
-    promotions.forEach(function (p) {
+    /*promotions.forEach(function (p) {
         if(p.type === 'BUY_TWO_GET_ONE_FREE') {
             prototionedId =  p.barcodes;
         }
-    });
+    });*/
+    for(let p of promotions) {
+        if(p.type === 'BUY_TWO_GET_ONE_FREE') {
+            prototionedId = p.barcodes;
+        }
+    }
     return prototionedId;
 }
 
-function calculatePromotion(subtotaledItem, prototionedId) {
+function calculatePromotion(subtotaledItem, prototiondId) {
     return subtotaledItem.map(function (item) {
-        let exit = prototionedId.find(function (id) {
+        let exit = prototiondId.find(function (id) {
             return id === item.barcode;
         });
         if(exit) {
-            let count = item.count - parseInt(item.count /3);
-            console.log(count)
-            let subtoal = count * item.price;
-            let save = item.subotal - subtoal
-            return Object.assign({}, item, {save: save, savedSubtotal:subtoal})
+            let count = parseInt(item.count /3);
+            let save = count * item.price;
+            let sub = item.subtotal - save
+            return Object.assign({}, item, {save: save, savedSubtotal:sub})
         } else {
-            return Object.assign({}, item, {save: 0, savedSubtotal:item.savedSubtotal})
+            return Object.assign({}, item, {save: 0, savedSubtotal:item.subtotal})
         }
     })
 
 }
 
-function promotiondTotal(promotionedItems) {
+function promotiondTotal(promotionedItem) {
+
     let save = 0, saveTotal = 0;
-    for(let item of promotionedItems) {
+    for(let item of promotionedItem) {
         save += item.save;
         saveTotal += item.savedSubtotal;
     }
