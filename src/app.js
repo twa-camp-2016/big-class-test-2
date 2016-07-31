@@ -19,24 +19,73 @@ function mergerBarcode(barcode) {
             existItem.amount += newObj.amount;
         }
         else {
-            cur.push(Object.assign({}, newObj));
+            cur.push(newObj);
         }
         return cur;
     }, []);
 }
 
-function getCartItems(barcodeItems,allItems) {
-    let result=[];
-    barcodeItems.forEach((itemB)=>{
-        allItems.forEach((itemA)=>{
-            if(itemA===itemB){
-                result.push(Object.assign({},allItems,{amount:barcodeItems.amount}));
-            }
-        });
+function getCartItems(barcodeItems, allItems) {
+    return barcodeItems.map((itemB)=> {
+        let exist = allItems.find((itemA)=>itemA.barcode === itemB.barcode);
+        if (exist) {
+            Object.assign(exist, {amount: itemB.amount});
+            return exist;
+        }
     });
 }
-module.exports={
-    formatBarcode:formatBarcode,
-    mergerBarcode:mergerBarcode,
-    getCartItems:getCartItems
+
+function getBeforeTotal(cartItems) {
+    let total = 0;
+    cartItems.forEach((item)=>total += item.price * item.amount);
+    return total;
 }
+
+function getSubTotal(cartItems, promotions) {
+    let typeItems = [];
+    typeItems = cartItems.map((itemC)=> {
+        promotions.forEach((itemP)=> {
+            let exist = itemP.barcodes.find((item)=>item === itemC.barcode);
+            if (exist) {
+                Object.assign(itemC, {type: itemP.type});
+            }
+        });
+        return itemC;
+    });
+
+    return typeItems.map((ele)=> {
+        if (ele.type === 'BUY_TWO_GET_ONE_FREE') {
+            Object.assign(ele, {subTotal: ele.price * (ele.amount - parseInt(ele.amount / 3))});
+
+        } else {
+            Object.assign(ele, {subTotal: ele.price * ele.amount});
+        }
+        return ele;
+    });
+}
+
+function getTotal(subTotalItems) {
+    let total = 0;
+    subTotalItems.forEach((item)=>total += item.subTotal);
+    return total;
+}
+
+function print(subTotalItems, beforeTotal, total) {
+    let string = '\n----------------------------------------\n';
+    subTotalItems.forEach((item)=> {
+        string += '名称：' + item.name + ' 数量：' + item.amount + item.unit + ' 单价：' + item.price + '元 小计：' + item.subTotal + '元\n';
+    });
+    return string += '----------------------------------------\n总计：' + total + '元\n节省：' + (beforeTotal - total) + '元';
+}
+
+module.exports = {
+    formatBarcode: formatBarcode,
+    mergerBarcode: mergerBarcode,
+    getCartItems: getCartItems,
+    getBeforeTotal: getBeforeTotal,
+    getSubTotal: getSubTotal,
+    getTotal: getTotal,
+    print: print
+};
+
+

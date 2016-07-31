@@ -1,3 +1,4 @@
+'use strict';
 module.exports = {
     loadAllItems: loadAllItems,
     loadPromotions: loadPromotions
@@ -44,7 +45,7 @@ function loadAllItems() {
             barcode: 'ITEM000006',
             name: '羽毛球',
             unit: '个',
-            price: 5.5
+            price: 1
         }
     ];
 }
@@ -61,3 +62,12 @@ function loadPromotions() {
         }
     ];
 }
+
+/*  return typeItems.map((ele)=> {
+ if (ele.type === 'BUY_TWO_GET_ONE_FREE') {
+ Object.assign(ele, {subTotal: ele.price * ele.amount - ele.price * (parseInt(ele.amount / 3))});
+
+ } else if (ele.type === 'NO-PROMOTIONS') {
+ Object.assign(ele, {sunTotal: ele.price * ele.amount});
+ }
+ });*/
