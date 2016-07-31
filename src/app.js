@@ -1,21 +1,8 @@
 'use strict';
 const fix=require('../spec/fixture')
-    
-    
-let tags=[
-    'ITEM000',
-    'ITEM001',
-    'ITEM001',
-    'ITEM001',
-    'ITEM001',
-    'ITEM003-2',
-    'ITEM005',
-    'ITEM005',
-    'ITEM005'];
 
 
-
-function getCartItems(tags) {
+function getCartItems(tags){
     return tags.map(function (tag) {
         let arr=tag.split("-");
         return arr.length===2?{
@@ -41,7 +28,6 @@ function calAmountItems(items) {
     }
     return amountBarList;
 }
-
 
 let loadPromotions=fix.loadPromotions();
 let loadAllItems=fix.loadAllItems();
@@ -95,9 +81,7 @@ function calSavingList(cartItems) {
             let amount=Math.floor(savingList[i].amount/3);
             savingList[i].saving=parseFloat(price*amount);
         }
-
     }
-
     return(savingList);
 }
 
@@ -130,6 +114,20 @@ function calTotal(subtotalList) {
     }
 
     return totalNum;
+}
+
+
+function printReceipt(tags) {
+    let items=getCartItems(tags);
+    let amountBarList=calAmountItems(items);
+    let loadPromotions=fix.loadPromotions();
+    let loadAllItems=fix.loadAllItems();
+    let promotionItems=matchPromotionType(amountBarList,loadPromotions);
+    let cartItems=matchAllItems(promotionItems,loadAllItems);
+    let savingList=calSavingList(cartItems);
+    let subtotalList= calSubtotalList(savingList);
+    let sumSaving=calWholeSaving(subtotalList);
+    let totalNum=calTotal(subtotalList);
 }
 
 
