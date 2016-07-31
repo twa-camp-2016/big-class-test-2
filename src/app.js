@@ -91,6 +91,16 @@ function calculatePromotion(subtotalItems) {
     });
 }
 
+function calculateTotal(subtotalItems) {
+    let total = subtotalItems.map(item=> {
+        return item.subtotal;
+    });
+    return total.reduce((a, b)=> {
+        return a + b;
+    });
+}
+
+
 
 module.exports = {
     getItems: getItems,
@@ -99,7 +109,7 @@ module.exports = {
     calculateOriginalSubtotal: calculateOriginalSubtotal,
     getCartItemsPromotion: getCartItemsPromotion,
     calculateSubtotal: calculateSubtotal,
-    calculatePromotion: calculatePromotion
-
+    calculatePromotion: calculatePromotion,
+    calculateTotal: calculateTotal
 }
 
