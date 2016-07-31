@@ -122,7 +122,7 @@ function calculateSaving(newSubtotalList) {
     let savingList = [];
     for (let i = 0; i < newSubtotalList.length; i++) {
         if (newSubtotalList[i].type === 'BUY_TWO_GET_ONE_FREE') {
-            let saving = parseFloat((newSubtotalList[i].count / 3) * newSubtotalList[i].price);
+            let saving = parseFloat((Math.floor(newSubtotalList[i].count / 3)) * newSubtotalList[i].price);
             savingList.push(Object.assign({}, newSubtotalList[i], {saving: saving}));
         }
     }
