@@ -12,7 +12,7 @@ function getItems(tags) {
 
 function getItemsAmount(items) {
     let itemsAmount = [];
-    items.map(item=>{
+    items.map(item=> {
         let exit = itemsAmount.find(function (temp) {
             return item.barcode === temp.barcode;
         });
@@ -29,7 +29,7 @@ function getItemsAmount(items) {
 function getCartItems(itemsAmount) {
     let allItems = link.loadAllItems();
     let cartItems = [];
-    itemsAmount.map(item=>{
+    itemsAmount.map(item=> {
         let exit = allItems.find(function (temp) {
             return temp.barcode === item.barcode;
         });
@@ -68,20 +68,28 @@ function getCartItemsPromotion(originalSubtotal) {
 }
 
 function calculateSubtotal(itemsPromotion) {
-  let subtotalItems=[];
-  itemsPromotion.map(item=>{
-     let subtotal=0;
-      if(item.type==='BUY_TWO_GET_ONE_FREE') {
-       subtotal=item.originalSubtotal-parseInt(item.amount/3)*item.price;
-      }
-     else {
-       subtotal=item.originalSubtotal;
-      }
-      subtotalItems.push(Object.assign({},item,{subtotal:subtotal}));
-  });
+    let subtotalItems = [];
+    itemsPromotion.map(item=> {
+        let subtotal = 0;
+        if (item.type === 'BUY_TWO_GET_ONE_FREE') {
+            subtotal = item.originalSubtotal - parseInt(item.amount / 3) * item.price;
+        }
+        else {
+            subtotal = item.originalSubtotal;
+        }
+        subtotalItems.push(Object.assign({}, item, {subtotal: subtotal}));
+    });
     return subtotalItems;
 }
 
+function calculatePromotion(subtotalItems) {
+    let promotion = subtotalItems.map(item=> {
+        return item.originalSubtotal - item.subtotal;
+    });
+    return promotion.reduce((tempa, tempb)=> {
+        return tempa + tempb;
+    });
+}
 
 
 module.exports = {
@@ -90,7 +98,8 @@ module.exports = {
     getCartItems: getCartItems,
     calculateOriginalSubtotal: calculateOriginalSubtotal,
     getCartItemsPromotion: getCartItemsPromotion,
-    calculateSubtotal:calculateSubtotal
+    calculateSubtotal: calculateSubtotal,
+    calculatePromotion: calculatePromotion
 
 }
 
