@@ -71,6 +71,27 @@ describe("calculateSaving", function () {
             saving: 0
         }]);
     })
+
+    it("should calculateSaving", function () {
+        let input = [{
+            barcode: 'ITEM000001',
+            name: '雪碧',
+            unit: '瓶',
+            price: 3.00,
+            amount:3,
+            subtotal:9.00
+        }];
+        let result = posv1.calculateSaving(input, fixture.loadPromotions());
+        expect(result).toEqual([{
+            barcode: 'ITEM000001',
+            name: '雪碧',
+            unit: '瓶',
+            price: 3.00,
+            amount:3,
+            subtotal:9.00,
+            saving:3.00
+        }]);
+    })
 });
 
 describe("getNewSubtotal", function () {
@@ -139,13 +160,14 @@ describe("print",function () {
                 saving: 0
             }];
 
-            let result=posv1.print(input,30,0);
-            expect(result).toEqual(`***<没钱赚商店>收据***
-            名称：荔枝，数量：2斤，单价：15.00(元)，小计：30.00(元)
-
-            ----------------------
-            总计：30(元)
-            节省：0(元)
-            **********************`);
-        })
+            let result=posv1.print(30,0,input);
+            expect(result).toEqual(
+                "***<没钱赚商店>收据***"+'\n'+
+            "名称：荔枝，数量：2斤，单价：15.00(元)，小计：30.00(元)"+ '\n'+
+            "----------------------"+ '\n'+
+            "总计：30.00(元)"+ '\n'+
+            "节省：0.00(元)" +'\n'+
+            "**********************"
+        );
+    })
 })

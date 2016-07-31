@@ -1,15 +1,5 @@
 'use strict'
-let barcodesItem = [
-    'ITEM000001',
-    'ITEM000001',
-    'ITEM000001',
-    'ITEM000001',
-    'ITEM000001',
-    'ITEM000003-2',
-    'ITEM000005',
-    'ITEM000005',
-    'ITEM000005'
-];
+
 function formatItems(barcodesItem) {
     return barcodesItem.map(function (it) {
         let tempArray = it.split('-');
@@ -46,13 +36,12 @@ function getCartItems(mergedItems, allItems) {
 }
 
 function calculateSubtotal(cartItems) {
-    let subtotalItems = [];
-    for (let i = 0; i < cartItems.length; i++) {
-        let subtotal = cartItems[i].amount * (cartItems[i].price);
-        subtotalItems.push(Object.assign({}, cartItems[i], {subtotal: subtotal}));
-    }
-    return subtotalItems;
+    return cartItems.map(function (it) {
+        let subtotal=it.amount*(it.price);
+        return {barcode:it.barcode,name:it.name,unit:it.unit,price:it.price,amount:it.amount,subtotal:subtotal};
+    })
 }
+
 function calculateSaving(subtotalItems, allPromotions) {
     let savingItems = [];
     let tempArray = allPromotions[0].barcodes;
@@ -77,6 +66,7 @@ function getNewSubtotal(savingItems) {
         return item;
     })
 }
+
 function getTotal(savedItems) {
 
     let total = 0;
@@ -85,6 +75,7 @@ function getTotal(savedItems) {
     }
     return total;
 }
+
 function getAllSaving(savedItems) {
     let allSaving = 0;
     for (let i = 0; i < savedItems.length; i++) {
@@ -92,17 +83,24 @@ function getAllSaving(savedItems) {
     }
     return allSaving;
 }
+
+
 function print(total, allSaving, savedItems) {
-    let receipt="***<没钱赚商店>收据***";
-    for(let i=0;i<savedItems.length;i++) {
-        receipt += "名称：" + savedItems[i].name + ", " + "数量: " + savedItems[i].amount + savedItems[i].unit
-            + ", " + "单价 ：" + savedItems[i].price + "(元)，" + "小计：" + savedItems[i].subtotal +
-            "元" + "\n";
+    let receipt = '';
+
+    for(let i=0;i<savedItems.length;i++){
+        
+        receipt = receipt + '名称：' + savedItems[i].name+ '，' + '数量：' + savedItems[i].amount +savedItems[i].unit + '，' + '单价：' + savedItems[i].price.toFixed(2)
+            + '(元)' + '，' + '小计：' +savedItems[i].subtotal.toFixed(2) + '(元)'  ;
     }
-    receipt+='----------------------'+"\n"+"总计："+total+"(元)"+"节省："+allSaving+"(元)";
-    receipt+='**********************';
+
+    receipt = '***<没钱赚商店>收据***' + '\n' + receipt + '\n' +'----------------------' + '\n' +
+        '总计：' + total.toFixed(2) + '(元)' + '\n' +'节省：' + allSaving.toFixed(2) + '(元)' + '\n'
+        + '**********************';
+
     return receipt;
 }
+
 function printReceipt(barcodesItem) {
     let formattedItem = formatItems(barcodesItem);
     let mergedItems = mergeItems(formattedItem);
@@ -114,6 +112,7 @@ function printReceipt(barcodesItem) {
     let allSaving = getAllSaving(savedItems);
     let receipt=print(total, allSaving, savedItems);
 }
+
 module.exports = {
     formatItems: formatItems, mergeItems: mergeItems, getCartItems: getCartItems, calculateSubtotal: calculateSubtotal,
     calculateSaving: calculateSaving, getNewSubtotal: getNewSubtotal, getTotal: getTotal, getAllSaving: getAllSaving,
