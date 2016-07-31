@@ -1,7 +1,9 @@
-const obj2 = require('../spec/fixture.js');
+/*global require,module*/
 
+const obj2 = require('../spec/fixture.js');
+let m;
 function formatBarcodes(tags) {
-    return array = tags.map(function (tag) {
+    return tags.map(function (tag) {
         let bar = tag.split('-');
         return {
             barcode: bar[0],
@@ -25,20 +27,6 @@ function getBarcodeAmount(allTags) {
         else {
             countBarcodes.push({barcode: allTags[i].barcode, amount: allTags[i].amount});
         }
-        // allTags.map(function (element) {
-        //     let exist=countBarcodes.map(function (m) {
-        //         if (m.barcode === element.barcode) {
-        //             //noinspection JSAnnotator
-        //             break;
-        //         }
-        //     });
-        //     if (exist) {
-        //         m.amount += element.amount;
-        //     }
-        //     else {
-        //         countBarcodes.push({barcode: element.barcode, amount: element.amount});
-        //     }
-        // });
     }
     return countBarcodes;
 }
@@ -53,35 +41,77 @@ function getCartItems(finalBarcodes) {
                     barcode: element1.barcode,
                     amount: element1.amount, name: element2.name, unit: element2.unit, price: element2.price
                 }));
-        })
-    })
+        });
+    });
     return array;
 }
 
 function getPromotions(allItems) {
     let array = [];
     let promotions = obj2.loadPromotions();
-    allItems.map(function (element1) {
-        promotions.filter(function (element2) {
-            element2.barcode.map(function (code) {
-                if (element1.barcode === code) {
-                    array.push({
-                        barcode: element1.barcode, amount: element1.amount,
-                        name: element1.name, unit: element1.unit, price: element1.price, type: element2.type
-                    })
+    for (let i=0;i<allItems.length;i++)
+    {
+        for(m of promotions){
+            for(let j=0;j<m.barcodes.length;j++)
+                if (allItems[i].barcode === m.barcodes[j]) {
+                array.push(Object.assign({}, allItems[i],{type: m.type}));
                 }
-            });
-        });
-    });
+        }
+    }
     return array;
 }
 
 function getUnPromoteSubtotal(allPromoteItems) {
-      let array=[];
-      allPromoteItems.map(function (element) {
-          array.push(Object.assign({},element,{unPromoteSubtotal:element.price*element.amount}));
-      })
+    let array = [];
+    allPromoteItems.map(function (element) {
+        array.push(Object.assign({}, element, {unPromoteSubtotal: element.price * element.amount}));
+    });
     return array;
+}
+
+
+function getPromoteSubtotal(items) {
+    let array = [];
+    items.map(function (item) {
+        if (item.type === 'BUY_TWO_GET_ONE_FREE') {
+            array.push(Object.assign({}, item, {promoteSubtotal: item.price * item.amount - parseInt(item.amount / 3) * item.price}))
+        }
+    });
+    return array;
+}
+
+function getPromoteTotal(totalInformation) {
+    let total = 0, save = 0;
+    let array = [];
+    totalInformation.map(function (item) {
+        total +=item.promoteSubtotal;
+        save += (item.unPromoteSubtotal - item.promoteSubtotal);
+    });
+    array.push({total: total, save: save});
+    return array;
+}
+
+
+function print(totalInformation, total) {
+     let array=[];
+     totalInformation.map(function (item) {
+         array.push({name:item.name, amount:item.amount, unit: item.unit, price: item.price, promoteSubtotal: item.promoteSubtotal})
+     });
+    total.map(function (item) {
+        array.push(Object.assign({total:item.total,save:item.save}));
+    });
+    return array;
+}
+
+function printReceipt(tags) {
+    let formatBarcode=formatBarcodes(tags);
+    let mergeBarcode=getBarcodeAmount(formatBarcode);
+    let cartItems=getCartItems(mergeBarcode);
+    let promotionItems=getPromotions(cartItems);
+    let unPromoteItems=getUnPromoteSubtotal(promotionItems);
+    let promoteSubtotal=getPromoteSubtotal(unPromoteItems);
+    let promoteTotal=getPromoteTotal(promoteSubtotal);
+    return print(promoteSubtotal, promoteTotal);
 }
 
 module.exports = {
@@ -89,5 +119,9 @@ module.exports = {
     getBarcodeAmount: getBarcodeAmount,
     getCartItems: getCartItems,
     getPromotions: getPromotions,
-    getUnPromoteSubtotal:getUnPromoteSubtotal
-}
+    getUnPromoteSubtotal: getUnPromoteSubtotal,
+    getPromoteSubtotal: getPromoteSubtotal,
+    getPromoteTotal: getPromoteTotal,
+    print:print,
+    printReceipt:printReceipt
+};
