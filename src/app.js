@@ -2,6 +2,19 @@
 const fixture = require('../spec/fixture');
 
 
+function printReceipt(tags) {
+  const formattedTags = formatTags(tags);
+  const mergedBarcodes = mergeTags(formattedTags);
+  const cartItems = getCartItems(mergedBarcodes, fixture.loadAllItems());
+  const originSubTotalCartItems = calculateOriginSubtotal(cartItems);
+  const buyTwoFreeOneItems = getBuyTwoFreeOneItems(cartItems, fixture.loadPromotions());
+  const discountedItems = getDiscountedItems(buyTwoFreeOneItems, cartItems);
+  const subTotalCartItems = getSubTotalCartItems(originSubTotalCartItems, discountedItems);
+  const totalPrice = getTotalPrice(subTotalCartItems);
+  const receipt = generateReceipt(subTotalCartItems, totalPrice);
+  return receipt;
+}
+
 function formatTags(tags) {
   return tags.map(tag => {
     let tagPart = tag.split('-');
@@ -52,13 +65,26 @@ function getDiscountedItems(buyTwoFreeOneItems, cartItems) {
 
 function getTotalPrice(subTotalCartItems) {
   return subTotalCartItems.reduce((acc, cur) => {
+    return acc + cur.originSubTotal
+  }, 0);
+
+  return subTotalCartItems.reduce((acc, cur) => {
     return acc += (cur.originSubTotal - cur.discount);
   }, 0)
 
 }
 
-function generateReceipt(subTotalCartItems, totalPrice) {
+function getSubTotalCartItems(originSubTotalCartItems, discountList) {
+  return originSubTotalCartItems.map(item => {
+    let discounted = discountList.find(entry => entry.barcode === item.barcode);
+    return Object.assign({}, item, {
+      subTotal: item.originSubTotal - discounted.discount,
+      discount: discounted.discount
+    });
+  })
+}
 
+function generateReceipt(subTotalCartItems, totalPrice) {
   function formatMoney(price) {
     return price.toFixed(2);
   }
@@ -88,25 +114,7 @@ function generateReceipt(subTotalCartItems, totalPrice) {
   return `${header}${body}${footer}`;
 }
 
-function getSubTotalCartItems(originSubTotalCartItems, discountList) {
-  return originSubTotalCartItems.map(item => {
-    let discounted = discountList.find(entry => entry.barcode === item.barcode);
-    return Object.assign({}, item, {subTotal: item.originSubTotal - discounted.discount});
-  })
-}
 
-function printReceipt(tags) {
-  const formattedTags = formatTags(tags);
-  const mergedBarcodes = mergeTags(formattedTags);
-  const cartItems = getCartItems(mergedBarcodes, fixture.loadAllItems());
-  const originSubTotalCartItems = calculateOriginSubtotal(cartItems);
-  const buyTwoFreeOneItems = getBuyTwoFreeOneItems(cartItems, fixture.loadPromotions());
-  const discountedItems = getDiscountedItems(buyTwoFreeOneItems, cartItems);
-  const subTotalCartItems = getSubTotalCartItems(originSubTotalCartItems, discountedItems);
-  const totalPrice = getTotalPrice(subTotalCartItems);
-  const receipt = generateReceipt(subTotalCartItems, totalPrice);
-  return receipt;
-}
 
 module.exports = {
   formatTags,
