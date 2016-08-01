@@ -1,4 +1,5 @@
 "use strict"
+
 const temp = require('../src/app.js');
 describe("formatTags", function () {
     it("should return formattedTags from tags", function () {
