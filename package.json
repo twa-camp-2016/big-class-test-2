@@ -1,7 +1,6 @@
 {
   "name": "test",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
     "test": "jasmine"
@@ -10,5 +9,14 @@
   "license": "ISC",
   "devDependencies": {
     "jasmine": "^2.4.1"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sharysy/big-class-test-2.git"
+  },
+  "bugs": {
+    "url": "https://github.com/sharysy/big-class-test-2/issues"
+  },
+  "homepage": "https://github.com/sharysy/big-class-test-2#readme",
+  "description": ""
 }
